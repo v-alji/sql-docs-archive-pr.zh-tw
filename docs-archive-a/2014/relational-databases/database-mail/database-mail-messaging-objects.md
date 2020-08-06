@@ -1,0 +1,55 @@
+---
+title: Database Mail 訊息物件 | Microsoft 文件
+ms.custom: ''
+ms.date: 06/14/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: ''
+ms.topic: conceptual
+helpviewer_keywords:
+- Database Mail [SQL Server], host databases
+- Database Mail [SQL Server], messaging objects
+- mail host databases [SQL Server]
+- host databases [Database Mail]
+ms.assetid: 5aa2886e-1db1-4066-85df-57ccf4538c54
+author: stevestein
+ms.author: sstein
+ms.openlocfilehash: d284d3ef1d0ac349dea95b1a6a134cb2429e6e4c
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87709606"
+---
+# <a name="database-mail-messaging-objects"></a><span data-ttu-id="e75a5-102">Database Mail 訊息物件</span><span class="sxs-lookup"><span data-stu-id="e75a5-102">Database Mail Messaging Objects</span></span>
+  <span data-ttu-id="e75a5-103">**msdb** 資料庫是 Database Mail 主機資料庫。</span><span class="sxs-lookup"><span data-stu-id="e75a5-103">The **msdb** database is the Database Mail host database.</span></span> <span data-ttu-id="e75a5-104">這個資料庫包含 Database Mail 的預存程序和訊息物件。</span><span class="sxs-lookup"><span data-stu-id="e75a5-104">This database contains the stored procedures and messaging objects for Database Mail.</span></span> <span data-ttu-id="e75a5-105">Microsoft [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] 包含 [Database Mail 組態精靈]，用以啟用 Database Mail、建立和管理設定檔及帳戶，以及設定 Database Mail 選項。</span><span class="sxs-lookup"><span data-stu-id="e75a5-105">Microsoft [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] includes the Database Mail Configuration Wizard for enabling Database Mail, creating and managing profiles and accounts, and configuring Database Mail options.</span></span>  
+  
+##  <a name="objects-in-msdb-database"></a><a name="ComponentsAndConcepts"></a><span data-ttu-id="e75a5-106">**msdb** 資料庫中的物件</span><span class="sxs-lookup"><span data-stu-id="e75a5-106">Objects in **msdb** database</span></span>  
+ [!INCLUDE[ssSB](../../includes/sssb-md.md)] <span data-ttu-id="e75a5-107">必須在 **msdb** 資料庫中加以啟用。</span><span class="sxs-lookup"><span data-stu-id="e75a5-107">must be enabled in the **msdb** database.</span></span> <span data-ttu-id="e75a5-108">不過，Database Mail 不會使用 [!INCLUDE[ssSB](../../includes/sssb-md.md)] 網路。</span><span class="sxs-lookup"><span data-stu-id="e75a5-108">However, Database Mail does not use [!INCLUDE[ssSB](../../includes/sssb-md.md)] networking.</span></span> <span data-ttu-id="e75a5-109">因此，使用者並不需要建立 [!INCLUDE[ssSB](../../includes/sssb-md.md)] 端點來使用 Database Mail。</span><span class="sxs-lookup"><span data-stu-id="e75a5-109">Therefore, users do not have to create a [!INCLUDE[ssSB](../../includes/sssb-md.md)] endpoint to use Database Mail.</span></span> <span data-ttu-id="e75a5-110">外部 Database Mail 處理序會使用標準 [!INCLUDE[vstecado](../../includes/vstecado-md.md)] 連接來與 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]進行通訊。</span><span class="sxs-lookup"><span data-stu-id="e75a5-110">The external Database Mail process uses a standard [!INCLUDE[vstecado](../../includes/vstecado-md.md)] connection to communicate with [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span>  
+  
+ <span data-ttu-id="e75a5-111">啟用 Database Mail 時，Database Mail 會公開 **msdb** 資料庫中的下列物件。</span><span class="sxs-lookup"><span data-stu-id="e75a5-111">Database Mail exposes the following objects in the **msdb** database when Database Mail is enabled.</span></span>  
+  
+ <span data-ttu-id="e75a5-112">這些物件是郵件主機資料庫中的 Database Mail 介面。</span><span class="sxs-lookup"><span data-stu-id="e75a5-112">These objects are the interface for Database Mail within the mail host database.</span></span> <span data-ttu-id="e75a5-113">所安裝的其他物件則可執行上列物件所提供的功能。</span><span class="sxs-lookup"><span data-stu-id="e75a5-113">Other objects are installed to implement the functionality provided by the objects listed above.</span></span> <span data-ttu-id="e75a5-114">不過，那些物件會保留給內部使用。</span><span class="sxs-lookup"><span data-stu-id="e75a5-114">However, those objects are reserved for internal use.</span></span>  
+  
+|<span data-ttu-id="e75a5-115">名稱</span><span class="sxs-lookup"><span data-stu-id="e75a5-115">Name</span></span>|<span data-ttu-id="e75a5-116">類型</span><span class="sxs-lookup"><span data-stu-id="e75a5-116">Type</span></span>|<span data-ttu-id="e75a5-117">描述</span><span class="sxs-lookup"><span data-stu-id="e75a5-117">Description</span></span>|  
+|----------|----------|-----------------|  
+|[<span data-ttu-id="e75a5-118">sysmail_allitems &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-118">sysmail_allitems &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-allitems-transact-sql)|`View`|<span data-ttu-id="e75a5-119">列出提交至 Database Mail 的所有訊息。</span><span class="sxs-lookup"><span data-stu-id="e75a5-119">Lists all messages submitted to Database Mail.</span></span>|  
+|[<span data-ttu-id="e75a5-120">sysmail_event_log &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-120">sysmail_event_log &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-event-log-transact-sql)|`View`|<span data-ttu-id="e75a5-121">列出關於 [Database Mail External Program](database-mail-external-program.md)行為的訊息。</span><span class="sxs-lookup"><span data-stu-id="e75a5-121">Lists messages about the behavior of the [Database Mail External Program](database-mail-external-program.md).</span></span>|  
+|[<span data-ttu-id="e75a5-122">sysmail_faileditems &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-122">sysmail_faileditems &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-faileditems-transact-sql)|`View`|<span data-ttu-id="e75a5-123">關於 Database Mail 無法傳送之訊息的資訊。</span><span class="sxs-lookup"><span data-stu-id="e75a5-123">Information about messages that Database Mail could not sent.</span></span>|  
+|[<span data-ttu-id="e75a5-124">sysmail_mailattachments &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-124">sysmail_mailattachments &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-mailattachments-transact-sql)|`View`|<span data-ttu-id="e75a5-125">關於 Database Mail 訊息之附加檔案的資訊。</span><span class="sxs-lookup"><span data-stu-id="e75a5-125">Information about attachments to Database Mail messages.</span></span>|  
+|[<span data-ttu-id="e75a5-126">sysmail_sentitems &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-126">sysmail_sentitems &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-sentitems-transact-sql)|`View`|<span data-ttu-id="e75a5-127">關於使用 Database Mail 傳訊之訊息的資訊。</span><span class="sxs-lookup"><span data-stu-id="e75a5-127">Information about messages that have been sent using Database Mail.</span></span>|  
+|[<span data-ttu-id="e75a5-128">sysmail_unsentitems &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-128">sysmail_unsentitems &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-catalog-views/sysmail-unsentitems-transact-sql)|`View`|<span data-ttu-id="e75a5-129">關於 Database Mail 目前嘗試傳送之訊息的資訊。</span><span class="sxs-lookup"><span data-stu-id="e75a5-129">Information about messages that Database Mail in currently trying to send.</span></span>|  
+|[<span data-ttu-id="e75a5-130">sp_send_dbmail &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-130">sp_send_dbmail &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-stored-procedures/sp-send-dbmail-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-131">使用 Database Mail 來傳送電子郵件訊息。</span><span class="sxs-lookup"><span data-stu-id="e75a5-131">Sends e-mail messages using Database Mail.</span></span>|  
+|[<span data-ttu-id="e75a5-132">sysmail_delete_log_sp &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-132">sysmail_delete_log_sp &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-stored-procedures/sysmail-delete-log-sp-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-133">刪除 Database Mail 記錄檔中的訊息。</span><span class="sxs-lookup"><span data-stu-id="e75a5-133">Deletes messages from the Database Mail log.</span></span>|  
+|[<span data-ttu-id="e75a5-134">sysmail_delete_mailitems_sp &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-134">sysmail_delete_mailitems_sp &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-stored-procedures/sysmail-delete-mailitems-sp-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-135">刪除 Database Mail 佇列中的郵件項目。</span><span class="sxs-lookup"><span data-stu-id="e75a5-135">Deletes mail items from the Database Mail queue.</span></span>|  
+|[<span data-ttu-id="e75a5-136">sysmail_help_status_sp &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="e75a5-136">sysmail_help_status_sp &#40;Transact-SQL&#41;</span></span>](/sql/relational-databases/system-stored-procedures/sysmail-help-status-sp-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-137">指示 Database Mail 是否已啟動。</span><span class="sxs-lookup"><span data-stu-id="e75a5-137">Indicates if Database Mail is started.</span></span>|  
+|[<span data-ttu-id="e75a5-138">sysmail_start_sp (Transact-SQL)</span><span class="sxs-lookup"><span data-stu-id="e75a5-138">sysmail_start_sp (Transact-SQL)</span></span>](/sql/relational-databases/system-stored-procedures/sysmail-start-sp-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-139">啟動外部程式所使用的 Service Broker 物件。</span><span class="sxs-lookup"><span data-stu-id="e75a5-139">Starts the Service Broker objects that the external program uses.</span></span> <span data-ttu-id="e75a5-140">根據預設會啟動這些物件。</span><span class="sxs-lookup"><span data-stu-id="e75a5-140">These objects are started by default.</span></span>|  
+|[<span data-ttu-id="e75a5-141">sysmail_stop_sp (Transact-SQL)</span><span class="sxs-lookup"><span data-stu-id="e75a5-141">sysmail_stop_sp (Transact-SQL)</span></span>](/sql/relational-databases/system-stored-procedures/sysmail-stop-sp-transact-sql)|`Stored Procedure`|<span data-ttu-id="e75a5-142">停止外部程式所使用的 Service Broker 物件。</span><span class="sxs-lookup"><span data-stu-id="e75a5-142">Stops the Service Broker objects that the external program uses.</span></span>|  
+  
+
+  
+## <a name="see-also"></a><span data-ttu-id="e75a5-143">另請參閱</span><span class="sxs-lookup"><span data-stu-id="e75a5-143">See Also</span></span>  
+ <span data-ttu-id="e75a5-144">[Database Mail](database-mail.md) </span><span class="sxs-lookup"><span data-stu-id="e75a5-144">[Database Mail](database-mail.md) </span></span>  
+ [<span data-ttu-id="e75a5-145">SQL Server Service Broker</span><span class="sxs-lookup"><span data-stu-id="e75a5-145">SQL Server Service Broker</span></span>](../../database-engine/configure-windows/sql-server-service-broker.md)  
+  
+  

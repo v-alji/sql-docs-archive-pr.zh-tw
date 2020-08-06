@@ -1,0 +1,70 @@
+---
+title: 建立及管理原生模式報表伺服器的訂用帳戶 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: reporting-services-native
+ms.topic: conceptual
+helpviewer_keywords:
+- subscriptions [Reporting Services], managing
+ms.assetid: 7f46cbdb-5102-4941-bca2-5e0ff9012c6b
+author: maggiesMSFT
+ms.author: maggies
+manager: kfile
+ms.openlocfilehash: cf140e045094eb00f0703b8d4b95e20325860bda
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87709006"
+---
+# <a name="create-and-manage-subscriptions-for-native-mode-report-servers"></a><span data-ttu-id="81ff7-102">建立及管理原生模式報表伺服器的訂閱</span><span class="sxs-lookup"><span data-stu-id="81ff7-102">Create and Manage Subscriptions for Native Mode Report Servers</span></span>
+  <span data-ttu-id="81ff7-103">此章節包含有關訂閱處理、監視和控制的主題。</span><span class="sxs-lookup"><span data-stu-id="81ff7-103">This section contains topics about subscription processing, oversight, and control.</span></span> <span data-ttu-id="81ff7-104">訂閱管理在標準訂閱和資料驅動訂閱不同。</span><span class="sxs-lookup"><span data-stu-id="81ff7-104">Subscription management varies for standard subscriptions and data-driven subscriptions.</span></span> <span data-ttu-id="81ff7-105">標準訂閱通常為使用者所擁有並管理。</span><span class="sxs-lookup"><span data-stu-id="81ff7-105">Standard subscriptions are typically user-owned and managed.</span></span> <span data-ttu-id="81ff7-106">相對地，資料驅動訂閱通常由報表伺服器管理員建立和維護。</span><span class="sxs-lookup"><span data-stu-id="81ff7-106">In contrast, data-driven subscriptions are typically created and maintained by a report server administrator.</span></span>  
+  
+ <span data-ttu-id="81ff7-107">訂閱與傳遞功能預設是啟用的 (電子郵件傳遞需要先進行設定，然後才能使用)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-107">Subscription and delivery features are enabled by default (e-mail delivery requires configuration before it can be used).</span></span> <span data-ttu-id="81ff7-108">預設傳遞延伸模組包括報表伺服器電子郵件和檔案共用傳遞。</span><span class="sxs-lookup"><span data-stu-id="81ff7-108">The default delivery extensions include report server e-mail and file share delivery.</span></span> <span data-ttu-id="81ff7-109">除非您建立或安裝自訂的傳遞延伸模組，否則原生模式報表伺服器上的訂閱只能使用這些散發方法。</span><span class="sxs-lookup"><span data-stu-id="81ff7-109">Unless you create or install custom delivery extensions, these are the only distribution methods available to subscriptions on a native mode report server.</span></span>  
+  
+## <a name="permissions-for-subscribing-to-reports-on-a-native-mode-report-server"></a><span data-ttu-id="81ff7-110">訂閱原生模式報表伺服器之報表的權限</span><span class="sxs-lookup"><span data-stu-id="81ff7-110">Permissions for Subscribing to Reports on a Native Mode Report Server</span></span>  
+ <span data-ttu-id="81ff7-111">視您使用角色的方式而定，您可以藉由針對不同角色啟用或停用訂閱工作，提供訂閱功能給選取的使用者群組。</span><span class="sxs-lookup"><span data-stu-id="81ff7-111">Depending on how you use roles, you can provide subscription functionality to selected groups of users by enabling or disabling subscription tasks for different roles.</span></span> <span data-ttu-id="81ff7-112">訂閱功能會透過兩個工作提供給使用者：</span><span class="sxs-lookup"><span data-stu-id="81ff7-112">Subscription features are available to users through two tasks:</span></span>  
+  
+-   <span data-ttu-id="81ff7-113">「管理個別訂閱」工作可以讓使用者建立、修改及刪除特定報表的訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-113">The "Manage individual subscriptions" task allows users to create, modify, and delete subscriptions for a specific report.</span></span> <span data-ttu-id="81ff7-114">在預先定義的角色中，這項工作屬於瀏覽器和報表產生器角色的一部分。</span><span class="sxs-lookup"><span data-stu-id="81ff7-114">In the predefined roles, this task is part of Browser and Report Builder roles.</span></span> <span data-ttu-id="81ff7-115">包含這個工作的角色指派，允許使用者只管理自己所建立的訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-115">Role assignments that include this task allow a user to manage only those subscriptions that he or she creates.</span></span>  
+  
+-   <span data-ttu-id="81ff7-116">「管理所有訂閱」工作可以讓使用者存取和修改所有的訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-116">The "Manage all subscriptions" task allows users to access and modify all subscriptions.</span></span> <span data-ttu-id="81ff7-117">要建立資料驅動訂閱需要這個工作。</span><span class="sxs-lookup"><span data-stu-id="81ff7-117">This task is required to create data-driven subscriptions.</span></span> <span data-ttu-id="81ff7-118">在預先定義的角色中，只有內容管理員角色包含這項工作。</span><span class="sxs-lookup"><span data-stu-id="81ff7-118">In predefined roles, only the Content Manager role includes this task.</span></span>  
+  
+## <a name="disabling-subscriptions"></a><span data-ttu-id="81ff7-119">停用訂閱</span><span class="sxs-lookup"><span data-stu-id="81ff7-119">Disabling Subscriptions</span></span>  
+ <span data-ttu-id="81ff7-120">若要讓使用者無法建立訂閱，請從角色中清除「管理個別訂閱」工作。</span><span class="sxs-lookup"><span data-stu-id="81ff7-120">To prevent users from creating subscriptions, clear the "Manage individual subscriptions" task from the role.</span></span> <span data-ttu-id="81ff7-121">當您移除這個工作後，[訂閱] 頁面就無法使用。</span><span class="sxs-lookup"><span data-stu-id="81ff7-121">When you remove this task, the Subscription pages are not available.</span></span> <span data-ttu-id="81ff7-122">在報表管理員中，即使 [我的訂閱] 頁面原先含有訂閱，此時也會顯示空白 (無法刪除這個頁面)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-122">In Report Manager, the My Subscriptions page appears to be empty (it cannot be deleted), even if it previously contained subscriptions.</span></span> <span data-ttu-id="81ff7-123">移除訂閱相關的工作會讓使用者無法建立與修改訂閱，但是不會刪除現有的訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-123">Removing subscription-related tasks prevents users from creating and modifying subscriptions, but does not delete existing subscriptions.</span></span> <span data-ttu-id="81ff7-124">現有的訂閱仍會繼續執行，直到您刪除這些訂閱為止。</span><span class="sxs-lookup"><span data-stu-id="81ff7-124">Existing subscriptions will continue to execute until you delete them.</span></span> <span data-ttu-id="81ff7-125">如需刪除訂閱的詳細資訊，請參閱[在原生模式中建立、修改和刪除標準訂閱 &#40;Reporting Services&#41;](subscriptions/create-and-manage-subscriptions-for-native-mode-report-servers.md)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-125">For more information about deleting subscriptions, see [Create, Modify, and Delete Standard Subscriptions &#40;Reporting Services in Native Mode&#41;](subscriptions/create-and-manage-subscriptions-for-native-mode-report-servers.md).</span></span>  
+  
+ <span data-ttu-id="81ff7-126">若要停用報表伺服器的訂閱處理，您可以 `ScheduleEventsAndReportDeliveryEnabled` `False` 在以原則為基礎之管理的 Reporting Services Facet**介面區**設定中，將屬性設為 [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="81ff7-126">To disable subscription processing on a report server, you can set the `ScheduleEventsAndReportDeliveryEnabled` property to `False` in the **Surface Area Configuration for Reporting Services** facet of [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] Policy-Based Management.</span></span> <span data-ttu-id="81ff7-127">這樣做會讓所有排程的作業無法執行。</span><span class="sxs-lookup"><span data-stu-id="81ff7-127">Doing so will prevent all scheduled operations from running.</span></span> <span data-ttu-id="81ff7-128">您無法單獨關閉報表伺服器的訂閱處理。</span><span class="sxs-lookup"><span data-stu-id="81ff7-128">You cannot turn off just subscription processing on the report server.</span></span>  
+  
+ <span data-ttu-id="81ff7-129">如需有關如何取消在報表伺服器上處理之訂閱的指示，請參閱[管理執行中的進程](subscriptions/manage-a-running-process.md)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-129">For instructions on how to cancel subscription that is processing on the report server, see [Manage a Running Process](subscriptions/manage-a-running-process.md).</span></span>  
+  
+## <a name="disabling-delivery-extensions"></a><span data-ttu-id="81ff7-130">停用傳遞延伸模組</span><span class="sxs-lookup"><span data-stu-id="81ff7-130">Disabling Delivery Extensions</span></span>  
+ <span data-ttu-id="81ff7-131">在報表伺服器上安裝的所有傳遞延伸模組都會提供給有權建立給定報表之訂閱的任何使用者。</span><span class="sxs-lookup"><span data-stu-id="81ff7-131">All delivery extensions installed on a report server are available to any user who has permission to create a subscription to a given report.</span></span> <span data-ttu-id="81ff7-132">系統會自動提供和設定下列傳遞延伸模組：</span><span class="sxs-lookup"><span data-stu-id="81ff7-132">The following delivery extensions are available and configured automatically:</span></span>  
+  
+-   <span data-ttu-id="81ff7-133">Windows 檔案共用</span><span class="sxs-lookup"><span data-stu-id="81ff7-133">Windows File Share</span></span>  
+  
+-   <span data-ttu-id="81ff7-134">SharePoint 文件庫 (只能從與 SharePoint 整合模式報表伺服器整合的 SharePoint 網站使用)</span><span class="sxs-lookup"><span data-stu-id="81ff7-134">SharePoint Library (available only from a SharePoint site that is integrated with a  SharePoint integrated mode report server)</span></span>  
+  
+ <span data-ttu-id="81ff7-135">您必須先設定電子郵件傳遞，然後才能使用它。</span><span class="sxs-lookup"><span data-stu-id="81ff7-135">E-mail delivery must be configured before it can be used.</span></span> <span data-ttu-id="81ff7-136">如果您沒有設定它，便無法使用它。</span><span class="sxs-lookup"><span data-stu-id="81ff7-136">If you do not configure it, it is not available.</span></span> <span data-ttu-id="81ff7-137">如需詳細資訊，請參閱[為電子郵件傳遞設定報表伺服器 &#40;SSRS Configuration Manager&#41;](../../2014/sql-server/install/configure-a-report-server-for-e-mail-delivery-ssrs-configuration-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-137">For more information, see [Configure a Report Server for E-Mail Delivery &#40;SSRS Configuration Manager&#41;](../../2014/sql-server/install/configure-a-report-server-for-e-mail-delivery-ssrs-configuration-manager.md).</span></span>  
+  
+ <span data-ttu-id="81ff7-138">如果您想要關閉特定延伸模組，可以在 RSReportServer.config 檔中移除延伸模組項目。</span><span class="sxs-lookup"><span data-stu-id="81ff7-138">If you want to turn off specific extensions, you can remove extension entries in the RSReportServer.config file.</span></span> <span data-ttu-id="81ff7-139">如需詳細資訊，請參閱[Rsreportserver.config 設定檔](report-server/rsreportserver-config-configuration-file.md)和[設定報表伺服器以進行電子郵件傳遞 &#40;SSRS Configuration Manager&#41;](../../2014/sql-server/install/configure-a-report-server-for-e-mail-delivery-ssrs-configuration-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="81ff7-139">For more information, see [RSReportServer Configuration File](report-server/rsreportserver-config-configuration-file.md) and [Configure a Report Server for E-Mail Delivery &#40;SSRS Configuration Manager&#41;](../../2014/sql-server/install/configure-a-report-server-for-e-mail-delivery-ssrs-configuration-manager.md).</span></span>  
+  
+ <span data-ttu-id="81ff7-140">在您移除傳遞延伸模組之後，就無法再於報表管理員或 SharePoint 網站中使用它。</span><span class="sxs-lookup"><span data-stu-id="81ff7-140">After you remove a delivery extension, it is no longer available in Report Manager or a SharePoint site.</span></span> <span data-ttu-id="81ff7-141">移除傳遞延伸模組可能會產生非使用中訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-141">Removing a delivery extension can result in inactive subscriptions.</span></span> <span data-ttu-id="81ff7-142">移除延伸模組之前，請務必刪除訂閱，或將它們設定為使用不同的傳遞延伸模組。</span><span class="sxs-lookup"><span data-stu-id="81ff7-142">Be sure to delete the subscriptions or configure them to use a different delivery extension before removing an extension.</span></span>  
+  
+## <a name="in-this-section"></a><span data-ttu-id="81ff7-143">本節內容</span><span class="sxs-lookup"><span data-stu-id="81ff7-143">In this section</span></span>  
+ [<span data-ttu-id="81ff7-144">使用我的訂閱</span><span class="sxs-lookup"><span data-stu-id="81ff7-144">Use My Subscriptions</span></span>](subscriptions/use-my-subscriptions-native-mode-report-server.md)  
+ <span data-ttu-id="81ff7-145">說明如何使用 [我的訂閱] 頁面，以管理您所擁有的訂閱。</span><span class="sxs-lookup"><span data-stu-id="81ff7-145">Explains how to use the My Subscriptions page to manage the subscriptions you own.</span></span>  
+  
+ [<span data-ttu-id="81ff7-146">暫停報表與訂閱處理</span><span class="sxs-lookup"><span data-stu-id="81ff7-146">Pause Report and Subscription Processing</span></span>](subscriptions/disable-or-pause-report-and-subscription-processing.md)  
+ <span data-ttu-id="81ff7-147">說明暫停報表處理的各種方式，例如使用角色指派或停用報表伺服器資源。</span><span class="sxs-lookup"><span data-stu-id="81ff7-147">Describes the various ways to pause report processing, such as using role assignments or disabling report server resources.</span></span>  
+  
+ [<span data-ttu-id="81ff7-148">控制報表散發</span><span class="sxs-lookup"><span data-stu-id="81ff7-148">Control Report Distribution</span></span>](../../2014/reporting-services/control-report-distribution.md)  
+ <span data-ttu-id="81ff7-149">描述可用來控制報表散發的組態設定和傳遞選項。</span><span class="sxs-lookup"><span data-stu-id="81ff7-149">Describes configuration settings and delivery options you can use to control the distribution of reports.</span></span>  
+  
+ [<span data-ttu-id="81ff7-150">監視 Reporting Services 訂閱</span><span class="sxs-lookup"><span data-stu-id="81ff7-150">Monitor Reporting Services Subscriptions</span></span>](subscriptions/monitor-reporting-services-subscriptions.md)  
+ <span data-ttu-id="81ff7-151">描述如何決定訂閱成功或失敗，以及在現有訂閱上所做報表變更的效果。</span><span class="sxs-lookup"><span data-stu-id="81ff7-151">Describes how you can determine whether a subscription succeeded or failed, as well as the effects of report changes on existing subscriptions.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="81ff7-152">另請參閱</span><span class="sxs-lookup"><span data-stu-id="81ff7-152">See Also</span></span>  
+ [<span data-ttu-id="81ff7-153">以原生模式 &#40;Reporting Services 建立、修改和刪除標準訂閱&#41;</span><span class="sxs-lookup"><span data-stu-id="81ff7-153">Create, Modify, and Delete Standard Subscriptions &#40;Reporting Services in Native Mode&#41;</span></span>](subscriptions/create-and-manage-subscriptions-for-native-mode-report-servers.md)  
+  
+  

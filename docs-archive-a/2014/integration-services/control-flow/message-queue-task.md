@@ -1,0 +1,107 @@
+---
+title: 訊息佇列工作 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: integration-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.dts.designer.messagequeuetask.f1
+helpviewer_keywords:
+- Message Queue task [Integration Services]
+- receiving messages
+- messages [Integration Services]
+- sending messages
+ms.assetid: ae1d8fad-6649-4e93-b589-14a32d07da33
+author: chugugrace
+ms.author: chugu
+ms.openlocfilehash: c9af2ac69fbee07fdc58faf4b63cddc08317e8ac
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87708537"
+---
+# <a name="message-queue-task"></a><span data-ttu-id="cb7d7-102">Message Queue Task</span><span class="sxs-lookup"><span data-stu-id="cb7d7-102">Message Queue Task</span></span>
+  <span data-ttu-id="cb7d7-103">「訊息佇列」工作可讓您使用 Message Queuing (又稱為 MSMQ) 在 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 套件之間傳送和接收訊息，或將訊息傳送至由自訂應用程式處理的應用程式佇列。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-103">The Message Queue task allows you to use Message Queuing (also known as MSMQ) to send and receive messages between [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] packages, or to send messages to an application queue that is processed by a custom application.</span></span> <span data-ttu-id="cb7d7-104">這些訊息可採用簡單文字、檔案或變數及其值的形式。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-104">These messages can take the form of simple text, files, or variables and their values.</span></span>  
+  
+ <span data-ttu-id="cb7d7-105">透過使用「訊息佇列」工作，您可以協調整個企業內的作業。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-105">By using the Message Queue task, you can coordinate operations throughout your enterprise.</span></span> <span data-ttu-id="cb7d7-106">如果目的地無法使用或者忙碌，可以將訊息排入佇列以稍後傳遞；例如，此工作可將屬於銷售代表離線之膝上型電腦的訊息排入佇列，等銷售代表們連接到網路後就可以接收到各自的訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-106">Messages can be queued and delivered later if the destination is unavailable or busy; for example, the task can queue messages for the offline laptop computer of sales representatives, who receive their messages when they connect to the network.</span></span> <span data-ttu-id="cb7d7-107">您可將「訊息佇列」工作用於下列用途：</span><span class="sxs-lookup"><span data-stu-id="cb7d7-107">You can use the Message Queue task for the following purposes:</span></span>  
+  
+-   <span data-ttu-id="cb7d7-108">延遲工作執行，直到其他封裝簽入。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-108">Delaying task execution until other packages check in.</span></span> <span data-ttu-id="cb7d7-109">例如，在每個零售站台的夜間維護完成後，訊息佇列工作會傳送訊息給公司電腦。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-109">For example, after nightly maintenance at each of your retail sites, a Message Queue task sends a message to your corporate computer.</span></span> <span data-ttu-id="cb7d7-110">執行於公司電腦的封裝將包含「訊息佇列」工作，每個工作都會等待來自特定零售站台的訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-110">A package running on the corporate computer contains Message Queue tasks, each waiting for a message from a particular retail site.</span></span> <span data-ttu-id="cb7d7-111">來自站台的訊息抵達後，便會有一個工作自該站台上傳資料。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-111">When a message from a site arrives, a task uploads data from that site.</span></span> <span data-ttu-id="cb7d7-112">所有站台均簽入後，封裝會計算摘要總數。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-112">After all the sites have checked in, the package computes summary totals.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-113">將資料檔傳送給處理它們的電腦。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-113">Sending data files to the computer that processes them.</span></span> <span data-ttu-id="cb7d7-114">例如，餐廳的收銀機輸出可以將資料檔訊息傳送至公司的薪資系統，以進行服務生的小費資料擷取。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-114">For example, the output from a restaurant cash register can be sent in a data file message to the corporate payroll system, where data about each waiter's tips is extracted.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-115">將檔案散發至整個企業。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-115">Distributing files throughout your enterprise.</span></span> <span data-ttu-id="cb7d7-116">例如，封裝可使用「訊息佇列」工作將封裝檔案傳送至另一台電腦。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-116">For example, a package can use a Message Queue task to send a package file to another computer.</span></span> <span data-ttu-id="cb7d7-117">接著，執行於目的電腦的封裝使用「訊息佇列」工作，以在本機擷取與儲存封裝。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-117">A package running on the destination computer then uses a Message Queue task to retrieve and save the package locally.</span></span>  
+  
+ <span data-ttu-id="cb7d7-118">傳送或接收訊息時，「訊息佇列」工作會使用下列四種訊息類型之一：資料檔、字串、字串訊息至變數或變數。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-118">When sending or receiving messages, the Message Queue task uses one of four message types: data file, string, string message to variable, or variable.</span></span> <span data-ttu-id="cb7d7-119">只有接收訊息時才能使用「字串訊息至變數」訊息類型。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-119">The string message to variable message type can be used only when receiving messages.</span></span>  
+  
+ <span data-ttu-id="cb7d7-120">工作使用 MSMQ 連接管理員以連接到訊息佇列。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-120">The task uses an MSMQ connection manager to connect to a message queue.</span></span> <span data-ttu-id="cb7d7-121">如需詳細資訊，請參閱 [MSMQ 連線管理員](../connection-manager/msmq-connection-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-121">For more information, see [MSMQ Connection Manager](../connection-manager/msmq-connection-manager.md).</span></span> <span data-ttu-id="cb7d7-122">如需有關 Message Queuing 的詳細資訊，請參閱 [MSDN Library](https://go.microsoft.com/fwlink/?LinkId=7022)。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-122">For more information about Message Queuing, see the [MSDN Library](https://go.microsoft.com/fwlink/?LinkId=7022).</span></span>  
+  
+ <span data-ttu-id="cb7d7-123">「訊息佇列」工作要求安裝 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 服務。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-123">The Message Queue task requires that the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] service be installed.</span></span> <span data-ttu-id="cb7d7-124">您在 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 安裝精靈的 **[要安裝的元件]** 頁面或 **[特徵選取]** 頁面上選取要安裝的一些 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 元件，會安裝 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 元件的部分子集。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-124">Some [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] components that you may select for installation on the **Components to Install** page or the **Feature Selection** page of the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Installation Wizard install a partial subset of [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] components.</span></span> <span data-ttu-id="cb7d7-125">這些元件對特定的工作有用，但 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 的功能會受到限制。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-125">These components are useful for specific tasks, but the functionality of [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] will be limited.</span></span> <span data-ttu-id="cb7d7-126">例如， [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)] 選項會安裝設計某個封裝所需的 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 元件，但不會安裝 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] 服務，因此「訊息佇列」工作將無法運作。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-126">For example, the [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)] option installs the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] components required to design a package, but the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] service is not installed, and therefore the Message Queue task is not functional.</span></span> <span data-ttu-id="cb7d7-127">為了確保 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)]的完整安裝，您必須在 [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] [要安裝的元件] **頁面上選取** 。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-127">To ensure a complete installation of [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)], you must select [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] on the **Components to Install** page.</span></span> <span data-ttu-id="cb7d7-128">如需安裝及執行「訊息佇列」工作的詳細資訊，請參閱 [安裝 Integration Services](../install-windows/install-integration-services.md)。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-128">For more information about installing and running the Message Queue task, see [Install Integration Services](../install-windows/install-integration-services.md).</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="cb7d7-129">當電腦的作業系統是以 FIPS 模式設定並且工作使用加密時，「訊息佇列」工作無法符合美國聯邦資訊處理標準 (FIPS) 140-2 的規定。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-129">The Message Queue task fails to comply with Federal Information Processing Standard (FIPS) 140-2 when the computer's operating system is configured in FIPS mode and the task uses encryption.</span></span> <span data-ttu-id="cb7d7-130">如果「訊息佇列」工作沒有使用加密，工作會順利執行。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-130">If the Message Queue task does not use encryption, the task can run successfully.</span></span>  
+  
+## <a name="message-types"></a><span data-ttu-id="cb7d7-131">訊息類型</span><span class="sxs-lookup"><span data-stu-id="cb7d7-131">Message Types</span></span>  
+ <span data-ttu-id="cb7d7-132">您可利用下列方式設定「訊息佇列」工作提供的訊息類型：</span><span class="sxs-lookup"><span data-stu-id="cb7d7-132">You can configure the message types that the Message Queue task provides in the following ways:</span></span>  
+  
+-   <span data-ttu-id="cb7d7-133">`Data file` 訊息指定某個檔案包含訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-133">`Data file` message specifies that a file contains the message.</span></span> <span data-ttu-id="cb7d7-134">接收訊息時，您可以設定工作以儲存檔案，覆寫現有的檔案，並指定工作可以從中接收訊息的封裝。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-134">When receiving messages, you can configure the task to save the file, overwrite an existing file, and specify the package from which the task can receive messages.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-135">`String` 訊息指定訊息為字串。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-135">`String` message specifies the message as a string.</span></span> <span data-ttu-id="cb7d7-136">接收訊息時，您可以設定工作，以比較接收到的字串與使用者自訂字串，並根據比較結果採取行動。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-136">When receiving messages, you can configure the task to compare the received string with a user-defined string and take action depending on the comparison.</span></span> <span data-ttu-id="cb7d7-137">字串比較可以為完全相符、區分大小寫或不區分大小寫，或者使用子字串。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-137">String comparison can be exact, case-sensitive or case-insensitive, or use a substring.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-138">`String message to variable` 將來源訊息指定為傳送到目的變數的字串。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-138">`String message to variable` specifies the source message as a string that is sent to a destination variable.</span></span> <span data-ttu-id="cb7d7-139">您可以設定工作使用完全相符、不區分大小寫或子字串比較，來比較接收到的字串與使用者自訂的字串。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-139">You can configure the task to compare the received string with a user-defined string using an exact, case-insensitive, or substring comparison.</span></span> <span data-ttu-id="cb7d7-140">只有當工作接收訊息時此訊息類型才可用。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-140">This message type is available only when the task is receiving messages.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-141">`Variable` 指定訊息將包含一或多個變數。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-141">`Variable` specifies that the message contains one or more variables.</span></span> <span data-ttu-id="cb7d7-142">您可以設定工作，以指定訊息中包含的變數名稱。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-142">You can configure the task to specify the names of the variables included in the message.</span></span> <span data-ttu-id="cb7d7-143">接收訊息時您可以設定工作，以指定可從中接收訊息的封裝，以及做為訊息目的地的變數。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-143">When receiving messages, you can configure the task to specify both the package from which it can receive messages and the variable that is the destination of the message.</span></span>  
+  
+## <a name="sending-messages"></a><span data-ttu-id="cb7d7-144">傳送訊息</span><span class="sxs-lookup"><span data-stu-id="cb7d7-144">Sending Messages</span></span>  
+ <span data-ttu-id="cb7d7-145">設定「訊息佇列」工作以傳送訊息時，您可以使用 Message Queuing 技術目前支援的加密演算碼 RC2 及 RC4 其中一個，以加密訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-145">When configuring the Message Queue task to send messages, you can use one of the encryption algorithms that are currently supported by the Message Queuing technology, RC2 and RC4, to encrypt the message.</span></span> <span data-ttu-id="cb7d7-146">這兩種加密演算法目前被認為在密碼編譯技術上不如較新的演算法，不過 Message Queuing 技術目前還不支援較新的演算法。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-146">Both of these encryption algorithms are now considered cryptographically weak compared to newer algorithms, which Message Queuing technology do not yet support.</span></span> <span data-ttu-id="cb7d7-147">因此，在使用「訊息佇列」工作傳送訊息時，應仔細考慮您的加密需求。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-147">Therefore, you should consider your cryptography needs carefully when sending messages using the Message Queue task.</span></span>  
+  
+## <a name="receiving-messages"></a><span data-ttu-id="cb7d7-148">接收訊息</span><span class="sxs-lookup"><span data-stu-id="cb7d7-148">Receiving Messages</span></span>  
+ <span data-ttu-id="cb7d7-149">接收訊息時，可以利用下列方式設定「訊息佇列」工作。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-149">When receiving messages, the Message Queue task can be configured in the following ways:</span></span>  
+  
+-   <span data-ttu-id="cb7d7-150">略過訊息，或者從佇列中移除訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-150">Bypassing the message, or removing the message from the queue.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-151">指定逾時。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-151">Specifying a time-out.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-152">若逾時發生則失敗。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-152">Failing if a time-out occurs.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-153">如果訊息儲存在 `Data file` 中則覆寫現有的檔案。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-153">Overwriting an existing file, if the message is stored in a `Data file`.</span></span>  
+  
+-   <span data-ttu-id="cb7d7-154">如果訊息使用 `Data file message` 類型，則以不同的檔案名稱儲存訊息檔案。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-154">Saving the message file to a different file name, if the message uses the `Data file message` type.</span></span>  
+  
+## <a name="custom-logging-messages-available-on-the-message-queue-task"></a><span data-ttu-id="cb7d7-155">訊息佇列工作上可用的自訂記錄訊息</span><span class="sxs-lookup"><span data-stu-id="cb7d7-155">Custom Logging Messages Available on the Message Queue Task</span></span>  
+ <span data-ttu-id="cb7d7-156">下表列出「訊息佇列」工作的自訂記錄項目。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-156">The following table lists the custom log entries for the Message Queue task.</span></span> <span data-ttu-id="cb7d7-157">如需詳細資訊，請參閱 [Integration Services &#40;SSIS&#41; 記錄](../performance/integration-services-ssis-logging.md)和[自訂訊息以進行記錄](../custom-messages-for-logging.md)。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-157">For more information, see [Integration Services &#40;SSIS&#41; Logging](../performance/integration-services-ssis-logging.md) and [Custom Messages for Logging](../custom-messages-for-logging.md).</span></span>  
+  
+|<span data-ttu-id="cb7d7-158">記錄項目</span><span class="sxs-lookup"><span data-stu-id="cb7d7-158">Log entry</span></span>|<span data-ttu-id="cb7d7-159">描述</span><span class="sxs-lookup"><span data-stu-id="cb7d7-159">Description</span></span>|  
+|---------------|-----------------|  
+|`MSMQAfterOpen`|<span data-ttu-id="cb7d7-160">指出工作已經完成開啟訊息佇列。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-160">Indicates that the task finished opening the message queue.</span></span>|  
+|`MSMQBeforeOpen`|<span data-ttu-id="cb7d7-161">指出工作已經開始開啟訊息佇列。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-161">Indicates that the task began to open the message queue.</span></span>|  
+|`MSMQBeginReceive`|<span data-ttu-id="cb7d7-162">指出工作已經開始接收訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-162">Indicates that the task began to receive a message.</span></span>|  
+|`MSMQBeginSend`|<span data-ttu-id="cb7d7-163">指出工作已經開始傳送訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-163">Indicates that the task began to send a message.</span></span>|  
+|`MSMQEndReceive`|<span data-ttu-id="cb7d7-164">指出工作已經完成接收訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-164">Indicates that the task finished receiving a message.</span></span>|  
+|`MSMQEndSend`|<span data-ttu-id="cb7d7-165">指出工作已經完成傳送訊息。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-165">Indicates that the task finished sending a message.</span></span>|  
+|`MSMQTaskInfo`|<span data-ttu-id="cb7d7-166">提供有關工作的描述性資訊。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-166">Provides descriptive information about the task.</span></span>|  
+|`MSMQTaskTimeOut`|<span data-ttu-id="cb7d7-167">指出工作已經逾時。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-167">Indicates that the task timed out.</span></span>|  
+  
+## <a name="configuration-of-the-message-queue-task"></a><span data-ttu-id="cb7d7-168">訊息佇列工作的組態</span><span class="sxs-lookup"><span data-stu-id="cb7d7-168">Configuration of the Message Queue Task</span></span>  
+ <span data-ttu-id="cb7d7-169">您可以透過 [!INCLUDE[ssIS](../../includes/ssis-md.md)] 設計師或以程式設計方式設定屬性。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-169">You can set properties through [!INCLUDE[ssIS](../../includes/ssis-md.md)] Designer or programmatically.</span></span> <span data-ttu-id="cb7d7-170">如需有關可以在「 [!INCLUDE[ssIS](../../includes/ssis-md.md)] 設計師」中設定之屬性的詳細資訊，請按下列其中一個主題：</span><span class="sxs-lookup"><span data-stu-id="cb7d7-170">For information about the properties that you can set in [!INCLUDE[ssIS](../../includes/ssis-md.md)] Designer, click one of the following topics:</span></span>  
+  
+-   [<span data-ttu-id="cb7d7-171">訊息佇列工作編輯器 &#40;一般頁面&#41;</span><span class="sxs-lookup"><span data-stu-id="cb7d7-171">Message Queue Task Editor &#40;General Page&#41;</span></span>](../general-page-of-integration-services-designers-options.md)  
+  
+-   [<span data-ttu-id="cb7d7-172">訊息佇列工作編輯器 &#40;接收頁面&#41;</span><span class="sxs-lookup"><span data-stu-id="cb7d7-172">Message Queue Task Editor &#40;Receive Page&#41;</span></span>](../message-queue-task-editor-receive-page.md)  
+  
+-   [<span data-ttu-id="cb7d7-173">訊息佇列工作編輯器 &#40;傳送頁面&#41;</span><span class="sxs-lookup"><span data-stu-id="cb7d7-173">Message Queue Task Editor &#40;Send Page&#41;</span></span>](../message-queue-task-editor-send-page.md)  
+  
+-   [<span data-ttu-id="cb7d7-174">運算式頁面</span><span class="sxs-lookup"><span data-stu-id="cb7d7-174">Expressions Page</span></span>](../expressions/expressions-page.md)  
+  
+ <span data-ttu-id="cb7d7-175">如需有關以程式設計方式來設定這些屬性的詳細資訊，請參閱《開發人員指南》中 **Microsoft.SqlServer.Dts.Tasks.MessageQueueTask.MessageQueueTask** 類別的文件。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-175">For information about programmatically setting these properties, see the documentation for the **Microsoft.SqlServer.Dts.Tasks.MessageQueueTask.MessageQueueTask** class in the Developer Guide.</span></span>  
+  
+## <a name="related-tasks"></a><span data-ttu-id="cb7d7-176">相關工作</span><span class="sxs-lookup"><span data-stu-id="cb7d7-176">Related Tasks</span></span>  
+ <span data-ttu-id="cb7d7-177">如需如何在 [!INCLUDE[ssIS](../../includes/ssis-md.md)] 設計師中設定這些屬性的詳細資訊，請參閱 [設定工作或容器的屬性](../set-the-properties-of-a-task-or-container.md)。</span><span class="sxs-lookup"><span data-stu-id="cb7d7-177">For more information about how to set these properties in [!INCLUDE[ssIS](../../includes/ssis-md.md)] Designer, see [Set the Properties of a Task or Container](../set-the-properties-of-a-task-or-container.md).</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="cb7d7-178">另請參閱</span><span class="sxs-lookup"><span data-stu-id="cb7d7-178">See Also</span></span>  
+ <span data-ttu-id="cb7d7-179">[Integration Services 工作](integration-services-tasks.md) </span><span class="sxs-lookup"><span data-stu-id="cb7d7-179">[Integration Services Tasks](integration-services-tasks.md) </span></span>  
+ [<span data-ttu-id="cb7d7-180">控制流程</span><span class="sxs-lookup"><span data-stu-id="cb7d7-180">Control Flow</span></span>](control-flow.md)  
+  
+  
