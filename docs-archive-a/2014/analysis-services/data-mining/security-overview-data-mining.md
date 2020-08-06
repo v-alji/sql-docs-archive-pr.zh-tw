@@ -1,0 +1,60 @@
+---
+title: " (資料採礦) 的安全性總覽 |Microsoft Docs"
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+helpviewer_keywords:
+- security [Analysis Services - data mining], about security
+ms.assetid: 387bde00-bcf3-4612-b27b-f9f608dbf71e
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 55c437bc8759d76c12f091fb4c6e7306f857b795
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87703422"
+---
+# <a name="security-overview-data-mining"></a><span data-ttu-id="5c2ac-102">安全性概觀 (資料採礦)</span><span class="sxs-lookup"><span data-stu-id="5c2ac-102">Security Overview (Data Mining)</span></span>
+  <span data-ttu-id="5c2ac-103">保護的程式 [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 會在多個層級發生。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-103">The process of securing [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] occurs at multiple levels.</span></span> <span data-ttu-id="5c2ac-104">您必須保護 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 的每一個執行個體及其資料來源的安全，以確定只有獲得授權的使用者對於選取的維度、採礦模型和資料來源，具有讀取或讀取/寫入權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-104">You must secure each instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] and its data sources to make sure that only authorized users have read or read/write permissions to selected dimensions, mining models, and data sources.</span></span> <span data-ttu-id="5c2ac-105">您也必須保護基礎資料來源的安全，以防止未經授權的使用者惡意破壞機密商業資訊。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-105">You must also secure underlying data sources to prevent unauthorized users from maliciously compromising sensitive business information.</span></span> <span data-ttu-id="5c2ac-106">下列主題描述保護 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 執行個體之安全的程序。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-106">The process of securing an instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] is described in the following topics.</span></span>  
+  
+##  <a name="security-architecture"></a><a name="bkmk_Architecture"></a><span data-ttu-id="5c2ac-107">安全性架構</span><span class="sxs-lookup"><span data-stu-id="5c2ac-107">Security Architecture</span></span>  
+ <span data-ttu-id="5c2ac-108">請參閱以下資源，以了解 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)]執行個體的基本安全性架構，包括 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 如何使用 [!INCLUDE[msCoName](../../includes/msconame-md.md)] Windows 驗證來驗證使用者存取權。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-108">See the following resources to learn about the basic security architecture of an instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)], including how [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] uses [!INCLUDE[msCoName](../../includes/msconame-md.md)] Windows Authentication to authenticate user access.</span></span>  
+  
+-   [<span data-ttu-id="5c2ac-109">安全性角色 &#40;Analysis Services - 多維度資料&#41;</span><span class="sxs-lookup"><span data-stu-id="5c2ac-109">Security Roles  &#40;Analysis Services - Multidimensional Data&#41;</span></span>](../multidimensional-models/olap-logical/security-roles-analysis-services-multidimensional-data.md)  
+  
+-   [<span data-ttu-id="5c2ac-110">安全性屬性</span><span class="sxs-lookup"><span data-stu-id="5c2ac-110">Security Properties</span></span>](../server-properties/security-properties.md)  
+  
+-   [<span data-ttu-id="5c2ac-111">設定服務帳戶 &#40;Analysis Services&#41;</span><span class="sxs-lookup"><span data-stu-id="5c2ac-111">Configure Service Accounts &#40;Analysis Services&#41;</span></span>](../instances/configure-service-accounts-analysis-services.md)  
+  
+-   [<span data-ttu-id="5c2ac-112">物件和作業的存取權授權 &#40;Analysis Services&#41;</span><span class="sxs-lookup"><span data-stu-id="5c2ac-112">Authorizing access to objects and operations &#40;Analysis Services&#41;</span></span>](../multidimensional-models/authorizing-access-to-objects-and-operations-analysis-services.md)  
+  
+##  <a name="configuring-the-logon-account-for-analysis-services"></a><a name="bkmk_Logon"></a> <span data-ttu-id="5c2ac-113">設定 Analysis Services 的登入帳戶</span><span class="sxs-lookup"><span data-stu-id="5c2ac-113">Configuring the Logon Account for Analysis Services</span></span>  
+ <span data-ttu-id="5c2ac-114">您必須為 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 選取適當的登入帳戶，並指定此帳戶的權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-114">You must select an appropriate logon account for [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] and specify the permissions for this account.</span></span> <span data-ttu-id="5c2ac-115">您必須確定 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 登入帳戶只具有執行必要工作所必須的權限，包括基礎資料來源的適當權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-115">You must make sure that the [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] logon account has only those permissions that are necessary to perform necessary tasks, including appropriate permissions to the underlying data sources.</span></span>  
+  
+ <span data-ttu-id="5c2ac-116">若是資料採礦，您需要一組與檢視或查詢模型所需的不同權限來建立與處理模型。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-116">For data mining, you need a different set of permissions to build and process models than you need to view or query the models.</span></span> <span data-ttu-id="5c2ac-117">根據模型進行預測是一種查詢，而且不需要管理權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-117">Making predictions against a model is a kind of query and does not require administrative permissions.</span></span>  
+  
+##  <a name="securing-an-analysis-services-instance"></a><a name="bkmk_Instance"></a> <span data-ttu-id="5c2ac-118">保護 Analysis Services 執行個體的安全</span><span class="sxs-lookup"><span data-stu-id="5c2ac-118">Securing an Analysis Services Instance</span></span>  
+ <span data-ttu-id="5c2ac-119">接下來，您必須保護 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 電腦、 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 電腦上的 Windows 作業系統、 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 本身以及 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 使用的資料來源等項目的安全。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-119">Next you must secure the [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] computer, the Windows operating system on the [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] computer, [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] itself, and the data sources that [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] uses.</span></span>  
+  
+##  <a name="configuring-access-to-analysis-services"></a><a name="bkmk_Access"></a> <span data-ttu-id="5c2ac-120">設定 Analysis Services 的存取權</span><span class="sxs-lookup"><span data-stu-id="5c2ac-120">Configuring Access to Analysis Services</span></span>  
+ <span data-ttu-id="5c2ac-121">當您設定和定義 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)]執行個體的授權使用者時，需要決定哪些使用者也應具有權限來管理特定資料庫物件、哪些使用者可以檢視物件的定義或瀏覽模型，以及哪些使用者可以直接存取資料來源。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-121">When you set up and define authorized users for an instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)], you need to determine which users should also have permission to administer specific database objects, which users can view the definition of objects or browse the models, and which users are able to access data sources directly.</span></span>  
+  
+##  <a name="special-considerations-for-data-mining"></a><a name="bkmk_DMspecial"></a> <span data-ttu-id="5c2ac-122">資料採礦的特殊考量</span><span class="sxs-lookup"><span data-stu-id="5c2ac-122">Special Considerations for Data Mining</span></span>  
+ <span data-ttu-id="5c2ac-123">若要讓分析師或開發人員建立及測試資料採礦模型，您必須提供該分析師或開發人員儲存採礦模型所在之資料庫的管理權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-123">To enable an analyst or developer to create and test data mining models, you must give that analyst or developer administrative permissions on the database where the mining models are stored.</span></span> <span data-ttu-id="5c2ac-124">因此，資料採礦分析師或開發人員可能可以建立或刪除與資料採礦不相關的其他物件，包括其他分析師或開發人員建立並使用的資料採礦物件，或不包含在資料採礦方案中的 OLAP 物件。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-124">As a consequence, the data mining analyst or developer can potentially create or delete other objects that are not related to data mining, including data mining objects that were created and are being used by other analysts or developers, or OLAP objects that are not included in the data mining solution.</span></span>  
+  
+ <span data-ttu-id="5c2ac-125">同時，當您建立資料採礦的方案時，必須根據其他使用者的需求，平衡分析師或開發人員開發、測試與微調模型的需求，並採取保護現有資料庫物件的措施。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-125">Accordingly, when you create a solution for data mining, you must balance the needs of the analyst or developer to develop, test and tune models, against the needs of other users, and take measures to protect existing database objects.</span></span> <span data-ttu-id="5c2ac-126">其中一種可能的方法是建立資料採礦專用的另一個資料庫，或針對每個分析師建立個別的資料庫。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-126">One possible approach is to create a separate database dedicated to data mining, or to create separate databases for each analyst.</span></span>  
+  
+ <span data-ttu-id="5c2ac-127">雖然建立模型需要最高層級的權限，但是您可以使用以角色為基礎的安全性，控制使用者對於資料採礦模型的存取權以進行其他作業，例如，處理、瀏覽或查詢。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-127">Although the creation of models requires the highest level of permissions, you can control the user's access to data mining models for other operations, such as processing, browsing, or querying, by using role-based security.</span></span> <span data-ttu-id="5c2ac-128">當您建立角色時，會設定資料採礦物件專屬的權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-128">When you create a role, you set permissions that are specific to data mining objects.</span></span> <span data-ttu-id="5c2ac-129">身為角色成員的任何使用者都會自動擁有與該角色相關聯的所有權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-129">Any user who is a member of a role automatically has all permissions associated with that role.</span></span>  
+  
+ <span data-ttu-id="5c2ac-130">此外，資料採礦模型通常會參考包含敏感資訊的資料來源。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-130">Additionally, data mining models often reference data sources that contain sensitive information.</span></span> <span data-ttu-id="5c2ac-131">如果採礦結構與採礦模型已經設定為允許使用者從模型鑽研到結構中的資料，您必須採取預防措施，為機密資訊進行遮罩，或限制可以存取基礎資料的使用者。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-131">If the mining structure and mining model has been configured to allow users to drill through from the model to the data in the structure, you must take precautions to mask sensitive information, or to limit the users who have access to the underlying data.</span></span>  
+  
+ <span data-ttu-id="5c2ac-132">如果您使用 Integration Services 封裝清除資料、更新採礦模型或進行預測，您必須確保 Integration Services 服務具備儲存模型所在之資料庫的適當權限，以及來源資料的適當權限。</span><span class="sxs-lookup"><span data-stu-id="5c2ac-132">If you use Integration Services packages to clean data, to update mining models, or to make predictions, you must ensure that the Integration Services service has the appropriate permissions on the database where the model is stored, and appropriate permissions on the source data.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="5c2ac-133">另請參閱</span><span class="sxs-lookup"><span data-stu-id="5c2ac-133">See Also</span></span>  
+ [<span data-ttu-id="5c2ac-134">角色與權限 &#40;Analysis Services&#41;</span><span class="sxs-lookup"><span data-stu-id="5c2ac-134">Roles and Permissions &#40;Analysis Services&#41;</span></span>](../multidimensional-models/roles-and-permissions-analysis-services.md)  
+  
+  
