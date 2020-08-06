@@ -1,0 +1,65 @@
+---
+title: 事件檔案目標 |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: database-engine
+ms.topic: conceptual
+helpviewer_keywords:
+- event file target
+- file target [SQL Server extended events]
+- targets [SQL Server extended events], file target
+ms.assetid: 4f0ee6ec-a0a8-4c38-aa61-8293ab6ac7fd
+author: mashamsft
+ms.author: mathoma
+ms.openlocfilehash: 1a64236b3874543982be5abbd8e60d8169082a1e
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87701605"
+---
+# <a name="event-file-target"></a><span data-ttu-id="514e2-102">Event File Target</span><span class="sxs-lookup"><span data-stu-id="514e2-102">Event File Target</span></span>
+  <span data-ttu-id="514e2-103">事件檔案目標是將完整緩衝區寫入磁碟的目標。</span><span class="sxs-lookup"><span data-stu-id="514e2-103">The event file target is a target that writes complete buffers to disk.</span></span>  
+  
+ <span data-ttu-id="514e2-104">下表說明用來設定事件檔案目標的可用選項。</span><span class="sxs-lookup"><span data-stu-id="514e2-104">The following table describes the available options for configuring the event file target.</span></span>  
+  
+|<span data-ttu-id="514e2-105">選項</span><span class="sxs-lookup"><span data-stu-id="514e2-105">Option</span></span>|<span data-ttu-id="514e2-106">允許的值</span><span class="sxs-lookup"><span data-stu-id="514e2-106">Allowed values</span></span>|<span data-ttu-id="514e2-107">描述</span><span class="sxs-lookup"><span data-stu-id="514e2-107">Description</span></span>|  
+|------------|--------------------|-----------------|  
+|<span data-ttu-id="514e2-108">filename</span><span class="sxs-lookup"><span data-stu-id="514e2-108">filename</span></span>|<span data-ttu-id="514e2-109">最多 260 個字元的任何字串。</span><span class="sxs-lookup"><span data-stu-id="514e2-109">Any string up to 260 characters.</span></span> <span data-ttu-id="514e2-110">這是必要的值。</span><span class="sxs-lookup"><span data-stu-id="514e2-110">This value is required.</span></span>|<span data-ttu-id="514e2-111">檔案位置和檔案名稱。</span><span class="sxs-lookup"><span data-stu-id="514e2-111">The file location and filename.</span></span><br /><br /> <span data-ttu-id="514e2-112">您可以使用任何副檔名。</span><span class="sxs-lookup"><span data-stu-id="514e2-112">You can use any filename extension.</span></span>|  
+|<span data-ttu-id="514e2-113">max_file_size</span><span class="sxs-lookup"><span data-stu-id="514e2-113">max_file_size</span></span>|<span data-ttu-id="514e2-114">任何 64 位元整數。</span><span class="sxs-lookup"><span data-stu-id="514e2-114">Any 64 bit integer.</span></span> <span data-ttu-id="514e2-115">此為選用值。</span><span class="sxs-lookup"><span data-stu-id="514e2-115">This value is optional.</span></span>|<span data-ttu-id="514e2-116">最大檔案大小 (以 MB 為單位)。</span><span class="sxs-lookup"><span data-stu-id="514e2-116">The maximum file size in megabytes (MB).</span></span> <span data-ttu-id="514e2-117">如果未指定 max_file_size，檔案可以成長到磁碟已滿。</span><span class="sxs-lookup"><span data-stu-id="514e2-117">If max_file_size is not specified, the file will grow until the disk is full.</span></span> <span data-ttu-id="514e2-118">預設的檔案大小為 1GB。</span><span class="sxs-lookup"><span data-stu-id="514e2-118">The default file size is 1GB.</span></span><br /><br /> <span data-ttu-id="514e2-119">max_file_size 必須大於工作階段緩衝區的目前大小。</span><span class="sxs-lookup"><span data-stu-id="514e2-119">max_file_size must be larger than the current size of the session buffers.</span></span> <span data-ttu-id="514e2-120">如果沒有，檔案目標將無法初始化，而且系統會報告 max_file_size 無效。</span><span class="sxs-lookup"><span data-stu-id="514e2-120">If it is not, the file target will fail to initialize, reporting that the max_file_size is invalid.</span></span> <span data-ttu-id="514e2-121">若要檢視緩衝區的目前大小，請在 [sys.dm_xe_sessions](/sql/relational-databases/system-dynamic-management-views/sys-dm-xe-sessions-transact-sql) 動態管理檢視中查詢 buffer_size 資料行。</span><span class="sxs-lookup"><span data-stu-id="514e2-121">To view the current size of the buffers, query the buffer_size column in the [sys.dm_xe_sessions](/sql/relational-databases/system-dynamic-management-views/sys-dm-xe-sessions-transact-sql) dynamic management view.</span></span><br /><br /> <span data-ttu-id="514e2-122">如果預設的檔案大小小於工作階段緩衝區大小，我們建議您將 max_file_size 設定為 [sys.server_event_sessions](/sql/relational-databases/system-catalog-views/sys-server-event-sessions-transact-sql) 目錄檢視中 max_memory 資料行所指定的值。</span><span class="sxs-lookup"><span data-stu-id="514e2-122">If the default file size is smaller than the session buffer size, we recommend setting max_file_size to the value specified in the max_memory column in the [sys.server_event_sessions](/sql/relational-databases/system-catalog-views/sys-server-event-sessions-transact-sql) catalog view.</span></span><br /><br /> <span data-ttu-id="514e2-123">當 max_file_size 的大小設定為大於工作階段緩衝區的大小時，它可能會向下捨入到最接近工作階段緩衝區大小的倍數。</span><span class="sxs-lookup"><span data-stu-id="514e2-123">When max_file_size is set to a size larger than the size of the session buffers, it may be rounded down to the nearest multiple of the session buffer size.</span></span> <span data-ttu-id="514e2-124">這樣做可能會建立小於指定之 max_file_size 值的目標檔案。</span><span class="sxs-lookup"><span data-stu-id="514e2-124">This may create a target file that is smaller than the specified value of max_file_size.</span></span> <span data-ttu-id="514e2-125">例如，如果緩衝區大小是 100MB 而且 max_file_size 設定為 150MB，則產生的檔案就會向下捨入到 100MB，因為其餘 50MB 的空間無法容納第二個緩衝區。</span><span class="sxs-lookup"><span data-stu-id="514e2-125">For example, if the buffer size is 100MB and max_file_size is set to 150MB, the resultant file size is rounded down to 100MB because a second buffer would not fit in the remaining 50MB of space.</span></span><br /><br /> <span data-ttu-id="514e2-126">如果預設的檔案大小小於工作階段緩衝區大小，我們建議您將 max_file_size 設定為 [sys.server_event_sessions](/sql/relational-databases/system-catalog-views/sys-server-event-sessions-transact-sql) 目錄檢視中 max_memory 資料行的值。</span><span class="sxs-lookup"><span data-stu-id="514e2-126">If the default file size is smaller than the session buffer size, we recommend setting max_file_size to the value in the max_memory column in the [sys.server_event_sessions](/sql/relational-databases/system-catalog-views/sys-server-event-sessions-transact-sql) catalog view.</span></span>|  
+|<span data-ttu-id="514e2-127">max_rollover_files</span><span class="sxs-lookup"><span data-stu-id="514e2-127">max_rollover_files</span></span>|<span data-ttu-id="514e2-128">任何 32 位元整數。</span><span class="sxs-lookup"><span data-stu-id="514e2-128">Any 32 bit integer.</span></span> <span data-ttu-id="514e2-129">此為選用值。</span><span class="sxs-lookup"><span data-stu-id="514e2-129">This value is optional.</span></span>|<span data-ttu-id="514e2-130">要保留在檔案系統中的最大檔案數。</span><span class="sxs-lookup"><span data-stu-id="514e2-130">The maximum number of files to retain in the file system.</span></span> <span data-ttu-id="514e2-131">預設值為 5。</span><span class="sxs-lookup"><span data-stu-id="514e2-131">The default value is 5.</span></span>|  
+|<span data-ttu-id="514e2-132">increment</span><span class="sxs-lookup"><span data-stu-id="514e2-132">increment</span></span>|<span data-ttu-id="514e2-133">任何 32 位元整數。</span><span class="sxs-lookup"><span data-stu-id="514e2-133">Any 32 bit integer.</span></span> <span data-ttu-id="514e2-134">此為選用值。</span><span class="sxs-lookup"><span data-stu-id="514e2-134">This value is optional.</span></span>|<span data-ttu-id="514e2-135">檔案的累加成長 (以 MB 為單位)。</span><span class="sxs-lookup"><span data-stu-id="514e2-135">The incremental growth, in megabytes (MB), for the file.</span></span> <span data-ttu-id="514e2-136">如果未指定，increment 的預設值就是工作階段緩衝區大小的兩倍。</span><span class="sxs-lookup"><span data-stu-id="514e2-136">If unspecified, the default value for increment is twice the session buffer size.</span></span>|  
+  
+ <span data-ttu-id="514e2-137">第一次建立事件檔案目標時，您所指定的檔案名稱會附加 _0\_ 和一個長整數值。</span><span class="sxs-lookup"><span data-stu-id="514e2-137">The first time that an event file target is created, the filename you specify is appended with _0\_ and a long integer value.</span></span> <span data-ttu-id="514e2-138">整數值的計算方式為1601年1月1日與建立檔案的日期和時間之間的毫秒數。</span><span class="sxs-lookup"><span data-stu-id="514e2-138">The integer value is calculated as the number of milliseconds between January 1, 1601 and the date and time the file is created.</span></span> <span data-ttu-id="514e2-139">後續的換用檔案也會使用這個格式。</span><span class="sxs-lookup"><span data-stu-id="514e2-139">Subsequent rollover files also use this format.</span></span> <span data-ttu-id="514e2-140">透過檢查長整數的值，您就可以判斷出最新的檔案。</span><span class="sxs-lookup"><span data-stu-id="514e2-140">From examining the value of the long integer, you can determine the most current file.</span></span> <span data-ttu-id="514e2-141">下列範例說明您將檔案名稱選項指定為 C:\OutputFiles\MyOutput.xel 的情況下，要如何命名檔案：</span><span class="sxs-lookup"><span data-stu-id="514e2-141">The following example illustrates how files are named in a scenario where you specify the filename option as C:\OutputFiles\MyOutput.xel:</span></span>  
+  
+-   <span data-ttu-id="514e2-142">建立的第一個檔案 - C:\OutputFiles\MyOutput_0_128500310259380000.xel</span><span class="sxs-lookup"><span data-stu-id="514e2-142">first file created - C:\OutputFiles\MyOutput_0_128500310259380000.xel</span></span>  
+  
+-   <span data-ttu-id="514e2-143">第一個換用檔案 - C:\OutputFiles\MyOutput_0_128505831770890000.xel</span><span class="sxs-lookup"><span data-stu-id="514e2-143">first rollover file - C:\OutputFiles\MyOutput_0_128505831770890000.xel</span></span>  
+  
+-   <span data-ttu-id="514e2-144">第二個換用檔案 - C:\OutputFiles\MyOutput_0_132410772966237000.xel</span><span class="sxs-lookup"><span data-stu-id="514e2-144">second rollover file - C:\OutputFiles\MyOutput_0_132410772966237000.xel</span></span>  
+  
+## <a name="adding-the-target-to-a-session"></a><span data-ttu-id="514e2-145">將目標加入至工作階段</span><span class="sxs-lookup"><span data-stu-id="514e2-145">Adding the Target to a Session</span></span>  
+ <span data-ttu-id="514e2-146">若要將事件檔案目標加入至擴充事件工作階段，您會在建立或更改事件工作階段時加入下列陳述式，並將 *file_name* 取代成所需的檔案名稱和路徑：</span><span class="sxs-lookup"><span data-stu-id="514e2-146">To add the event file target to an Extended Events session, you would include the following statements when you create or alter an event session, replacing *file_name* with the desired file name and path:</span></span>  
+  
+```  
+ADD TARGET package0.event_file(  
+   SET filename='file_name.xel')  
+```  
+  
+## <a name="reviewing-the-target-output"></a><span data-ttu-id="514e2-147">檢閱目標輸出</span><span class="sxs-lookup"><span data-stu-id="514e2-147">Reviewing the Target Output</span></span>  
+ <span data-ttu-id="514e2-148">若要檢閱檔案目標的輸出，您必須使用 sys.fn_xe_file_target_read_file 函數。</span><span class="sxs-lookup"><span data-stu-id="514e2-148">To review the output from the file target, you must use the sys.fn_xe_file_target_read_file function.</span></span> <span data-ttu-id="514e2-149">我們建議您將資料轉換成 XML。</span><span class="sxs-lookup"><span data-stu-id="514e2-149">We recommend that you cast the data as XML.</span></span> <span data-ttu-id="514e2-150">您可以使用下列語法，並將 *&lt;file_name&gt;* 取代成加入目標時指定的檔案名稱和路徑：</span><span class="sxs-lookup"><span data-stu-id="514e2-150">You can use the following syntax, replacing *file_name* with the file name and path that you specified when you added the target:</span></span>  
+  
+```  
+SELECT *, CAST(event_data AS XML) AS 'event_data_XML'  
+FROM sys.fn_xe_file_target_read_file('file_name*.xel', NULL, NULL, NULL)  
+```  
+  
+## <a name="see-also"></a><span data-ttu-id="514e2-151">另請參閱</span><span class="sxs-lookup"><span data-stu-id="514e2-151">See Also</span></span>  
+ <span data-ttu-id="514e2-152">[SQL Server 擴充的事件目標](../../2014/database-engine/sql-server-extended-events-targets.md) </span><span class="sxs-lookup"><span data-stu-id="514e2-152">[SQL Server Extended Events Targets](../../2014/database-engine/sql-server-extended-events-targets.md) </span></span>  
+ <span data-ttu-id="514e2-153">[fn_xe_file_target_read_file &#40;Transact-sql&#41;](/sql/relational-databases/system-functions/sys-fn-xe-file-target-read-file-transact-sql) </span><span class="sxs-lookup"><span data-stu-id="514e2-153">[sys.fn_xe_file_target_read_file &#40;Transact-SQL&#41;](/sql/relational-databases/system-functions/sys-fn-xe-file-target-read-file-transact-sql) </span></span>  
+ <span data-ttu-id="514e2-154">[CREATE EVENT SESSION &#40;Transact-SQL&#41;](/sql/t-sql/statements/create-event-session-transact-sql) </span><span class="sxs-lookup"><span data-stu-id="514e2-154">[CREATE EVENT SESSION &#40;Transact-SQL&#41;](/sql/t-sql/statements/create-event-session-transact-sql) </span></span>  
+ [<span data-ttu-id="514e2-155">ALTER EVENT SESSION &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="514e2-155">ALTER EVENT SESSION &#40;Transact-SQL&#41;</span></span>](/sql/t-sql/statements/alter-event-session-transact-sql)  
+  
+  

@@ -1,0 +1,52 @@
+---
+title: 識別和存取控制 (複寫) | Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: replication
+ms.topic: conceptual
+helpviewer_keywords:
+- access controls [SQL Server replication]
+- security [SQL Server replication], identity and access control
+- authentication [SQL Server replication]
+- identity [Replication]
+ms.assetid: 4da0e793-1ee4-4f69-a80b-45c6732a238d
+author: MashaMSFT
+ms.author: mathoma
+ms.openlocfilehash: 0ae16d0908efa211a773b278fc8e86b1bf1966d7
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87701041"
+---
+# <a name="identity-and-access-control-replication"></a><span data-ttu-id="88335-102">識別和存取控制 (複寫)</span><span class="sxs-lookup"><span data-stu-id="88335-102">Identity and Access Control (Replication)</span></span>
+  <span data-ttu-id="88335-103">驗證是某一實體 (在本文中通常是某台電腦) 驗證另一個實體 (通常是另一台電腦或使用者) 的身分或所代表身分的處理，實體也稱為 *「主體」* 。</span><span class="sxs-lookup"><span data-stu-id="88335-103">Authentication is the process by which an entity (typically a computer in this context) verifies that another entity, also called a *principal*, (typically another computer or user) is who or what it claims to be.</span></span> <span data-ttu-id="88335-104">授權是向已驗證的主體授與資源 (例如檔案系統中的檔案或是資料庫中的資料表) 存取權的處理。</span><span class="sxs-lookup"><span data-stu-id="88335-104">Authorization is the process by which an authenticated principal is given access to resources, such as a file in the file system, or a table in a database.</span></span>  
+  
+ <span data-ttu-id="88335-105">複寫安全性使用驗證與授權來控制對複寫資料庫物件，以及複寫處理所涉及的電腦和代理程式的存取權限。</span><span class="sxs-lookup"><span data-stu-id="88335-105">Replication security uses authentication and authorization to control access to replicated database objects and to the computers and agents involved in replication processing.</span></span> <span data-ttu-id="88335-106">這可透過三種機制來完成：</span><span class="sxs-lookup"><span data-stu-id="88335-106">This is accomplished through three mechanisms:</span></span>  
+  
+-   <span data-ttu-id="88335-107">代理程式安全性：複寫代理程式安全性模型可讓您更精細地控制複寫代理程式執行和連接所用的帳戶。</span><span class="sxs-lookup"><span data-stu-id="88335-107">Agent security:  The replication agent security model allows fine-grained control over the accounts under which replication agents run and make connections.</span></span> <span data-ttu-id="88335-108">如需代理程式安全性模型的詳細資訊，請參閱＜ [Replication Agent Security Model](replication-agent-security-model.md)＞。</span><span class="sxs-lookup"><span data-stu-id="88335-108">For detailed information about the agent security model, see [Replication Agent Security Model](replication-agent-security-model.md).</span></span> <span data-ttu-id="88335-109">如需設定代理程式登入和密碼的資訊，請參閱[管理複寫的登入與密碼](identity-and-access-control-replication.md#manage-logins-and-passwords-in-replication)。</span><span class="sxs-lookup"><span data-stu-id="88335-109">For information about setting logins and passwords for agents, see [Manage Logins and Passwords in Replication](identity-and-access-control-replication.md#manage-logins-and-passwords-in-replication).</span></span>  
+  
+-   <span data-ttu-id="88335-110">系統管理角色：確定已使用正確的伺服器和資料庫角色進行複寫設定、維護和處理。</span><span class="sxs-lookup"><span data-stu-id="88335-110">Administration roles:  Ensure that the correct server and database roles are used for replication setup, maintenance, and processing.</span></span> <span data-ttu-id="88335-111">如需詳細資訊，請參閱 [Security Role Requirements for Replication](security-role-requirements-for-replication.md)。</span><span class="sxs-lookup"><span data-stu-id="88335-111">For more information, see [Security Role Requirements for Replication](security-role-requirements-for-replication.md).</span></span>  
+  
+-   <span data-ttu-id="88335-112">發行集存取清單 (PAL) ：授與透過 PAL 存取發佈的許可權。</span><span class="sxs-lookup"><span data-stu-id="88335-112">The publication access list (PAL): Grant access to publications through the PAL.</span></span> <span data-ttu-id="88335-113">PAL 功能類似於 [!INCLUDE[msCoName](../../../includes/msconame-md.md)] Windows 存取控制清單。</span><span class="sxs-lookup"><span data-stu-id="88335-113">The PAL functions similarly to a [!INCLUDE[msCoName](../../../includes/msconame-md.md)] Windows access control list.</span></span> <span data-ttu-id="88335-114">當「訂閱者」連接到「發行者」或「散發者」，並要求存取發行集時，代理程式傳送的驗證資訊會依據 PAL 來進行檢查。</span><span class="sxs-lookup"><span data-stu-id="88335-114">When a Subscriber connects to the Publisher or Distributor and requests access to a publication, the authentication information passed by the agent is checked against the PAL.</span></span> <span data-ttu-id="88335-115">如需 PAL 的詳細資訊和最佳做法，請參閱[保護發行者](secure-the-publisher.md)。</span><span class="sxs-lookup"><span data-stu-id="88335-115">For more information and best practices for the PAL, see [Secure the Publisher](secure-the-publisher.md).</span></span>  
+  
+## <a name="filtering-published-data"></a><span data-ttu-id="88335-116">篩選發行的資料</span><span class="sxs-lookup"><span data-stu-id="88335-116">Filtering Published Data</span></span>  
+ <span data-ttu-id="88335-117">除了使用驗證和授權來控制對複寫資料及物件的存取外，複寫還含有兩個選項可用於控制訂閱者端可用的資料：資料行篩選和資料列篩選。</span><span class="sxs-lookup"><span data-stu-id="88335-117">In addition to using authentication and authorization to control access to replicated data and objects, replication includes two options to control what data is available at a Subscriber: column filtering and row filtering.</span></span> <span data-ttu-id="88335-118">如需篩選的詳細資訊，請參閱[篩選發行的資料](../publish/filter-published-data.md)。</span><span class="sxs-lookup"><span data-stu-id="88335-118">For more information about filtering, see [Filter Published Data](../publish/filter-published-data.md).</span></span>  
+  
+ <span data-ttu-id="88335-119">定義發行項時，您可以只發行發行集所需的資料行，而省略不需要或含有機密資料的資料行。</span><span class="sxs-lookup"><span data-stu-id="88335-119">When you define an article, you can publish only those columns that are necessary for the publication, and omit those that are unnecessary or contain sensitive data.</span></span> <span data-ttu-id="88335-120">例如，向現場的銷售代表發行 Adventure Works 資料庫的 **Customer** 資料表時，可以省略 **AnnualSales** 資料行，這行僅與公司管理者有關。</span><span class="sxs-lookup"><span data-stu-id="88335-120">For example, when publishing the **Customer** table from the Adventure Works database to sales representatives in the field, you can omit the **AnnualSales** column, which might be relevant only to executives at the company.</span></span>  
+  
+ <span data-ttu-id="88335-121">篩選發行的資料允許您對資料存取進行限制，並允許您指定「訂閱者」上可用的資料。</span><span class="sxs-lookup"><span data-stu-id="88335-121">Filtering published data allows you to restrict access to data and allows you to specify the data that is available at the Subscriber.</span></span> <span data-ttu-id="88335-122">例如，您可以篩選 **Customer** 資料表，以便讓公司合作夥伴僅收到 **ShareInfo** 資料行值為「yes」之客戶的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="88335-122">For example, you can filter the **Customer** table so that corporate partners only receive information about those customers whose **ShareInfo** column has a value of "yes."</span></span> <span data-ttu-id="88335-123">對於合併式複寫，如果使用含有 HOST_NAME() 的參數化篩選，則有安全性考量。</span><span class="sxs-lookup"><span data-stu-id="88335-123">For merge replication, there are security considerations if you use a parameterized filter that includes HOST_NAME().</span></span> <span data-ttu-id="88335-124">如需詳細資訊，請參閱＜ [Parameterized Row Filters](../merge/parameterized-filters-parameterized-row-filters.md)＞中的「使用 HOST_NAME() 進行篩選」一節。</span><span class="sxs-lookup"><span data-stu-id="88335-124">For more, see the section "Filtering with HOST_NAME()" in [Parameterized Row Filters](../merge/parameterized-filters-parameterized-row-filters.md).</span></span>  
+
+## <a name="manage-logins-and-passwords-in-replication"></a><span data-ttu-id="88335-125">管理複寫的登入與密碼</span><span class="sxs-lookup"><span data-stu-id="88335-125">Manage Logins and Passwords in Replication</span></span>
+  <span data-ttu-id="88335-126">設定複寫時請指定複寫代理程式的登入與密碼。</span><span class="sxs-lookup"><span data-stu-id="88335-126">Specify the logins and passwords for replication agents when you configure replication.</span></span> <span data-ttu-id="88335-127">設定複寫後，您可以變更登入與密碼。</span><span class="sxs-lookup"><span data-stu-id="88335-127">After configuring replication, you can change logins and passwords.</span></span> <span data-ttu-id="88335-128">如需詳細資訊，請參閱 [View and Modify Replication Security Settings](view-and-modify-replication-security-settings.md)。</span><span class="sxs-lookup"><span data-stu-id="88335-128">For more information, see [View and Modify Replication Security Settings](view-and-modify-replication-security-settings.md).</span></span> <span data-ttu-id="88335-129">若要變更複寫代理程式使用之帳戶的密碼，請執行 [sp_changereplicationserverpasswords &#40;Transact-SQL&#41;](/sql/relational-databases/system-stored-procedures/sp-changereplicationserverpasswords-transact-sql)。</span><span class="sxs-lookup"><span data-stu-id="88335-129">If you change the password for an account used by a replication agent, execute [sp_changereplicationserverpasswords &#40;Transact-SQL&#41;](/sql/relational-databases/system-stored-procedures/sp-changereplicationserverpasswords-transact-sql).</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="88335-130">另請參閱</span><span class="sxs-lookup"><span data-stu-id="88335-130">See Also</span></span>  
+ <span data-ttu-id="88335-131">[複寫代理程式安全性模型](replication-agent-security-model.md) </span><span class="sxs-lookup"><span data-stu-id="88335-131">[Replication Agent Security Model](replication-agent-security-model.md) </span></span>  
+ <span data-ttu-id="88335-132">[Replication Security Best Practices](replication-security-best-practices.md) </span><span class="sxs-lookup"><span data-stu-id="88335-132">[Replication Security Best Practices](replication-security-best-practices.md) </span></span>  
+ <span data-ttu-id="88335-133">[SQL Server 複寫安全性](view-and-modify-replication-security-settings.md) </span><span class="sxs-lookup"><span data-stu-id="88335-133">[SQL Server Replication Security](view-and-modify-replication-security-settings.md) </span></span>  
+ [<span data-ttu-id="88335-134">複寫威脅和弱點緩和措施</span><span class="sxs-lookup"><span data-stu-id="88335-134">Replication Threat and Vulnerability Mitigation</span></span>](threat-and-vulnerability-mitigation-replication.md)   
+
+  
+  

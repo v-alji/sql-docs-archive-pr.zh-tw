@@ -1,0 +1,44 @@
+---
+title: SQL Server、可用性複本 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: performance
+ms.topic: conceptual
+helpviewer_keywords:
+- Availability Groups [SQL Server], monitoring
+- performance counters [SQL Server], AlwaysOn Availability Groups
+- SQLServer:Availability Replica
+- Availability Groups [SQL Server], performance counters
+ms.assetid: e402f996-c1fb-484a-b804-45c49972f2e0
+author: MikeRayMSFT
+ms.author: mikeray
+ms.openlocfilehash: 9b313b8a3ed4630add731dcbf33d3c313ec78b3f
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87699523"
+---
+# <a name="sql-server-availability-replica"></a><span data-ttu-id="5b13c-102">SQL Server、可用性複本</span><span class="sxs-lookup"><span data-stu-id="5b13c-102">SQL Server, Availability Replica</span></span>
+  <span data-ttu-id="5b13c-103">**SQLServer:Availability Replica** 效能物件含有效能計數器，會報告 [!INCLUDE[ssCurrent](../../includes/sscurrent-md.md)] 中 AlwaysOn 可用性群組內可用性複本的資訊。</span><span class="sxs-lookup"><span data-stu-id="5b13c-103">The **SQLServer:Availability Replica** performance object contains performance counters that report information about the availability replicas in AlwaysOn availability groups in [!INCLUDE[ssCurrent](../../includes/sscurrent-md.md)].</span></span> <span data-ttu-id="5b13c-104">所有可用性複本效能計數器皆適用於主要複本和次要複本，並附有可以反映本機複本的傳送/接收計數器。</span><span class="sxs-lookup"><span data-stu-id="5b13c-104">All availability replica performance counters apply to both the primary replica and the secondary replicas, with send/receive counters reflecting the local replica.</span></span> <span data-ttu-id="5b13c-105">在大部分情況下，主要複本會傳送大部分資料，而次要複本會接收資料。</span><span class="sxs-lookup"><span data-stu-id="5b13c-105">For the most part, the primary replica sends most of the data, and the secondary replicas receive the data.</span></span> <span data-ttu-id="5b13c-106">但次要複本會將 ACK 及一些其他背景流量傳送至主要複本。</span><span class="sxs-lookup"><span data-stu-id="5b13c-106">However, secondary replicas send ACKs and some other background traffic to the primary replicas.</span></span> <span data-ttu-id="5b13c-107">請注意，在給定可用性複本上，有些計數器會顯示零值，這取決於本機複本目前的角色 (主要或次要) 而定。</span><span class="sxs-lookup"><span data-stu-id="5b13c-107">Note that on a given availability replica, some counters will show a zero value, depending on the current role, primary or secondary, of the local replica.</span></span>  
+  
+|<span data-ttu-id="5b13c-108">計數器名稱</span><span class="sxs-lookup"><span data-stu-id="5b13c-108">Counter Name</span></span>|<span data-ttu-id="5b13c-109">描述</span><span class="sxs-lookup"><span data-stu-id="5b13c-109">Description</span></span>|  
+|------------------|-----------------|  
+|<span data-ttu-id="5b13c-110">**Bytes Received from Replica/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-110">**Bytes Received from Replica/sec**</span></span>|<span data-ttu-id="5b13c-111">每秒從可用性複本所接收的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-111">Number of bytes received from the availability replica per second.</span></span> <span data-ttu-id="5b13c-112">Ping 和狀態更新將會產生網路流量，即使在沒有使用者更新的資料庫上亦然。</span><span class="sxs-lookup"><span data-stu-id="5b13c-112">Pings and status updates will generate network traffic even on databases with no user updates.</span></span>|  
+|<span data-ttu-id="5b13c-113">**Bytes Sent to Replica/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-113">**Bytes Sent to Replica/sec**</span></span>|<span data-ttu-id="5b13c-114">每秒傳送至遠端可用性複本的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-114">Number of bytes sent to the remote availability replica per second.</span></span> <span data-ttu-id="5b13c-115">在主要複本上，這是傳送至次要複本的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-115">On the primary replica this is the number of bytes sent to the secondary replica.</span></span> <span data-ttu-id="5b13c-116">在次要複本上，這是傳送至主要複本的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-116">On the secondary replica this is the number of bytes sent to the primary replica.</span></span>|  
+|<span data-ttu-id="5b13c-117">**Bytes Sent to Transport/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-117">**Bytes Sent to Transport/sec**</span></span>|<span data-ttu-id="5b13c-118">每秒透過網路傳送至遠端可用性複本的實際位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-118">Actual number of bytes sent per second over the network to the remote availability replica.</span></span> <span data-ttu-id="5b13c-119">在主要複本上，這是傳送至次要複本的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-119">On the primary replica this is the number of bytes sent to the secondary replica.</span></span> <span data-ttu-id="5b13c-120">在次要複本上，這是傳送至主要複本的位元組數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-120">On the secondary replica this is the number of bytes sent to the primary replica.</span></span>|  
+|<span data-ttu-id="5b13c-121">**Flow Control Time (ms/sec)**</span><span class="sxs-lookup"><span data-stu-id="5b13c-121">**Flow Control Time (ms/sec)**</span></span>|<span data-ttu-id="5b13c-122">上一秒記錄資料流訊息等候傳送流量控制的時間 (以毫秒為單位)。</span><span class="sxs-lookup"><span data-stu-id="5b13c-122">Time in milliseconds that log stream messages waited for send flow control, in the last second.</span></span>|  
+|<span data-ttu-id="5b13c-123">**Flow Control/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-123">**Flow Control/sec**</span></span>|<span data-ttu-id="5b13c-124">上一秒起始的流量控制次數。</span><span class="sxs-lookup"><span data-stu-id="5b13c-124">Number of times flow-control initiated in the last second.</span></span> <span data-ttu-id="5b13c-125">**Flow Control Time (ms/sec)** 除以 **Flow Control/sec** 是每次等待的平均時間。</span><span class="sxs-lookup"><span data-stu-id="5b13c-125">**Flow Control Time (ms/sec)** divided by **Flow Control/sec** is the average time per wait.</span></span>|  
+|<span data-ttu-id="5b13c-126">**Receives from Replica/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-126">**Receives from Replica/sec**</span></span>|<span data-ttu-id="5b13c-127">每秒從複本所接收的 AlwaysOn 訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-127">Number of AlwaysOn messages received from thereplica per second.</span></span>|  
+|<span data-ttu-id="5b13c-128">**Resent Messages/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-128">**Resent Messages/sec**</span></span>|<span data-ttu-id="5b13c-129">上一秒重新傳送的 AlwaysOn 訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-129">Number of AlwaysOn messages resent in the last second.</span></span>|  
+|<span data-ttu-id="5b13c-130">**Sends to Replica/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-130">**Sends to Replica/sec**</span></span>|<span data-ttu-id="5b13c-131">每秒傳送至此可用性複本的 AlwaysOn 訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-131">Number of AlwaysOn messages sent to this availability replica per second.</span></span>|  
+|<span data-ttu-id="5b13c-132">**Sends to Transport/sec**</span><span class="sxs-lookup"><span data-stu-id="5b13c-132">**Sends to Transport/sec**</span></span>|<span data-ttu-id="5b13c-133">每秒透過網路傳送至遠端可用性複本的實際 AlwaysOn 訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-133">Actual number of AlwaysOn messages sent per second over the network to the remote availability replica.</span></span> <span data-ttu-id="5b13c-134">在主要複本上，這是傳送至次要複本的訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-134">On the primary replica this is the number of messages sent to the secondary replica.</span></span> <span data-ttu-id="5b13c-135">在次要複本上，這是傳送至主要複本的訊息數目。</span><span class="sxs-lookup"><span data-stu-id="5b13c-135">On the secondary replica this is the number of messages sent to the primary replica.</span></span>|  
+  
+## <a name="see-also"></a><span data-ttu-id="5b13c-136">另請參閱</span><span class="sxs-lookup"><span data-stu-id="5b13c-136">See Also</span></span>  
+ <span data-ttu-id="5b13c-137">[監視資源使用量 &#40;系統監視器&#41;](monitor-resource-usage-system-monitor.md) </span><span class="sxs-lookup"><span data-stu-id="5b13c-137">[Monitor Resource Usage &#40;System Monitor&#41;](monitor-resource-usage-system-monitor.md) </span></span>  
+ <span data-ttu-id="5b13c-138">[SQL Server、資料庫複本](sql-server-database-replica.md) </span><span class="sxs-lookup"><span data-stu-id="5b13c-138">[SQL Server, Database Replica](sql-server-database-replica.md) </span></span>  
+ [<span data-ttu-id="5b13c-139">AlwaysOn Availability Groups (SQL Server)</span><span class="sxs-lookup"><span data-stu-id="5b13c-139">AlwaysOn Availability Groups (SQL Server)</span></span>](../../database-engine/availability-groups/windows/always-on-availability-groups-sql-server.md)  
+  
+  

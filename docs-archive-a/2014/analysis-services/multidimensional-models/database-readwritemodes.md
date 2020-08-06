@@ -1,0 +1,55 @@
+---
+title: 資料庫 Readwritemode |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+helpviewer_keywords:
+- databases [Analysis Services], read/write
+- databases [Analysis Services], read-only
+ms.assetid: 03d7cb5c-7ff0-4e15-bcd2-7075d1b0dd69
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 1cd1e5585e738cd298a3bedd31e2f2f512dcae45
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87698668"
+---
+# <a name="database-readwritemodes"></a><span data-ttu-id="28465-102">資料庫 ReadWriteMode</span><span class="sxs-lookup"><span data-stu-id="28465-102">Database ReadWriteModes</span></span>
+  <span data-ttu-id="28465-103">通常在很多情況下， [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 資料庫管理員 (dba) 會想要將讀取/寫入資料庫變更為唯讀資料庫，反之亦然。</span><span class="sxs-lookup"><span data-stu-id="28465-103">There are often situations when an [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] database administrator (dba) wants to change a read/write database to a read-only database, or vice versa.</span></span> <span data-ttu-id="28465-104">這些情況通常是由商務需求所驅使，例如在許多伺服器之間共用相同的資料庫資料夾，以便向外延展方案並改善效能。</span><span class="sxs-lookup"><span data-stu-id="28465-104">These situations are often driven by business needs, such as sharing the same database folder among several servers for scaling out a solution and improving performance.</span></span> <span data-ttu-id="28465-105">在這些情況下， `ReadWriteMode` 資料庫屬性可讓 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] dba 輕鬆地變更資料庫作業模式。</span><span class="sxs-lookup"><span data-stu-id="28465-105">For these situations, the `ReadWriteMode` database property enables the [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] dba to easily change the database operating mode.</span></span>  
+  
+## <a name="readwritemode-database-property"></a><span data-ttu-id="28465-106">ReadWriteMode 資料庫屬性</span><span class="sxs-lookup"><span data-stu-id="28465-106">ReadWriteMode database property</span></span>  
+ <span data-ttu-id="28465-107"> 資料庫屬性會指定資料庫處於讀取/寫入模式或唯讀模式。</span><span class="sxs-lookup"><span data-stu-id="28465-107">The `ReadWriteMode` database property specifies whether the database is in read/write mode or in read-only mode.</span></span> <span data-ttu-id="28465-108">此屬性只有這兩種可能的值。</span><span class="sxs-lookup"><span data-stu-id="28465-108">These are the only two possible values of the property.</span></span> <span data-ttu-id="28465-109">當資料庫處於唯讀模式時，您就無法將任何變更或更新套用至該資料庫。</span><span class="sxs-lookup"><span data-stu-id="28465-109">When the database is in read-only mode, no changes or updates can be applied to the database.</span></span> <span data-ttu-id="28465-110">不過，當資料庫處於讀取/寫入模式時，您就可以進行變更和更新。</span><span class="sxs-lookup"><span data-stu-id="28465-110">However, when the database is in read/write mode, changes and updates can occur.</span></span> <span data-ttu-id="28465-111"> 資料庫屬性定義為唯讀屬性。您只能透過  命令來設定它。</span><span class="sxs-lookup"><span data-stu-id="28465-111">The `ReadWriteMode` database property is defined as a read-only property; it can only be set through an `Attach` command.</span></span>  
+  
+ <span data-ttu-id="28465-112">當資料庫處於唯讀模式時，就會產生特定限制，因而影響一般允許對資料庫進行的作業集合。</span><span class="sxs-lookup"><span data-stu-id="28465-112">When a database is in read-only mode, certain restrictions are in place that affect the ordinary set of allowed operations to the database.</span></span> <span data-ttu-id="28465-113">請參閱下表以便了解這些限制的作業。</span><span class="sxs-lookup"><span data-stu-id="28465-113">See the following table for the restricted operations.</span></span>  
+  
+|<span data-ttu-id="28465-114">ReadOnly 模式</span><span class="sxs-lookup"><span data-stu-id="28465-114">ReadOnly mode</span></span>|<span data-ttu-id="28465-115">限制的作業</span><span class="sxs-lookup"><span data-stu-id="28465-115">Restricted operations</span></span>|  
+|-------------------|---------------------------|  
+|<span data-ttu-id="28465-116">XML/A 命令</span><span class="sxs-lookup"><span data-stu-id="28465-116">XML/A commands</span></span><br /><br /> <br /><br /> <span data-ttu-id="28465-117">注意：當您執行其中一個命令時，就會引發錯誤。</span><span class="sxs-lookup"><span data-stu-id="28465-117">Note: An error is raised when you execute any one of these commands.</span></span>|`Create`<br /><br /> `Alter`<br /><br /> `Delete`<br /><br /> `Process`<br /><br /> `MergePartitions`<br /><br /> `DesignAggregations`<br /><br /> `CommitTransaction`<br /><br /> `Restore`<br /><br /> `Synchronize`<br /><br /> `Insert`<br /><br /> `Update`<br /><br /> `Drop`<br /><br /> <br /><br /> <span data-ttu-id="28465-118">注意：允許在設定為唯讀的資料庫中進行資料格回寫作業，但是無法認可變更。</span><span class="sxs-lookup"><span data-stu-id="28465-118">Note: Cell writeback is allowed in databases set to read-only; however, the changes cannot be committed.</span></span>|  
+|<span data-ttu-id="28465-119">MDX 陳述式</span><span class="sxs-lookup"><span data-stu-id="28465-119">MDX statements</span></span><br /><br /> <br /><br /> <span data-ttu-id="28465-120">注意：當您執行其中一個陳述式時，就會引發錯誤。</span><span class="sxs-lookup"><span data-stu-id="28465-120">Note: An error is raised when you execute any one of these statements.</span></span>|`COMMIT TRAN`<br /><br /> `CREATE SESSION CUBE`<br /><br /> `ALTER CUBE`<br /><br /> `ALTER DIMENSION`<br /><br /> `CREATE DIMENSION MEMBER`<br /><br /> `DROP DIMENSION MEMBER`<br /><br /> `ALTER DIMENSION`<br /><br /> <br /><br /> <span data-ttu-id="28465-121">注意：Excel 使用者無法在樞紐資料表中使用群組功能，因為該項功能是使用 `CREATE SESSION CUBE` 命令在內部實作的。</span><span class="sxs-lookup"><span data-stu-id="28465-121">Note: Excel users cannot use the grouping feature in Pivot tables, because that feature is internally implemented by using `CREATE SESSION CUBE` commands.</span></span>|  
+|<span data-ttu-id="28465-122">DMX 陳述式</span><span class="sxs-lookup"><span data-stu-id="28465-122">DMX statements</span></span><br /><br /> <br /><br /> <span data-ttu-id="28465-123">注意：當您執行其中一個陳述式時，就會引發錯誤。</span><span class="sxs-lookup"><span data-stu-id="28465-123">Note: An error is raised when you execute any one of these statements.</span></span>|`CREATE [SESSION] MINING STRUCTURE`<br /><br /> `ALTER MINING STRUCTURE`<br /><br /> `DROP MINING STRUCTURE`<br /><br /> `CREATE [SESSION] MINING MODEL`<br /><br /> `DROP MINING MODEL`<br /><br /> `IMPORT`<br /><br /> `SELECT INTO`<br /><br /> `INSERT`<br /><br /> `UPDATE`<br /><br /> `DELETE`|  
+|<span data-ttu-id="28465-124">背景作業</span><span class="sxs-lookup"><span data-stu-id="28465-124">Background operations</span></span>|<span data-ttu-id="28465-125">任何修改資料庫的背景作業都會被停用。</span><span class="sxs-lookup"><span data-stu-id="28465-125">Any background operations that would modify the database are disabled.</span></span> <span data-ttu-id="28465-126">這包括延遲處理以及主動式快取。</span><span class="sxs-lookup"><span data-stu-id="28465-126">This includes lazy processing and proactive caching.</span></span>|  
+  
+## <a name="readwritemode-usage"></a><span data-ttu-id="28465-127">ReadWriteMode 使用方式</span><span class="sxs-lookup"><span data-stu-id="28465-127">ReadWriteMode Usage</span></span>  
+ <span data-ttu-id="28465-128">`ReadWriteMode` 資料庫屬性是要當做 `Attach` 資料庫命令的一部分使用。</span><span class="sxs-lookup"><span data-stu-id="28465-128">The `ReadWriteMode` database property is to be used as part of an `Attach` database command.</span></span> <span data-ttu-id="28465-129"> 命令允許此資料庫屬性設定為  或 。</span><span class="sxs-lookup"><span data-stu-id="28465-129">The `Attach` command allows the database property to be set to either `ReadWrite` or `ReadOnly`.</span></span> <span data-ttu-id="28465-130">您無法直接更新 `ReadWriteMode` 資料庫屬性值，因為此屬性定義為唯讀。</span><span class="sxs-lookup"><span data-stu-id="28465-130">The `ReadWriteMode` database property value cannot be updated directly because the property is defined as read-only.</span></span> <span data-ttu-id="28465-131">建立資料庫時，其 `ReadWriteMode` 屬性會設定為 `ReadWrite`。</span><span class="sxs-lookup"><span data-stu-id="28465-131">Databases are created with the `ReadWriteMode` property set to `ReadWrite`.</span></span> <span data-ttu-id="28465-132">您無法在唯讀模式下建立資料庫。</span><span class="sxs-lookup"><span data-stu-id="28465-132">A database cannot be created in read-only mode.</span></span>  
+  
+ <span data-ttu-id="28465-133">若要在 `ReadWriteMode` 和之間切換資料庫屬性 `ReadWrite` `ReadOnly` ，您必須發出一連串的 `Detach/Attach` 命令。</span><span class="sxs-lookup"><span data-stu-id="28465-133">To switch the `ReadWriteMode` database property between `ReadWrite` and `ReadOnly`, you must issue a sequence of `Detach/Attach` commands.</span></span>  
+  
+ <span data-ttu-id="28465-134">所有資料庫作業 (`Attach` 除外) 都會將 `ReadWriteMode` 資料庫屬性保持在目前狀態。</span><span class="sxs-lookup"><span data-stu-id="28465-134">All database operations, with the exception of `Attach`, keep the `ReadWriteMode` database property in its current state.</span></span> <span data-ttu-id="28465-135">例如，`Alter`、`Backup`、`Restore` 和 `Synchronize` 等作業會保留 `ReadWriteMode` 值。</span><span class="sxs-lookup"><span data-stu-id="28465-135">For example, operations like `Alter`, `Backup`, `Restore`, and `Synchronize` preserve the `ReadWriteMode` value.</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="28465-136">您可以從唯讀資料庫建立本機 Cube。</span><span class="sxs-lookup"><span data-stu-id="28465-136">Local cubes can be created from a read-only database.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="28465-137">另請參閱</span><span class="sxs-lookup"><span data-stu-id="28465-137">See Also</span></span>  
+ <xref:Microsoft.AnalysisServices.Server.Attach%2A>   
+ <span data-ttu-id="28465-138">[Microsoft.analysisservices。卸離 \*](/dotnet/api/microsoft.analysisservices.core.database.detach) </span><span class="sxs-lookup"><span data-stu-id="28465-138">[Microsoft.AnalysisServices.Database.Detach\*](/dotnet/api/microsoft.analysisservices.core.database.detach) </span></span>  
+ <span data-ttu-id="28465-139">[附加和卸離 Analysis Services 資料庫](attach-and-detach-analysis-services-databases.md) </span><span class="sxs-lookup"><span data-stu-id="28465-139">[Attach and Detach Analysis Services Databases](attach-and-detach-analysis-services-databases.md) </span></span>  
+ <span data-ttu-id="28465-140">[移動 Analysis Services 資料庫](move-an-analysis-services-database.md) </span><span class="sxs-lookup"><span data-stu-id="28465-140">[Move an Analysis Services Database](move-an-analysis-services-database.md) </span></span>  
+ <span data-ttu-id="28465-141">[Detach 元素](https://docs.microsoft.com/bi-reference/xmla/xml-elements-commands/detach-element) </span><span class="sxs-lookup"><span data-stu-id="28465-141">[Detach Element](https://docs.microsoft.com/bi-reference/xmla/xml-elements-commands/detach-element) </span></span>  
+ [<span data-ttu-id="28465-142">Attach 元素</span><span class="sxs-lookup"><span data-stu-id="28465-142">Attach Element</span></span>](https://docs.microsoft.com/bi-reference/xmla/xml-elements-commands/attach-element)  
+  
+  
