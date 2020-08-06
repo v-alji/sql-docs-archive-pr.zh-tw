@@ -1,0 +1,35 @@
+---
+title: 工具列 (資料分割] 索引標籤、Cube 設計師)  (Analysis Services-多維度資料) |Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+ms.assetid: 7225064a-4f6c-40d3-a026-34e757a966da
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: f0d49f9fe2ca7fa54e4314cd2e412b8d9e31f126
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87592293"
+---
+# <a name="toolbar-partitions-tab-cube-designer-analysis-services---multidimensional-data"></a><span data-ttu-id="b2c7b-102">工具列 (資料分割索引標籤，Cube 設計師) (Analysis Services - 多維度資料)</span><span class="sxs-lookup"><span data-stu-id="b2c7b-102">Toolbar (Partitions Tab, Cube Designer) (Analysis Services - Multidimensional Data)</span></span>
+  <span data-ttu-id="b2c7b-103">使用 [工具列]\*\*\*\* 窗格，即可在 Cube 設計師的 [資料分割]\*\*\*\* 索引標籤上執行一般動作。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-103">Use the **Toolbar** pane to perform common actions on the **Partitions** tab in Cube Designer.</span></span>  
+  
+## <a name="options"></a><span data-ttu-id="b2c7b-104">選項</span><span class="sxs-lookup"><span data-stu-id="b2c7b-104">Options</span></span>  
+  
+|<span data-ttu-id="b2c7b-105">選項</span><span class="sxs-lookup"><span data-stu-id="b2c7b-105">Option</span></span>|<span data-ttu-id="b2c7b-106">描述</span><span class="sxs-lookup"><span data-stu-id="b2c7b-106">Description</span></span>|  
+|------------|-----------------|  
+|<span data-ttu-id="b2c7b-107">**加入商業智慧**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-107">**Add Business Intelligence**</span></span>|<span data-ttu-id="b2c7b-108">按一下以顯示 **[商業智慧精靈]** ，並將商業智慧功能加入至 Cube。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-108">Click to display the **Business Intelligence Wizard** and add business intelligence features to the cube.</span></span>|  
+|<span data-ttu-id="b2c7b-109">**處理程序**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-109">**Process**</span></span>|<span data-ttu-id="b2c7b-110">按一下即可顯示 [處理]\*\*\*\* 對話方塊，並處理選取的量值群組或資料分割。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-110">Click to display the **Process** dialog box and process the selected measure group or partition.</span></span>|  
+|<span data-ttu-id="b2c7b-111">**新增分割區**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-111">**New Partition**</span></span>|<span data-ttu-id="b2c7b-112">按一下即可顯示 [資料分割精靈]\*\*\*\*，並在選取的量值群組中建立新的資料分割。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-112">Click to display the **Partition Wizard** and create a new partition in the selected measure group.</span></span>|  
+|<span data-ttu-id="b2c7b-113">**重新命名**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-113">**Rename**</span></span>|<span data-ttu-id="b2c7b-114">按一下即可重新命名選取的分割區。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-114">Click to rename the selected partition.</span></span><br /><br /> <span data-ttu-id="b2c7b-115">注意：唯有在 [量值群組]\*\*\*\* 窗格中量值群組的 [資料分割]\*\*\*\* 方格中選取資料分割的任何資料格，才會啟用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-115">Note: This option is enabled only if any cell of a partition is selected in the **Partitions** grid of a measure group in the **Measure Groups** pane.</span></span>|  
+|<span data-ttu-id="b2c7b-116">**刪除**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-116">**Delete**</span></span>|<span data-ttu-id="b2c7b-117">按一下以顯示 [刪除物件]\*\*\*\* 對話方塊，然後刪除選取的動作。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-117">Click to display the **Delete Objects** dialog box and delete the selected action.</span></span><br /><br /> <span data-ttu-id="b2c7b-118">注意：唯有在 [量值群組]\*\*\*\* 窗格中量值群組的 [資料分割]\*\*\*\* 方格中選取資料分割的整個資料列，才會啟用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-118">Note: This option is enabled only if the entire row of a partition is selected in the **Partitions** grid of a measure group in the **Measure Groups** pane.</span></span><br /><br /> <span data-ttu-id="b2c7b-119">注意：如果已選取回寫分割區，則會停用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-119">Note: This option is disabled if a writeback partition is selected.</span></span>|  
+|<span data-ttu-id="b2c7b-120">**設計彙總**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-120">**Design Aggregations**</span></span>|<span data-ttu-id="b2c7b-121">按一下即可顯示 [彙總設計精靈]\*\*\*\*，並為選取的資料分割建立彙總設計。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-121">Click to display the **Aggregation Design Wizard** and create an aggregation design for the selected partition.</span></span><br /><br /> <span data-ttu-id="b2c7b-122">注意：唯有在 [量值群組]\*\*\*\* 窗格中量值群組的 [資料分割]\*\*\*\* 方格中選取資料分割的任何資料格，才會啟用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-122">Note: This option is enabled only if any cell of a partition is selected in the **Partitions** grid of a measure group in the **Measure Groups** pane.</span></span><br /><br /> <span data-ttu-id="b2c7b-123">注意：如果已選取回寫分割區，則會停用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-123">Note: This option is disabled if a writeback partition is selected.</span></span>|  
+|<span data-ttu-id="b2c7b-124">**基於使用方式的最佳化**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-124">**Usage Based Optimization**</span></span>|<span data-ttu-id="b2c7b-125">按一下即可顯示 [基於使用方式的最佳化精靈]\*\*\*\*，並根據現有的使用模式，為選取的資料分割建立彙總設計。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-125">Click to display the **Usage-Based Optimization Wizard** and create an aggregation design based on existing usage patterns for the selected partition.</span></span><br /><br /> <span data-ttu-id="b2c7b-126">注意：唯有在 [量值群組]\*\*\*\* 窗格中量值群組的 [資料分割]\*\*\*\* 方格中選取資料分割的任何資料格，才會啟用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-126">Note: This option is enabled only if any cell of a partition is selected in the **Partitions** grid of a measure group in the **Measure Groups** pane.</span></span><br /><br /> <span data-ttu-id="b2c7b-127">另請注意，如果已選取回寫分割區，則會停用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-127">Also note that this option is disabled if a writeback partition is selected.</span></span>|  
+|<span data-ttu-id="b2c7b-128">**儲存設定**</span><span class="sxs-lookup"><span data-stu-id="b2c7b-128">**Storage Settings**</span></span>|<span data-ttu-id="b2c7b-129">按一下即可顯示 [儲存設定]\*\*\*\* 對話方塊，並為選取的資料分割指定儲存模式、主動式快取和通知設定。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-129">Click to display the **Storage Settings** dialog box and specify storage mode, proactive caching, and notification settings for the selected partition.</span></span><br /><br /> <span data-ttu-id="b2c7b-130">注意：唯有在 [量值群組]\*\*\*\* 窗格中量值群組的 [資料分割]\*\*\*\* 方格中選取資料分割的任何資料格，才會啟用此選項。</span><span class="sxs-lookup"><span data-stu-id="b2c7b-130">Note: This option is enabled only if any cell of a partition is selected in the **Partitions** grid of a measure group in the **Measure Groups** pane.</span></span>|  
+  
+  
