@@ -1,0 +1,76 @@
+---
+title: 授與維度 (Analysis Services) 的許可權 |Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.asvs.roledesignerdialog.dimensions.f1
+helpviewer_keywords:
+- dimensions [Analysis Services], security
+- read/write permissions
+- user access rights [Analysis Services], dimensions
+- permissions [Analysis Services], dimensions
+ms.assetid: be5b2746-0336-4b12-827e-131462bdf605
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 735a272cd01e29877c466cc228d1ec340484f995
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87686504"
+---
+# <a name="grant-permissions-on-a-dimension-analysis-services"></a><span data-ttu-id="7cdc1-102">授與維度的權限 (Analysis Services)</span><span class="sxs-lookup"><span data-stu-id="7cdc1-102">Grant permissions on a dimension (Analysis Services)</span></span>
+  <span data-ttu-id="7cdc1-103">維度安全性是用來設定維度物件的權限，而不是設定它的資料。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-103">Dimension security is used to set permissions on a dimension object, not its data.</span></span> <span data-ttu-id="7cdc1-104">通常，允許或拒絕存取處理作業是在設定維度權限時的主要目標。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-104">Typically, allowing or denying access to processing operations is the main objective when setting permissions on a dimension.</span></span>  
+  
+ <span data-ttu-id="7cdc1-105">不過，或許您的目標不是控制處理作業，而是維度的資料存取，或其所包含的屬性和階層。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-105">But perhaps your objective is not to control processing operations, but rather data access to a dimension, or the attributes and hierarchies it contains.</span></span> <span data-ttu-id="7cdc1-106">例如，設有地區業務部門的公司可能想要讓該部門以外的其他部門無法看見銷售績效資訊。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-106">For example, a company with regional sales divisions might want to make sales performance information off limits to those outside the division.</span></span> <span data-ttu-id="7cdc1-107">若要針對不同構成份子允許或拒絕存取部分維度資料，您可以設定維度屬性和維度成員的權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-107">To allow or deny access to portions of dimension data for different constituents, you can set permissions on dimension attributes and dimension members.</span></span> <span data-ttu-id="7cdc1-108">請注意，您無法拒絕存取個別維度物件本身，僅能拒絕存取其資料。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-108">Notice that you cannot deny access to an individual dimension object itself, only to its data.</span></span> <span data-ttu-id="7cdc1-109">如果您的立即目標是允許或拒絕存取維度中的成員 (包含個別屬性階層的存取權限)，請參閱 [授與維度資料的自訂存取權 &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) ，以取得更多資訊。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-109">If your immediate goal is to allow or deny access to members in a dimension, including access rights to individual attribute hierarchies, see [Grant custom access to dimension data &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) for more information.</span></span>  
+  
+ <span data-ttu-id="7cdc1-110">這個主題的其餘部分涵蓋您可以在維度物件本身上設定的屬性，包含：</span><span class="sxs-lookup"><span data-stu-id="7cdc1-110">The remainder of this topic covers permissions that you can set on the dimension object itself, including:</span></span>  
+  
+-   <span data-ttu-id="7cdc1-111">讀取或讀取/寫入權限 (您只能從 [讀取] 或 [讀取/寫入] 中選擇；無法選擇指定「無」)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-111">Read or Read/Write permissions (you can only choose from Read or Read/Write; specifying "none" is not an option).</span></span> <span data-ttu-id="7cdc1-112">如前所述，如果您的目標是限制存取維度資料，請參閱 [授與維度資料的自訂存取權 &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) ，以取得詳細資料。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-112">As noted, if your goal is to restrict access to dimension data, see [Grant custom access to dimension data &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) for details.</span></span>  
+  
+-   <span data-ttu-id="7cdc1-113">處理權限 (當案例需要要求個別物件之自訂權限處理策略時，請執行這個作業)</span><span class="sxs-lookup"><span data-stu-id="7cdc1-113">Processing permissions (do this when scenarios require a processing strategy that calls for custom permissions on individual objects)</span></span>  
+  
+-   <span data-ttu-id="7cdc1-114">讀取定義權限 (通常您會執行這個動作來支援工具中的互動式處理，或為模型提供可見性。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-114">Read definition permissions (typically you would do this to support interactive processing in a tool, or to provide visibility into a model.</span></span> <span data-ttu-id="7cdc1-115">讀取定義可在不需擁有其資料權限或修改其定義之能力的情況下，讓您看見維度的結構)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-115">Read definition lets you see the structure of a dimension, without permission to its data or the ability to modify its definition).</span></span>  
+  
+ <span data-ttu-id="7cdc1-116">定義維度的角色時，可用權限會視物件是否為獨立資料庫維度 (在資料庫內部但在 Cube 外部) 或 Cube 維度而改變。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-116">When defining roles for a dimension, available permissions vary depending on whether the object is a standalone database dimension ─internal to the database but external to a cube─ or a cube dimension.</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="7cdc1-117">根據預設，Cube 維度會繼承資料庫維度的權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-117">By default, permissions on a database dimension are inherited by a cube dimension.</span></span> <span data-ttu-id="7cdc1-118">例如，如果您啟用 Customer 資料庫維度的 [讀取/寫入]\*\*\*\*，Customer Cube 維度就會繼承目前角色內容中的 [讀取/寫入]\*\*\*\*。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-118">For example, if you enable **Read/Write** on a Customer database dimension, the Customer cube dimension inherits **Read/Write** in the context of the current role.</span></span> <span data-ttu-id="7cdc1-119">如果您想要覆寫權限設定，可以清除繼承的權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-119">You can clear inherited permissions if you want to override a permission setting.</span></span>  
+  
+## <a name="set-permissions-on-a-database-dimension"></a><span data-ttu-id="7cdc1-120">設定資料庫維度的權限</span><span class="sxs-lookup"><span data-stu-id="7cdc1-120">Set permissions on a database dimension</span></span>  
+ <span data-ttu-id="7cdc1-121">資料庫維度是資料庫內的獨立物件，允許在相同模型內重複使用維度。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-121">Database dimensions are standalone objects within a database, allowing for dimension reuse within the same model.</span></span> <span data-ttu-id="7cdc1-122">請考量一個可在模型中多次使用的 DATE 資料庫維度，如同 Order Date、Ship Date 及 Due Date Cube 維度。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-122">Consider a DATE database dimension that is used multiple times in a model, as Order Date, Ship Date, and Due Date cube dimensions.</span></span> <span data-ttu-id="7cdc1-123">由於 Cube 和資料庫維度是資料庫中的對等物件，因此您可以個別設定每個物件的處理權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-123">Because cubes and database dimensions are peer objects in a database, you can set processing permissions independently on each object.</span></span>  
+  
+1.  <span data-ttu-id="7cdc1-124">在中 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] ，連接到的實例 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 、在物件總管中展開適當資料庫的 [**角色**]，然後按一下資料庫角色 (或建立新的資料庫角色) 。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-124">In [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)], connect to the instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)], expand **Roles** for the appropriate database in Object Explorer, and then click a database role (or create a new database role).</span></span>  
+  
+2.  <span data-ttu-id="7cdc1-125">在 [維度]\*\*\*\* 窗格中，應該將維度集設為 [所有資料庫維度]\*\*\*\*。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-125">In the **Dimensions** pane, the dimension set should be set to **All database dimensions**.</span></span>  
+  
+     <span data-ttu-id="7cdc1-126">根據預設，會將權限設為 [讀取]\*\*\*\*。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-126">By default, permissions are set to **Read**.</span></span>  
+  
+     <span data-ttu-id="7cdc1-127">儘管可以使用 [讀取/寫入]\*\*\*\*，但還是建議您不要使用這個權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-127">Although **Read/Write** is available, we recommend that you do not use this permission.</span></span> <span data-ttu-id="7cdc1-128">[讀取/寫入]\*\*\*\* 是用於維度回寫狀況 (已不再使用)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-128">**Read/Write** is used for dimension writeback scenarios, which have been deprecated.</span></span> <span data-ttu-id="7cdc1-129">請參閱[SQL Server 2014 中已淘汰的 Analysis Services 功能](../deprecated-analysis-services-features-in-sql-server-2014.md)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-129">See [Deprecated Analysis Services Features in SQL Server 2014](../deprecated-analysis-services-features-in-sql-server-2014.md).</span></span>  
+  
+     <span data-ttu-id="7cdc1-130">只要您尚未在資料庫層級設定 [讀取定義]\*\*\*\* 和 [處理]\*\*\*\* 權限，就可以選擇性地設定個別維度物件的這些權限。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-130">Optionally, you can set **Read Definition** and **Process** permissions on individual dimension objects, as long as those permissions are not already set at the database level.</span></span> <span data-ttu-id="7cdc1-131">如需詳細資訊，請參閱[授與處理權限 &#40;Analysis Services&#41;](grant-process-permissions-analysis-services.md) 和[授與物件中繼資料的讀取定義權限 &#40;Analysis Services&#41;](grant-read-definition-permissions-on-object-metadata-analysis-services.md)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-131">See [Grant process permissions &#40;Analysis Services&#41;](grant-process-permissions-analysis-services.md) and [Grant read definition permissions on object metadata &#40;Analysis Services&#41;](grant-read-definition-permissions-on-object-metadata-analysis-services.md) for details.</span></span>  
+  
+## <a name="set-permissions-on-a-cube-dimension"></a><span data-ttu-id="7cdc1-132">設定 Cube 維度的權限</span><span class="sxs-lookup"><span data-stu-id="7cdc1-132">Set permissions on a cube dimension</span></span>  
+ <span data-ttu-id="7cdc1-133">Cube 維度是已新增到 Cube 的資料庫維度。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-133">Cube dimensions are database dimensions that have been added to a cube.</span></span> <span data-ttu-id="7cdc1-134">嚴格來說，它們在相關聯的量值群組上具有結構相依性。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-134">As such, they are structurally dependent on associated measure groups.</span></span> <span data-ttu-id="7cdc1-135">儘管您能以不可部分完成的方式來處理這些物件，但就授權而言，將 Cube 和 Cube 維度視為單一實體是合理的。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-135">Although you can process these objects atomically, in terms of authorization, it makes sense to treat the cube and cube dimensions as a single entity.</span></span>  
+  
+1.  <span data-ttu-id="7cdc1-136">在中 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] ，連接到的實例 [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 、在物件總管中展開適當資料庫的 [**角色**]，然後按一下資料庫角色 (或建立新的資料庫角色) 。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-136">In [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)], connect to the instance of [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)], expand **Roles** for the appropriate database in Object Explorer, and then click a database role (or create a new database role).</span></span>  
+  
+2.  <span data-ttu-id="7cdc1-137">在 [**維度**] 窗格中，將維度集變更為 [ \<cube-name> **cube 維度**]。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-137">In the **Dimensions** pane, change the dimension set to \<cube-name> **cube dimensions**.</span></span>  
+  
+     <span data-ttu-id="7cdc1-138">根據預設，權限是繼承自相對應的資料庫維度。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-138">By default, permissions are inherited from a corresponding database dimension.</span></span> <span data-ttu-id="7cdc1-139">清除 [繼承]\*\*\*\* 核取方塊，即可將權限從 [讀取]\*\*\*\* 更改為 [讀取/寫入]\*\*\*\*。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-139">Clear the **Inherit** check box to alter permissions from **Read** to **Read/Write**.</span></span> <span data-ttu-id="7cdc1-140">使用 [讀取/寫入]\*\*\*\* 之前，請務必閱讀上一節的注意事項。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-140">Before using **Read/Write**, be sure to read the note in the previous section.</span></span>  
+  
+> [!IMPORTANT]  
+>  <span data-ttu-id="7cdc1-141">如果您使用分析管理物件 (AMO) 來設定資料庫角色權限，則任何參考 Cube 之 DimensionPermission 屬性的 Cube 維度，就會切斷資料庫的 DimensionPermission 屬性的權限繼承。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-141">If you configure database role permissions by using Analysis Management Objects (AMO), any reference to a cube dimension in a cube's DimensionPermission attribute severs the permission inheritance from the database's DimensionPermission attribute.</span></span> <span data-ttu-id="7cdc1-142">如需 AMO 的詳細資訊，請參閱[使用分析管理物件 &#40;AMO&#41; 來開發](https://docs.microsoft.com/bi-reference/amo/developing-with-analysis-management-objects-amo)。</span><span class="sxs-lookup"><span data-stu-id="7cdc1-142">For more information about AMO, see [Developing with Analysis Management Objects &#40;AMO&#41;](https://docs.microsoft.com/bi-reference/amo/developing-with-analysis-management-objects-amo).</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="7cdc1-143">另請參閱</span><span class="sxs-lookup"><span data-stu-id="7cdc1-143">See Also</span></span>  
+ <span data-ttu-id="7cdc1-144">[角色和許可權 &#40;Analysis Services&#41;](roles-and-permissions-analysis-services.md) </span><span class="sxs-lookup"><span data-stu-id="7cdc1-144">[Roles and Permissions &#40;Analysis Services&#41;](roles-and-permissions-analysis-services.md) </span></span>  
+ <span data-ttu-id="7cdc1-145">[授與 cube 或模型許可權 &#40;Analysis Services&#41;](grant-cube-or-model-permissions-analysis-services.md) </span><span class="sxs-lookup"><span data-stu-id="7cdc1-145">[Grant cube or model permissions &#40;Analysis Services&#41;](grant-cube-or-model-permissions-analysis-services.md) </span></span>  
+ <span data-ttu-id="7cdc1-146">[授與資料採礦結構和模型的許可權 &#40;Analysis Services&#41;](grant-permissions-on-data-mining-structures-and-models-analysis-services.md) </span><span class="sxs-lookup"><span data-stu-id="7cdc1-146">[Grant permissions on data mining structures and models &#40;Analysis Services&#41;](grant-permissions-on-data-mining-structures-and-models-analysis-services.md) </span></span>  
+ <span data-ttu-id="7cdc1-147">[將維度資料的自訂存取權授與 &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) </span><span class="sxs-lookup"><span data-stu-id="7cdc1-147">[Grant custom access to dimension data &#40;Analysis Services&#41;](grant-custom-access-to-dimension-data-analysis-services.md) </span></span>  
+ [<span data-ttu-id="7cdc1-148">授與資料格資料的自訂存取權 &#40;Analysis Services&#41;</span><span class="sxs-lookup"><span data-stu-id="7cdc1-148">Grant custom access to cell data &#40;Analysis Services&#41;</span></span>](grant-custom-access-to-cell-data-analysis-services.md)  
+  
+  

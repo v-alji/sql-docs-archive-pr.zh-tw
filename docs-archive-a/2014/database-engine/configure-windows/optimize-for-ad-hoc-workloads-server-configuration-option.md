@@ -1,0 +1,39 @@
+---
+title: 針對特定工作負載最佳化伺服器組態選項 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: configuration
+ms.topic: conceptual
+helpviewer_keywords:
+- optimize for ad hoc workloads option
+ms.assetid: 0972e028-3a8e-454b-a186-e814a1d431f2
+author: MikeRayMSFT
+ms.author: mikeray
+ms.openlocfilehash: b217e48d6e4b0ffa0f687ff170f16d4d77ad17d8
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87688205"
+---
+# <a name="optimize-for-ad-hoc-workloads-server-configuration-option"></a><span data-ttu-id="598ee-102">針對特定工作負載最佳化伺服器組態選項</span><span class="sxs-lookup"><span data-stu-id="598ee-102">optimize for ad hoc workloads Server Configuration Option</span></span>
+  <span data-ttu-id="598ee-103">**optimize for ad hoc workloads** 選項是用來針對包含許多使用一次特定批次的工作負載，改善計畫快取的效率。</span><span class="sxs-lookup"><span data-stu-id="598ee-103">The **optimize for ad hoc workloads** option is used to improve the efficiency of the plan cache for workloads that contain many single use ad hoc batches.</span></span> <span data-ttu-id="598ee-104">如果這個選項設定為 1， [!INCLUDE[ssDE](../../includes/ssde-md.md)] 就會在首次編譯批次時，將小型已編譯計畫虛設常式 (而非完整的已編譯計畫) 儲存在計畫快取中。</span><span class="sxs-lookup"><span data-stu-id="598ee-104">When this option is set to 1, the [!INCLUDE[ssDE](../../includes/ssde-md.md)] stores a small compiled plan stub in the plan cache when a batch is compiled for the first time, instead of the full compiled plan.</span></span> <span data-ttu-id="598ee-105">這會透過避免計畫快取填滿不重複使用的已編譯計畫，協助減輕記憶體不足的壓力。</span><span class="sxs-lookup"><span data-stu-id="598ee-105">This helps to relieve memory pressure by not allowing the plan cache to become filled with compiled plans that are not reused.</span></span>  
+  
+ <span data-ttu-id="598ee-106">已編譯計畫虛設常式可讓 [!INCLUDE[ssDE](../../includes/ssde-md.md)] 辨識出這個特定批次先前已經編譯，但是只儲存已編譯計畫虛設常式，如此再次叫用 (編譯或執行) 這個批次時， [!INCLUDE[ssDE](../../includes/ssde-md.md)] 就會編譯此批次、從計畫快取中移除已編譯計畫虛設常式，並且將完整的已編譯計畫加入至計畫快取。</span><span class="sxs-lookup"><span data-stu-id="598ee-106">The compiled plan stub allows the [!INCLUDE[ssDE](../../includes/ssde-md.md)] to recognize that this ad hoc batch has been compiled before but has only stored a compiled plan stub, so when this batch is invoked (compiled or executed) again, the [!INCLUDE[ssDE](../../includes/ssde-md.md)] compiles the batch, removes the compiled plan stub from the plan cache, and adds the full compiled plan to the plan cache.</span></span>  
+  
+ <span data-ttu-id="598ee-107">將 **optimize for ad hoc workloads** 設定為 1 只會影響新的計畫。已經存在計畫快取中的計畫則不會受到影響。</span><span class="sxs-lookup"><span data-stu-id="598ee-107">Setting the **optimize for ad hoc workloads** to 1 affects only new plans; plans that are already in the plan cache are unaffected.</span></span>  
+  
+ <span data-ttu-id="598ee-108">已編譯計畫虛設常式是 sys.dm_exec_cached_plans 目錄檢視所顯示的其中一個 cacheobjtype。</span><span class="sxs-lookup"><span data-stu-id="598ee-108">The compiled plan stub is one of the cacheobjtypes displayed by the sys.dm_exec_cached_plans catalog view.</span></span> <span data-ttu-id="598ee-109">它具有唯一的 SQL 控制代碼和計畫控制代碼。</span><span class="sxs-lookup"><span data-stu-id="598ee-109">It has a unique sql handle and plan handle.</span></span> <span data-ttu-id="598ee-110">已編譯計畫虛設常式沒有相關聯的執行計畫，因此查詢計畫控制代碼將不會傳回 XML 執行程序表。</span><span class="sxs-lookup"><span data-stu-id="598ee-110">The compiled plan stub does not have an execution plan associated with it and querying for the plan handle will not return an XML Showplan.</span></span>  
+  
+ <span data-ttu-id="598ee-111">追蹤旗標 8032 會將快取限制參數還原為 [!INCLUDE[ssVersion2005](../../includes/ssversion2005-md.md)] RTM 設定，這項設定通常會允許使用更大的快取。</span><span class="sxs-lookup"><span data-stu-id="598ee-111">Trace flag 8032 reverts the cache limit parameters to the [!INCLUDE[ssVersion2005](../../includes/ssversion2005-md.md)] RTM setting which in general allows caches to be larger.</span></span> <span data-ttu-id="598ee-112">當經常重複使用的快取項目無法納入快取中，以及 *針對特定工作負載最佳化伺服器組態選項* 無法解決計畫快取的問題時，請使用這項設定。</span><span class="sxs-lookup"><span data-stu-id="598ee-112">Use this setting when frequently reused cache entries do not fit into the cache and when the *optimize for ad hoc workloads Server Configuration Option* has failed to resolve the problem with plan cache.</span></span>  
+  
+> [!WARNING]  
+>  <span data-ttu-id="598ee-113">如果大型快取為其他記憶體取用者 (例如緩衝集區) 提供較少的記憶體，追蹤旗標 8032 可能會導致效能降低。</span><span class="sxs-lookup"><span data-stu-id="598ee-113">Trace flag 8032 can cause poor performance if large caches make less memory available for other memory consumers, such as the buffer pool.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="598ee-114">另請參閱</span><span class="sxs-lookup"><span data-stu-id="598ee-114">See Also</span></span>  
+ <span data-ttu-id="598ee-115">[sys.dm_exec_cached_plans &#40;Transact-SQL&#41;](/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-cached-plans-transact-sql) </span><span class="sxs-lookup"><span data-stu-id="598ee-115">[sys.dm_exec_cached_plans &#40;Transact-SQL&#41;](/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-cached-plans-transact-sql) </span></span>  
+ [<span data-ttu-id="598ee-116">伺服器組態選項 &#40;SQL Server&#41;</span><span class="sxs-lookup"><span data-stu-id="598ee-116">Server Configuration Options &#40;SQL Server&#41;</span></span>](server-configuration-options-sql-server.md)  
+  
+  

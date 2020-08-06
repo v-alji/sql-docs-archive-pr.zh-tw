@@ -1,0 +1,29 @@
+---
+title: 第3課：比對資料以從供應商清單中移除重複專案 |Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: data-quality-services
+ms.topic: conceptual
+ms.assetid: 059170b6-d62e-4b28-9451-99a0cc7e1f5f
+author: lrtoyou1223
+ms.author: lle
+ms.openlocfilehash: bdf3b71d985a60fed5080ec97462a43e79c4ca22
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87686567"
+---
+# <a name="lesson-3-matching-data-to-remove-duplicates-from-supplier-list"></a><span data-ttu-id="ea547-102">第 3 課：比對資料，以便從供應商清單中移除重複項</span><span class="sxs-lookup"><span data-stu-id="ea547-102">Lesson 3: Matching Data to Remove Duplicates from Supplier List</span></span>
+  <span data-ttu-id="ea547-103">您會藉由在知識庫中建立比對原則，準備知識庫來執行比對活動。</span><span class="sxs-lookup"><span data-stu-id="ea547-103">You prepare the knowledge base for performing matching activity by creating a matching policy in the knowledge base.</span></span> <span data-ttu-id="ea547-104">知識庫中只能有一個比對原則。</span><span class="sxs-lookup"><span data-stu-id="ea547-104">There can be only one matching policy in a knowledge base.</span></span> <span data-ttu-id="ea547-105">比對原則是由一個或多個比對規則所組成。</span><span class="sxs-lookup"><span data-stu-id="ea547-105">A matching policy consists of one or more matching rules.</span></span> <span data-ttu-id="ea547-106">規則會識別與比對程序有關的定義域，並指定每個定義域值在比對判斷中攜帶的加權。</span><span class="sxs-lookup"><span data-stu-id="ea547-106">A rule identifies the domains that are involved in the matching process, and specifies the weight that each domain value carries in the matching judgment.</span></span> <span data-ttu-id="ea547-107">您會在規則中指定定義域值是否必須完全相符或者可以類似，以及相似度的程度。</span><span class="sxs-lookup"><span data-stu-id="ea547-107">You specify in the rule whether domain values have to be an exact match or can be similar, and to what degree of similarity.</span></span> <span data-ttu-id="ea547-108">您也會指定定義域比對是否為比對程序的必要條件。</span><span class="sxs-lookup"><span data-stu-id="ea547-108">You also specify whether a domain match is a prerequisite for the matching process.</span></span> <span data-ttu-id="ea547-109">您可以個別測試每個規則，並針對取樣資料測試整個原則。</span><span class="sxs-lookup"><span data-stu-id="ea547-109">You can test each rule separately and test the entire policy against sample data.</span></span> <span data-ttu-id="ea547-110">測試程式會顯示符合分數大於叢集 (群組) 中 DQS 設定所指定之**最小記錄分數**閾值的記錄。</span><span class="sxs-lookup"><span data-stu-id="ea547-110">The testing process displays records whose matching scores are greater than the **Min record score** threshold specified in the DQS configuration in a cluster (group).</span></span> <span data-ttu-id="ea547-111">您可以持續調整原則中的規則，直到滿意為止。</span><span class="sxs-lookup"><span data-stu-id="ea547-111">You can continue to tweak the rules in the policy until you are satisfied.</span></span>  
+  
+ <span data-ttu-id="ea547-112">在定義原則之後，您會建立資料品質專案來執行比對活動。</span><span class="sxs-lookup"><span data-stu-id="ea547-112">After defining the policy, you create a Data Quality Project to run the matching activity.</span></span> <span data-ttu-id="ea547-113">比對專案會將比對原則中的比對規則套用到要評估的資料來源。</span><span class="sxs-lookup"><span data-stu-id="ea547-113">The matching project applies the matching rules in the matching policy to the data source to be assessed.</span></span> <span data-ttu-id="ea547-114">這個程序會評估任何兩個資料列相符的可能性。</span><span class="sxs-lookup"><span data-stu-id="ea547-114">This process assesses the likelihood that any two rows are matches.</span></span> <span data-ttu-id="ea547-115">當 DQS 執行比對分析時，它會建立 DQS 視為相符的記錄叢集。</span><span class="sxs-lookup"><span data-stu-id="ea547-115">When DQS performs the matching analysis, it creates clusters of records that DQS considers matches.</span></span> <span data-ttu-id="ea547-116">DQS 會隨機將其中一筆記錄識別為樞紐記錄。</span><span class="sxs-lookup"><span data-stu-id="ea547-116">DQS randomly identifies one of the records as a pivot record.</span></span> <span data-ttu-id="ea547-117">您可以驗證及拒絕未適當符合叢集的任何記錄。</span><span class="sxs-lookup"><span data-stu-id="ea547-117">You can verify and reject any record that is not an appropriate match for the cluster.</span></span> <span data-ttu-id="ea547-118">如需詳細資訊，請參閱建立比對[原則](https://msdn.microsoft.com/library/hh270290.aspx)主題。</span><span class="sxs-lookup"><span data-stu-id="ea547-118">See [Create a Matching Policy](https://msdn.microsoft.com/library/hh270290.aspx) topic for more details.</span></span>  
+  
+ <span data-ttu-id="ea547-119">在這一課，您會執行比對活動，從供應商清單中移除重複項。</span><span class="sxs-lookup"><span data-stu-id="ea547-119">In this lesson, you perform a matching activity to remove duplicates from the supplier list.</span></span> <span data-ttu-id="ea547-120">首先，您要建立一個比對原則，其中包含一個規則來識別供應商清單中的重複項，然後將原則發行到知識庫。</span><span class="sxs-lookup"><span data-stu-id="ea547-120">First, you create a matching policy with one rule to identify duplicates in the supplier list and publish the policy to the knowledge base.</span></span> <span data-ttu-id="ea547-121">接下來，您要建立並執行資料品質專案以進行比對。</span><span class="sxs-lookup"><span data-stu-id="ea547-121">Next, you create and run a data quality project for matching.</span></span> <span data-ttu-id="ea547-122">最後，您會將比對活動中的結果匯出到 Excel 檔案，您稍後會使用這個檔案將資料上傳到 Master Data Services (MDS)。</span><span class="sxs-lookup"><span data-stu-id="ea547-122">Finally, you export the results from the matching activity to an Excel file that you use later in uploading data to Master Data Services (MDS).</span></span>  
+  
+## <a name="next-step"></a><span data-ttu-id="ea547-123">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ea547-123">Next Step</span></span>  
+ [<span data-ttu-id="ea547-124">工作 1：定義比對原則</span><span class="sxs-lookup"><span data-stu-id="ea547-124">Task 1: Defining a Matching Policy</span></span>](../../2014/tutorials/task-1-defining-a-matching-policy.md)  
+  
+  
