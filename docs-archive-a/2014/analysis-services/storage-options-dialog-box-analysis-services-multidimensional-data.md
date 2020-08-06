@@ -1,0 +1,37 @@
+---
+title: 儲存選項對話方塊 (Analysis Services-多維度資料) |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.asvs.storagesettingsdialog.f1
+ms.assetid: 58b26088-f4b1-4962-b824-3e360e955671
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 5bcb8c42be62264e9d4c0b43f84055d9e62d2b50
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87598535"
+---
+# <a name="storage-options-dialog-box-analysis-services---multidimensional-data"></a><span data-ttu-id="a32d3-102">儲存選項對話方塊 (Analysis Services - 多維度資料)</span><span class="sxs-lookup"><span data-stu-id="a32d3-102">Storage Options Dialog Box (Analysis Services - Multidimensional Data)</span></span>
+  <span data-ttu-id="a32d3-103">使用 [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] 中的 [儲存選項]\*\*\*\* 對話方塊，即可指定維度、Cube、量值群組以及資料分割的自訂儲存模式、主動式快取和通知選項。</span><span class="sxs-lookup"><span data-stu-id="a32d3-103">Use the **Storage Options** dialog box in [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] to specify custom storage mode, proactive caching, and notification options for dimensions, cubes, measure groups, and partitions.</span></span> <span data-ttu-id="a32d3-104">您可以藉由在 [儲存設定]\*\*\*\* 對話方塊上按一下 [選項]\*\*\*\*，來顯示 [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] 中的 [儲存選項]\*\*\*\* 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a32d3-104">You can display the **Storage Options** dialog box in [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] by clicking **Options** on the **Storage Settings** dialog box.</span></span> <span data-ttu-id="a32d3-105">如需 [儲存設定]\*\*\*\* 對話方塊的詳細資訊，請參閱[儲存設定對話方塊 &#40;Analysis Services - 多維度資料&#41;](storage-settings-dialog-box-analysis-services-multidimensional-data.md)。</span><span class="sxs-lookup"><span data-stu-id="a32d3-105">For more information about the **Storage Settings** dialog box, see [Storage Settings Dialog Box &#40;Analysis Services - Multidimensional Data&#41;](storage-settings-dialog-box-analysis-services-multidimensional-data.md).</span></span>  
+  
+ <span data-ttu-id="a32d3-106">[儲存選項]\*\*\*\* 對話方塊包含下表列出的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="a32d3-106">The **Storage Options** dialog box contains the tabs listed in the following table.</span></span>  
+  
+## <a name="tabs"></a><span data-ttu-id="a32d3-107">索引標籤</span><span class="sxs-lookup"><span data-stu-id="a32d3-107">Tabs</span></span>  
+  
+|<span data-ttu-id="a32d3-108">頁面</span><span class="sxs-lookup"><span data-stu-id="a32d3-108">Page</span></span>|<span data-ttu-id="a32d3-109">定義</span><span class="sxs-lookup"><span data-stu-id="a32d3-109">Definition</span></span>|  
+|----------|----------------|  
+|<span data-ttu-id="a32d3-110">**一般**</span><span class="sxs-lookup"><span data-stu-id="a32d3-110">**General**</span></span>|<span data-ttu-id="a32d3-111">使用 [一般]\*\*\*\* 索引標籤，即可指定儲存和主動式快取設定。</span><span class="sxs-lookup"><span data-stu-id="a32d3-111">Use the **General** tab to specify storage and proactive caching settings.</span></span> <span data-ttu-id="a32d3-112">如需此索引標籤的詳細資訊，請參閱[一般 &#40;儲存選項對話方塊&#41; &#40;Analysis Services – 多維度資料&#41;](general-storage-options-dialog-box-analysis-services-multidimensional-data.md)。</span><span class="sxs-lookup"><span data-stu-id="a32d3-112">For more information about this tab, see [General &#40;Storage Options Dialog Box&#41; &#40;Analysis Services - Multidimensional Data&#41;](general-storage-options-dialog-box-analysis-services-multidimensional-data.md).</span></span>|  
+|<span data-ttu-id="a32d3-113">**通知**</span><span class="sxs-lookup"><span data-stu-id="a32d3-113">**Notifications**</span></span>|<span data-ttu-id="a32d3-114">使用 [通知]\*\*\*\* 索引標籤，即可指定通知方法和相關的設定。</span><span class="sxs-lookup"><span data-stu-id="a32d3-114">Use the **Notifications** tab to specify the notification method and related settings.</span></span> <span data-ttu-id="a32d3-115">如需此索引標籤的詳細資訊，請參閱[通知 &#40;儲存選項對話方塊&#41; &#40;Analysis Services – 多維度資料&#41;](notifications-storage-options-dialog-analysis-services-multidimensional-data.md)。</span><span class="sxs-lookup"><span data-stu-id="a32d3-115">For more information about this tab, see [Notifications &#40;Storage Options Dialog Box&#41; &#40;Analysis Services - Multidimensional Data&#41;](notifications-storage-options-dialog-analysis-services-multidimensional-data.md).</span></span>|  
+  
+## <a name="see-also"></a><span data-ttu-id="a32d3-116">另請參閱</span><span class="sxs-lookup"><span data-stu-id="a32d3-116">See Also</span></span>  
+ <span data-ttu-id="a32d3-117">[Analysis Services 的設計工具和對話方塊 &#40;多維度資料&#41;](analysis-services-designers-and-dialog-boxes-multidimensional-data.md) </span><span class="sxs-lookup"><span data-stu-id="a32d3-117">[Analysis Services Designers and Dialog Boxes &#40;Multidimensional Data&#41;](analysis-services-designers-and-dialog-boxes-multidimensional-data.md) </span></span>  
+ [<span data-ttu-id="a32d3-118">主動式快取 &#40;分割區&#41;</span><span class="sxs-lookup"><span data-stu-id="a32d3-118">Proactive Caching &#40;Partitions&#41;</span></span>](multidimensional-models-olap-logical-cube-objects/partitions-proactive-caching.md)  
+  
+  

@@ -1,0 +1,58 @@
+---
+title: 從儲存在 Azure 中的備份還原 |Microsoft Docs
+ms.custom: ''
+ms.date: 03/07/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: backup-restore
+ms.topic: conceptual
+ms.assetid: 6ae358b2-6f6f-46e0-a7c8-f9ac6ce79a0e
+author: MikeRayMSFT
+ms.author: mikeray
+ms.openlocfilehash: 68b270f18cb4dbc2724c5a062afae54fa711acec
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87598454"
+---
+# <a name="restoring-from-backups-stored-in-azure"></a><span data-ttu-id="a1f1a-102">從儲存在 Azure 中的備份還原</span><span class="sxs-lookup"><span data-stu-id="a1f1a-102">Restoring From Backups Stored in Azure</span></span>
+  <span data-ttu-id="a1f1a-103">本主題概要說明使用儲存在 Azure Blob 儲存體服務中的備份來還原資料庫時，所應注意的事項。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-103">This topic outlines the considerations when restoring a database using a backup stored in the Azure Blob storage service.</span></span> <span data-ttu-id="a1f1a-104">本文適用於使用 SQL Server 備份至 URL 備份或 [!INCLUDE[ss_smartbackup](../../includes/ss-smartbackup-md.md)]所建立的備份。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-104">This applies to backups created either by using SQL Server Backup to URL backup or by [!INCLUDE[ss_smartbackup](../../includes/ss-smartbackup-md.md)].</span></span>  
+  
+ <span data-ttu-id="a1f1a-105">如果您預計要還原儲存在 Azure Blob 儲存體服務中的備份，建議您檢閱本主題，然後再檢閱說明如何還原資料庫的步驟 (此程序對於內部部署和 Azure 備份是相同的)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-105">We recommend reviewing this topic if you have backups stored in the Azure Blob storage service that you plan to restore, and then review the topics that describe the steps on how to restore a database which is the same for both on-premises and azure backups.</span></span>  
+  
+## <a name="overview"></a><span data-ttu-id="a1f1a-106">概觀</span><span class="sxs-lookup"><span data-stu-id="a1f1a-106">Overview</span></span>  
+ <span data-ttu-id="a1f1a-107">從內部部署備份還原資料庫所使用的工具和方法，適用於從雲端備份還原資料庫。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-107">The tools and methods that are used to restore a database from an on-premises backup apply to restoring a database from a cloud backup.</span></span>  <span data-ttu-id="a1f1a-108">下列小節描述這些考量，以及當您使用儲存在 Azure Blob 儲存體服務中的備份時，應了解的任何差異。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-108">The following sections describe these considerations and any differences you should know about when you use backups stored in the Azure Blob storage service.</span></span>  
+  
+### <a name="using-transact-sql"></a><span data-ttu-id="a1f1a-109">使用 TRANSACT-SQL</span><span class="sxs-lookup"><span data-stu-id="a1f1a-109">Using Transact-SQL</span></span>  
+  
+-   <span data-ttu-id="a1f1a-110">因為 SQL Server 必須連接至外部來源以擷取備份檔案，所以會使用 SQL 認證來驗證儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-110">Since SQL Server must connect to an external source to retrieve the backup files, SQL Credential is used to authenticate to the storage account.</span></span> <span data-ttu-id="a1f1a-111">因此，RESTORE 陳述式需要 WITH CREDENTIAL 選項。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-111">Consequently, the RESTORE statement requires WITH CREDENTIAL option.</span></span> <span data-ttu-id="a1f1a-112">如需詳細資訊，請參閱 [SQL Server 備份及還原與 Azure Blob 儲存體服務](sql-server-backup-and-restore-with-microsoft-azure-blob-storage-service.md)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-112">For more information, see [SQL Server Backup and Restore with Azure Blob Storage Service](sql-server-backup-and-restore-with-microsoft-azure-blob-storage-service.md).</span></span>  
+  
+-   <span data-ttu-id="a1f1a-113">如果您是使用 [!INCLUDE[ss_smartbackup](../../includes/ss-smartbackup-md.md)] 管理雲端的備份，您可以使用 **smart_admin.fn_available_backups** 系統函數來檢閱儲存體中的所有可用備份。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-113">If you are using the [!INCLUDE[ss_smartbackup](../../includes/ss-smartbackup-md.md)] to manage your backups to the cloud, you can review all the available backups in the storage, by using the **smart_admin.fn_available_backups** system function.</span></span> <span data-ttu-id="a1f1a-114">此系統函數會以資料表傳回資料庫的所有可用備份。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-114">This system function returns all the available backups for a database in a table.</span></span> <span data-ttu-id="a1f1a-115">由於結果是以資料表傳回，因此您可以篩選或排序結果。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-115">As the results are returned in a table, you can filter or sort the results.</span></span> <span data-ttu-id="a1f1a-116">如需詳細資訊，請參閱[smart_admin. fn_available_backups &#40;transact-sql&#41;](/sql/relational-databases/system-functions/managed-backup-fn-available-backups-transact-sql)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-116">For more information, see [smart_admin.fn_available_backups &#40;Transact-SQL&#41;](/sql/relational-databases/system-functions/managed-backup-fn-available-backups-transact-sql).</span></span>  
+  
+### <a name="using-sql-server-management-studio"></a><span data-ttu-id="a1f1a-117">使用 SQL Server Management Studio</span><span class="sxs-lookup"><span data-stu-id="a1f1a-117">Using SQL Server Management Studio</span></span>  
+  
+-   <span data-ttu-id="a1f1a-118">此還原工作使用 SQL Server Management Studio 來還原資料庫。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-118">The restore task is used to restore a database using the SQL Server Management Studio.</span></span> <span data-ttu-id="a1f1a-119">備份媒體頁面現在包含 [URL] 選項，以顯示儲存在 Azure Blob 儲存體服務中的備份檔案。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-119">The backup media page now includes the **URL** option to show backup files stored in the Azure Blob storage service.</span></span> <span data-ttu-id="a1f1a-120">您也必須提供用來驗證儲存體帳戶的 SQL 認證。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-120">You also must provide the SQL Credential that is used to authenticate to the storage account.</span></span> <span data-ttu-id="a1f1a-121">[要還原的備份組] 方格接著會填入 Azure Blob 儲存體中的可用備份。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-121">The **Backup sets to restore** grid is then populated with the available backups in the Azure Blob storage.</span></span> <span data-ttu-id="a1f1a-122">如需詳細資訊，請參閱[使用 SQL Server Management Studio 從 Azure 儲存體還原](sql-server-backup-to-url.md#RestoreSSMS)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-122">For more information, see [Restoring from Azure storage Using SQL Server Management Studio](sql-server-backup-to-url.md#RestoreSSMS).</span></span>  
+  
+### <a name="optimizing-restores"></a><span data-ttu-id="a1f1a-123">最佳化還原</span><span class="sxs-lookup"><span data-stu-id="a1f1a-123">Optimizing Restores</span></span>  
+ <span data-ttu-id="a1f1a-124">若要減少還原寫入時間，請將 [執行磁碟區維護工作] 使用者權限加入至 SQL Server 使用者帳戶。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-124">To reduce restore write time, Add **perform volume maintenance tasks** user right to the SQL Server user account.</span></span> <span data-ttu-id="a1f1a-125">如需詳細資訊，請參閱 [資料庫檔案初始化](https://go.microsoft.com/fwlink/?LinkId=271622)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-125">For more information, see [Database File Initialization](https://go.microsoft.com/fwlink/?LinkId=271622).</span></span> <span data-ttu-id="a1f1a-126">如果開啟立即檔案初始化功能之後，還原速度仍然很慢，請查看資料庫備份所在之執行個體上的記錄檔大小。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-126">If restore is still slow with instant file initialization turned on, look at the size of the log file on the instance where the database was backed up.</span></span> <span data-ttu-id="a1f1a-127">如果記錄檔大小很大 (數以 GB)，還原速度應該就會很慢。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-127">If the log is very large in size (multiple GBs), it would be expected that restore would be slow.</span></span> <span data-ttu-id="a1f1a-128">在還原期間，記錄檔必須歸零，因此需要大量時間。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-128">During restore the log file must be zeroed which takes a significant amount of time.</span></span>  
+  
+ <span data-ttu-id="a1f1a-129">若要減少還原時間，建議您使用壓縮的備份。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-129">To reduce restore times it is recommended that you use compressed backups.</span></span>  <span data-ttu-id="a1f1a-130">如果備份大小超過 25 GB，請使用 [AzCopy 公用程式](https://docs.microsoft.com/archive/blogs/windowsazurestorage/azcopy-uploadingdownloading-files-for-windows-azure-blobs) 下載到本機磁碟機，然後執行還原。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-130">For backup sizes exceeding 25 GB, use [AzCopy utility](https://docs.microsoft.com/archive/blogs/windowsazurestorage/azcopy-uploadingdownloading-files-for-windows-azure-blobs) to download to the local drive and then perform the restore.</span></span> <span data-ttu-id="a1f1a-131">如需其他備份最佳做法與建議，請參閱 [SQL Server 備份至 URL 的最佳做法和疑難排解](sql-server-backup-to-url-best-practices-and-troubleshooting.md)。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-131">For other backup best practices and recommendations, see [SQL Server Backup to URL Best Practices and Troubleshooting](sql-server-backup-to-url-best-practices-and-troubleshooting.md).</span></span>  
+  
+ <span data-ttu-id="a1f1a-132">當您執行還原時，也可以開啟追蹤旗標 3051，以產生詳細的記錄檔。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-132">You can also turn on Trace Flag 3051 when doing the restore to generate a detailed log.</span></span> <span data-ttu-id="a1f1a-133">此記錄檔位於記錄目錄中，且使用下列格式命名：BackupToUrl-\<instancename>-\<dbname>-action-\<PID>.log。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-133">This log file is placed in the log directory, and is named using the format: BackupToUrl-\<instancename>-\<dbname>-action-\<PID>.log.</span></span> <span data-ttu-id="a1f1a-134">此記錄檔包含對 Azure 儲存體之每個來回行程的相關資訊 (包括時間點)，有助於診斷問題。</span><span class="sxs-lookup"><span data-stu-id="a1f1a-134">The log file includes information about each round trip to Azure Storage including timing that can be helpful in diagnosing the issue.</span></span>  
+  
+### <a name="topics-on-performing-restore-operations"></a><span data-ttu-id="a1f1a-135">關於執行還原作業的主題</span><span class="sxs-lookup"><span data-stu-id="a1f1a-135">Topics on Performing Restore Operations</span></span>  
+  
+-   [<span data-ttu-id="a1f1a-136">完整資料庫還原 &#40;簡單復原模式&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-136">Complete Database Restores &#40;Simple Recovery Model&#41;</span></span>](complete-database-restores-simple-recovery-model.md)  
+  
+-   [<span data-ttu-id="a1f1a-137">RESTORE &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-137">RESTORE &#40;Transact-SQL&#41;</span></span>](/sql/t-sql/statements/restore-statements-transact-sql)  
+  
+-   [<span data-ttu-id="a1f1a-138">完整資料庫還原 &#40;完整復原模式&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-138">Complete Database Restores &#40;Full Recovery Model&#41;</span></span>](complete-database-restores-full-recovery-model.md)  
+  
+-   [<span data-ttu-id="a1f1a-139">檔案還原 &#40;簡單復原模式&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-139">File Restores &#40;Simple Recovery Model&#41;</span></span>](file-restores-simple-recovery-model.md)  
+  
+-   [<span data-ttu-id="a1f1a-140">檔案還原 &#40;完整復原模式&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-140">File Restores &#40;Full Recovery Model&#41;</span></span>](file-restores-full-recovery-model.md)  
+  
+-   [<span data-ttu-id="a1f1a-141">分次還原 &#40;SQL Server&#41;</span><span class="sxs-lookup"><span data-stu-id="a1f1a-141">Piecemeal Restores &#40;SQL Server&#41;</span></span>](piecemeal-restores-sql-server.md)  
+  
+  
