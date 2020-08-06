@@ -1,0 +1,68 @@
+---
+title: 清理複合定義域中的資料 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: data-quality-services
+ms.topic: conceptual
+ms.assetid: 7d1076e0-7710-469a-9107-e293e4bd80ac
+author: lrtoyou1223
+ms.author: lle
+ms.openlocfilehash: c9e00342933f18112707e43b479bced763eca44c
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87594701"
+---
+# <a name="cleanse-data-in-a-composite-domain"></a><span data-ttu-id="f7bd9-102">清理複合定義域中的資料</span><span class="sxs-lookup"><span data-stu-id="f7bd9-102">Cleanse Data in a Composite Domain</span></span>
+  <span data-ttu-id="f7bd9-103">本主題會提供有關在 [!INCLUDE[ssDQSnoversion](../includes/ssdqsnoversion-md.md)] (DQS) 中清理複合定義域的資訊。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-103">This topic provides information about cleansing of composite domains in [!INCLUDE[ssDQSnoversion](../includes/ssdqsnoversion-md.md)] (DQS).</span></span> <span data-ttu-id="f7bd9-104">複合定義域是由兩個或多個單一定義域所組成，而且會對應至由多個相關詞彙所組成的資料欄位。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-104">A composite domain consists of two or more single domains, and maps to a data field that consists of multiple related terms.</span></span> <span data-ttu-id="f7bd9-105">複合定義域中的個別定義域必須擁有共同知識領域。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-105">The individual domains in a composite domain must have a common area of knowledge.</span></span> <span data-ttu-id="f7bd9-106">如需有關複合定義域的詳細資訊，請參閱＜ [Managing a Composite Domain](../../2014/data-quality-services/managing-a-composite-domain.md)＞。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-106">For detailed information about composite domains, see [Managing a Composite Domain](../../2014/data-quality-services/managing-a-composite-domain.md).</span></span>  
+  
+##  <a name="mapping-a-composite-domain-to-the-source-data"></a><a name="Mapping"></a> <span data-ttu-id="f7bd9-107">將複合定義域對應至來源資料</span><span class="sxs-lookup"><span data-stu-id="f7bd9-107">Mapping a Composite Domain to the Source Data</span></span>  
+ <span data-ttu-id="f7bd9-108">有兩種方式可將來源資料對應至複合定義域：</span><span class="sxs-lookup"><span data-stu-id="f7bd9-108">There are two ways in which you can map your source data to a composite domain:</span></span>  
+  
+-   <span data-ttu-id="f7bd9-109">來源資料是對應至複合定義域的單一欄位 (比方說完整名稱)。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-109">The source data is a single field (let's say Full Name), which is mapped to a composite domain.</span></span>  
+  
+    -   <span data-ttu-id="f7bd9-110">如果複合定義域對應至參考資料服務，來源資料將會以原本樣子傳送給參考資料服務進行更正和剖析。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-110">If the composite domain is mapped to a reference data service, the source data will be sent as is to the reference data service for correction and parsing.</span></span>  
+  
+    -   <span data-ttu-id="f7bd9-111">如果複合定義域未對應至參考資料服務，則會根據為複合定義域定義的剖析方法加以剖析。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-111">If the composite domain is not mapped to a reference data service, will be parsed based on the parsing method defined for the composite domain.</span></span> <span data-ttu-id="f7bd9-112">如需有關指定複合定義域之剖析方法的詳細資訊，請參閱＜ [Create a Composite Domain](../../2014/data-quality-services/create-a-composite-domain.md)＞。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-112">For more information about specifying a parsing method for composite domains, see [Create a Composite Domain](../../2014/data-quality-services/create-a-composite-domain.md)</span></span>  
+  
+-   <span data-ttu-id="f7bd9-113">來源資料是由多個欄位所組成 (比方說名字、中間名和姓氏)，這些欄位會對應至複合定義域內的個別定義域。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-113">The source data consists of multiple fields (let's say First Name, Middle Name, and Last Name), which are mapped to individual domains within a composite domain.</span></span>  
+  
+ <span data-ttu-id="f7bd9-114">如需如何將複合定義域對應至來源資料的範例，請參閱[將定義域或複合定義域附加至參考資料](../../2014/data-quality-services/attach-a-domain-or-composite-domain-to-reference-data.md)。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-114">For an example of how to map composite domains to source data, see [Attach a Domain or Composite Domain to Reference Data](../../2014/data-quality-services/attach-a-domain-or-composite-domain-to-reference-data.md).</span></span>  
+  
+##  <a name="data-correction-using-definitive-cross-domain-rules"></a><a name="CDCorrection"></a><span data-ttu-id="f7bd9-115">使用最終跨定義域規則的資料更正</span><span class="sxs-lookup"><span data-stu-id="f7bd9-115">Data Correction using Definitive Cross-Domain Rules</span></span>  
+ <span data-ttu-id="f7bd9-116">複合定義域中的跨定義域規則可讓您建立規則，以指示複合定義域內個別定義域之間的關聯性。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-116">Cross-domain rules in composite domain enable you to create rules that indicate relationship between individual domains in a composite domain.</span></span> <span data-ttu-id="f7bd9-117">當您針對與複合定義域有關的來源資料執行清理活動時，跨定義域規則會列入考量。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-117">Cross-domain rules are taken into account when you run the cleansing activity on your source data involving composite domains.</span></span> <span data-ttu-id="f7bd9-118">除了只讓您知道跨定義域規則是否有效之外，最終 *Then* 跨定義域規則 **[值等於]** 也會在資料清理活動期間更正資料。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-118">Apart from just letting you know about the validity of a cross-domain rule, the definitive *Then* cross-domain rule, **Value is equal to**, also corrects the data during the data-cleansing activity.</span></span>  
+  
+ <span data-ttu-id="f7bd9-119">假設有以下範例：有一個複合定義域 Product 具有三個個別定義域：ProductName、CompanyName 和 ProductVersion。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-119">Consider the following example: there is a composite domain, Product, with three individual domains: ProductName, CompanyName, and ProductVersion.</span></span> <span data-ttu-id="f7bd9-120">請建立以下最終跨定義域規則：</span><span class="sxs-lookup"><span data-stu-id="f7bd9-120">Create the following definitive cross-domain rule:</span></span>  
+  
+ <span data-ttu-id="f7bd9-121">如果定義域 'CompanyName' 值包含 *Microsoft* 而且定義域 ‘ProductName’ 值等於 *Office* 且 'ProductVersion' 值等於 *2010*，則定義域 'ProductName' 值等於 *Microsoft Office 2010*。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-121">IF Domain 'CompanyName' Value contains *Microsoft* and Domain 'ProductName' Value is equal to *Office* and 'ProductVersion' Value is equal to *2010* THEN Domain 'ProductName' Value is equal to *Microsoft Office 2010*.</span></span>  
+  
+ <span data-ttu-id="f7bd9-122">當執行此跨定義域規則時，來源資料 (ProductName) 會在清理活動之後更正為以下項目：</span><span class="sxs-lookup"><span data-stu-id="f7bd9-122">When this cross-domain rule runs, the source data (ProductName) gets corrected to the following after the cleansing activity:</span></span>  
+  
+ <span data-ttu-id="f7bd9-123">**來源資料**</span><span class="sxs-lookup"><span data-stu-id="f7bd9-123">**Source Data**</span></span>  
+  
+|<span data-ttu-id="f7bd9-124">ProductName</span><span class="sxs-lookup"><span data-stu-id="f7bd9-124">ProductName</span></span>|<span data-ttu-id="f7bd9-125">CompanyName</span><span class="sxs-lookup"><span data-stu-id="f7bd9-125">CompanyName</span></span>|<span data-ttu-id="f7bd9-126">ProductVersion</span><span class="sxs-lookup"><span data-stu-id="f7bd9-126">ProductVersion</span></span>|  
+|-----------------|-----------------|--------------------|  
+|<span data-ttu-id="f7bd9-127">Office</span><span class="sxs-lookup"><span data-stu-id="f7bd9-127">Office</span></span>|<span data-ttu-id="f7bd9-128">Microsoft Inc.</span><span class="sxs-lookup"><span data-stu-id="f7bd9-128">Microsoft Inc.</span></span>|<span data-ttu-id="f7bd9-129">2010</span><span class="sxs-lookup"><span data-stu-id="f7bd9-129">2010</span></span>|  
+  
+ <span data-ttu-id="f7bd9-130">**輸出資料**</span><span class="sxs-lookup"><span data-stu-id="f7bd9-130">**Output Data**</span></span>  
+  
+|<span data-ttu-id="f7bd9-131">ProductName</span><span class="sxs-lookup"><span data-stu-id="f7bd9-131">ProductName</span></span>|<span data-ttu-id="f7bd9-132">CompanyName</span><span class="sxs-lookup"><span data-stu-id="f7bd9-132">CompanyName</span></span>|<span data-ttu-id="f7bd9-133">ProductVersion</span><span class="sxs-lookup"><span data-stu-id="f7bd9-133">ProductVersion</span></span>|  
+|-----------------|-----------------|--------------------|  
+|<span data-ttu-id="f7bd9-134">Microsoft Office 2010</span><span class="sxs-lookup"><span data-stu-id="f7bd9-134">Microsoft Office 2010</span></span>|<span data-ttu-id="f7bd9-135">Microsoft Inc.</span><span class="sxs-lookup"><span data-stu-id="f7bd9-135">Microsoft Inc.</span></span>|<span data-ttu-id="f7bd9-136">2010</span><span class="sxs-lookup"><span data-stu-id="f7bd9-136">2010</span></span>|  
+  
+ <span data-ttu-id="f7bd9-137">當您測試最終 *Then* 跨定義域規則 **[值等於]** 時， **[測試複合定義域規則]** 對話方塊會包含新的資料行 **[更正為]**，此資料行會顯示正確資料。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-137">When you test the definitive *Then* cross-domain rule, **Value is equal to**, the **Test Composite Domain Rule** dialog box contains a new column, **Correct To**, which displays the correct data.</span></span> <span data-ttu-id="f7bd9-138">在清理資料品質專案中，這個最終跨定義域規則會將資料變更為100% 信心，而 [**原因**] 資料行會顯示下列訊息：由規則 ' *\<Cross-Domain Rule Name>* ' 更正。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-138">In a cleansing data quality project, this definitive cross-domain rule changes the data with 100% confidence, and the **Reason** column displays the following message: Corrected by Rule '*\<Cross-Domain Rule Name>*'.</span></span> <span data-ttu-id="f7bd9-139">如需有關跨定義域規則的詳細資訊，請參閱＜ [Create a Cross-Domain Rule](../../2014/data-quality-services/create-a-cross-domain-rule.md)＞。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-139">For more information about cross domain rules, see [Create a Cross-Domain Rule](../../2014/data-quality-services/create-a-cross-domain-rule.md).</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="f7bd9-140">最終跨定義域規則將不適用於附加至參考資料服務的複合定義域。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-140">The definitive cross-domain rule will not work for composite domains that are attached to reference data service.</span></span>  
+  
+##  <a name="data-profiling-for-composite-domains"></a><a name="DataProfiling"></a><span data-ttu-id="f7bd9-141">複合定義域的資料分析</span><span class="sxs-lookup"><span data-stu-id="f7bd9-141">Data Profiling for Composite Domains</span></span>  
+ <span data-ttu-id="f7bd9-142">DQS 分析會在清理活動期間提供兩個資料品質維度： *完整性* (資料存在的程度) 和 *精確度* (可將資料用於預定用途的程度)。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-142">DQS profiling provides two data quality dimensions: *completeness* (the extent to which data is present) and *accuracy* (the extent to which data can be used for its intended use) during the cleansing activity.</span></span> <span data-ttu-id="f7bd9-143">分析可能不會針對複合定義域提供可靠的完整性統計資料。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-143">Profiling may not provide reliable completeness statistics for composite domains.</span></span> <span data-ttu-id="f7bd9-144">如果您需要完整性統計資料，請使用單一定義域，而非複合定義域。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-144">If you need completeness statistics, use single domains instead of composite domains.</span></span> <span data-ttu-id="f7bd9-145">如果您想要使用複合定義域，您可能會想要使用分析用的單一定義域來建立一個知識庫以判斷完整性，並使用清理活動所用的複合定義域來建立另一個定義域。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-145">If you want to use composite domains, you may want to create one knowledge base with single domains for profiling, to determine completeness, and create another domain with a composite domain for the cleansing activity.</span></span> <span data-ttu-id="f7bd9-146">例如，分析可能會針對使用複合定義域的位址記錄顯示 95% 完整性，但是其中一個資料行可能會有更高層級的不完整性，例如郵遞區號 (zip) 資料行。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-146">For example, profiling could show 95% completeness for address records using a composite domain, but there could be a much higher level of incompleteness for one of the columns, for example, a postal (zip) code column.</span></span> <span data-ttu-id="f7bd9-147">在此範例中，您可能會想要使用單一定義域衡量郵遞區號資料行的完整性。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-147">In this example, you might want to measure the completeness of the zip code column with a single domain.</span></span>  
+  
+ <span data-ttu-id="f7bd9-148">分析可能會針對複合定義域提供可靠的精確度統計資料，因為您可以一起衡量多個資料行的精確度。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-148">Profiling will likely provide reliable accuracy statistics for composite domains because you can measure accuracy for multiple columns together.</span></span> <span data-ttu-id="f7bd9-149">此資料的值位於複合彙總中，所以您可能會想要使用複合定義域衡量精確度。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-149">The value of this data is in the composite aggregation, so you may want to measure the accuracy with a composite domain.</span></span>  
+  
+ <span data-ttu-id="f7bd9-150">如需清理活動期間的資料分析詳細資訊，請參閱[使用 DQS &#40;內部&#41; 知識清理資料](../../2014/data-quality-services/cleanse-data-using-dqs-internal-knowledge.md)中的[分析工具統計資料](../../2014/data-quality-services/cleanse-data-using-dqs-internal-knowledge.md#Profiler)。</span><span class="sxs-lookup"><span data-stu-id="f7bd9-150">For detailed information about data profiling during the cleansing activity, see [Profiler Statistics](../../2014/data-quality-services/cleanse-data-using-dqs-internal-knowledge.md#Profiler) in [Cleanse Data Using DQS &#40;Internal&#41; Knowledge](../../2014/data-quality-services/cleanse-data-using-dqs-internal-knowledge.md).</span></span>  
+  
+  
