@@ -1,0 +1,106 @@
+---
+title: 接受授權條款 |Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: database-engine
+ms.topic: conceptual
+f1_keywords:
+- license terms
+helpviewer_keywords:
+- Registration Information page [SQL Server Installation Wizard]
+- SQL Server Installation Wizard, Registration Information page
+ms.assetid: 08dd739d-5817-4418-bcff-74ab7f8bbd33
+author: mashamsft
+ms.author: mathoma
+ms.openlocfilehash: 68d2e10296e532c99fab32869a9c7b34be679471
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87595546"
+---
+# <a name="accept-license-terms"></a><span data-ttu-id="fcf08-102">接受授權條款</span><span class="sxs-lookup"><span data-stu-id="fcf08-102">Accept License Terms</span></span>
+  <span data-ttu-id="fcf08-103">請使用 **安裝精靈的** [接受授權條款] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 頁面來接受此版 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]的授權條款。</span><span class="sxs-lookup"><span data-stu-id="fcf08-103">Use the **Accept License Terms** page of the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Installation Wizard to accept the license terms for this release of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span>  
+  
+ <span data-ttu-id="fcf08-104">您可以列印授權合約，或將它複製到剪貼簿。</span><span class="sxs-lookup"><span data-stu-id="fcf08-104">You can print the license agreement or copy it to the Clipboard.</span></span> <span data-ttu-id="fcf08-105">若要繼續，請接受授權條款，然後按 **[下一步]**。</span><span class="sxs-lookup"><span data-stu-id="fcf08-105">To continue, accept the license terms, and then click **Next**.</span></span> <span data-ttu-id="fcf08-106">若要結束安裝，請按一下 **[取消]**。</span><span class="sxs-lookup"><span data-stu-id="fcf08-106">To close the installation, click **Cancel**.</span></span>  
+  
+## <a name="customer-experience-improvement-program-ceip"></a><span data-ttu-id="fcf08-107">客戶經驗改進計畫 (CEIP)</span><span class="sxs-lookup"><span data-stu-id="fcf08-107">Customer Experience Improvement Program (CEIP)</span></span>  
+ <span data-ttu-id="fcf08-108">如果您啟用 CEIP 報表，[!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 就會設定為定期傳送報表至 [!INCLUDE[msCoName](../../includes/msconame-md.md)]。</span><span class="sxs-lookup"><span data-stu-id="fcf08-108">If you enable CEIP reporting, [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] is configured to periodically send a report to [!INCLUDE[msCoName](../../includes/msconame-md.md)].</span></span> <span data-ttu-id="fcf08-109">報表包含硬體組態及您如何使用 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 和元件的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-109">Reports include information about your hardware configuration and how you use [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and components.</span></span> [!INCLUDE[msCoName](../../includes/msconame-md.md)] <span data-ttu-id="fcf08-110">將會使用功能使用方式資料來改進 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]。</span><span class="sxs-lookup"><span data-stu-id="fcf08-110">will use feature usage data to improve [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span> <span data-ttu-id="fcf08-111">這項功能所監視的 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 元件包括：</span><span class="sxs-lookup"><span data-stu-id="fcf08-111">[!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] components monitored by this feature include the following:</span></span>  
+  
+-   <span data-ttu-id="fcf08-112">[!INCLUDE[ssDE](../../includes/ssde-md.md)]</span><span class="sxs-lookup"><span data-stu-id="fcf08-112">The [!INCLUDE[ssDE](../../includes/ssde-md.md)]</span></span>  
+  
+-   [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)]  
+  
+-   [!INCLUDE[ssRSnoversion](../../includes/ssrsnoversion-md.md)]  
+  
+-   [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)]  
+  
+-   <span data-ttu-id="fcf08-113">複寫</span><span class="sxs-lookup"><span data-stu-id="fcf08-113">Replication</span></span>  
+  
+-   [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)]  
+  
+-   [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] <span data-ttu-id="fcf08-114">安裝程式</span><span class="sxs-lookup"><span data-stu-id="fcf08-114">Setup</span></span>  
+  
+ <span data-ttu-id="fcf08-115">關於功能使用方式的資訊會傳送到 [!INCLUDE[msCoName](../../includes/msconame-md.md)](以限制存取的方式予以儲存)。</span><span class="sxs-lookup"><span data-stu-id="fcf08-115">Information about feature use is sent to [!INCLUDE[msCoName](../../includes/msconame-md.md)], where it is stored with limited access.</span></span>  
+  
+ <span data-ttu-id="fcf08-116">若要在安裝程式完成之後停用 CEIP 報表，請使用 [組態工具] 功能表上的 [ \*\* [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 錯誤和使用方式報告\*\*] 工具 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] **Configuration Tools** 。</span><span class="sxs-lookup"><span data-stu-id="fcf08-116">To disable CEIP reporting after Setup completes, use the **[!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Error and Usage Reporting** tool on the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]**Configuration Tools** menu.</span></span>  
+  
+ <span data-ttu-id="fcf08-117">對於安裝、升級、修復等等的安裝程式動作，僅會在執行安裝程式期間，收集並上傳資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-117">For Setup actions like installation, upgrade, repair, and so on, information is collected and uploaded only during the Setup program execution</span></span>  
+  
+ <span data-ttu-id="fcf08-118">對於其他所有 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 元件，則會每天針對所有啟用的 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]執行個體，收集一次資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-118">For all other [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] components, information is collected one time per day for all enabled instances of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span> <span data-ttu-id="fcf08-119">根據預設，收集的時間為午夜，好讓伺服器的負載減至最小。</span><span class="sxs-lookup"><span data-stu-id="fcf08-119">By default, the time of collection is midnight to minimize the load on the server.</span></span> <span data-ttu-id="fcf08-120">如果您想要變更收集的時間，可手動編輯控制收集時間的登錄機碼。</span><span class="sxs-lookup"><span data-stu-id="fcf08-120">If you want to change the time of collection, you can manually edit the registry key that controls the collection time.</span></span> <span data-ttu-id="fcf08-121">每個 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 執行個體都擁有自己的登錄機碼：</span><span class="sxs-lookup"><span data-stu-id="fcf08-121">Each instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] has its own registry key:</span></span>  
+  
+ <span data-ttu-id="fcf08-122">HKLM\Software \\ [!INCLUDE[msCoName](../../includes/msconame-md.md)] \\ [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] \MSSQL12. \<INSTANCEID>\CPE\TimeofReporting</span><span class="sxs-lookup"><span data-stu-id="fcf08-122">HKLM\Software\\[!INCLUDE[msCoName](../../includes/msconame-md.md)]\\[!INCLUDE[msCoName](../../includes/msconame-md.md)][!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]\MSSQL12.\<INSTANCEID>\CPE\TimeofReporting</span></span>  
+  
+ <span data-ttu-id="fcf08-123">這個登錄機碼的值包含從 00:00 (午夜) 開始執行之收集時間的分鐘數。</span><span class="sxs-lookup"><span data-stu-id="fcf08-123">The value of this registry key contains the time for the collection as the number of minutes from 00:00 (midnight) to run.</span></span> <span data-ttu-id="fcf08-124">例如，60 這個值會在 1:00 a.m. 執行收集，1200 這個值會在 8:00 p.m. 執行收集，以此類推。</span><span class="sxs-lookup"><span data-stu-id="fcf08-124">For example, a value of 60 would run the collection at 1:00 a.m., a value of 1200 would run the collection at 8:00 p.m., and so on.</span></span>  
+  
+## <a name="error-reporting"></a><span data-ttu-id="fcf08-125">錯誤報告</span><span class="sxs-lookup"><span data-stu-id="fcf08-125">Error Reporting</span></span>  
+ <span data-ttu-id="fcf08-126">使用 **安裝精靈的** [錯誤和使用方式報表設定] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 頁面，可啟用 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]的功能錯誤和使用方式報告功能。</span><span class="sxs-lookup"><span data-stu-id="fcf08-126">Use the **Error and Usage Report Settings** page of the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Installation Wizard to enable feature error and usage reporting functionality for [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span>  
+  
+### <a name="options"></a><span data-ttu-id="fcf08-127">選項</span><span class="sxs-lookup"><span data-stu-id="fcf08-127">Options</span></span>  
+ <span data-ttu-id="fcf08-128">根據預設， [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 中的 [!INCLUDE[ssCurrent](../../includes/sscurrent-md.md)]及其元件會停用功能使用方式資料收集和錯誤報告功能。</span><span class="sxs-lookup"><span data-stu-id="fcf08-128">By default, the Feature Usage data collection and Error Reporting features are disabled for [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and its components in [!INCLUDE[ssCurrent](../../includes/sscurrent-md.md)].</span></span>  
+  
+ <span data-ttu-id="fcf08-129">錯誤報告</span><span class="sxs-lookup"><span data-stu-id="fcf08-129">Error Reporting</span></span>  
+ <span data-ttu-id="fcf08-130">如果您啟用錯誤報告功能，萬一下列任何一個 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 元件發生嚴重錯誤時， [!INCLUDE[msCoName](../../includes/msconame-md.md)] 就會設定為自動將報表傳送至 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="fcf08-130">If you enable the Error Reporting feature, [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] is configured to send a report to [!INCLUDE[msCoName](../../includes/msconame-md.md)] automatically if a fatal error occurs in any of the following [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] components:</span></span>  
+  
+-   <span data-ttu-id="fcf08-131">[!INCLUDE[ssDE](../../includes/ssde-md.md)]</span><span class="sxs-lookup"><span data-stu-id="fcf08-131">The [!INCLUDE[ssDE](../../includes/ssde-md.md)]</span></span>  
+  
+-   [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] <span data-ttu-id="fcf08-132">Agent</span><span class="sxs-lookup"><span data-stu-id="fcf08-132">Agent</span></span>  
+  
+-   [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)]  
+  
+-   [!INCLUDE[ssRSnoversion](../../includes/ssrsnoversion-md.md)]  
+  
+-   [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)]  
+  
+-   <span data-ttu-id="fcf08-133">複寫</span><span class="sxs-lookup"><span data-stu-id="fcf08-133">Replication</span></span>  
+  
+ [!INCLUDE[msCoName](../../includes/msconame-md.md)] <span data-ttu-id="fcf08-134">使用錯誤報表來改進 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 功能，並將所有資訊視為機密資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-134">uses error reports to improve [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] functionality and treats all information as confidential.</span></span>  
+  
+ <span data-ttu-id="fcf08-135">關於錯誤的資訊會透過安全 (https) 連接傳送到 [!INCLUDE[msCoName](../../includes/msconame-md.md)](以限制存取的方式予以儲存)。</span><span class="sxs-lookup"><span data-stu-id="fcf08-135">Information about errors is sent over a secure (https) connection to [!INCLUDE[msCoName](../../includes/msconame-md.md)], where it is stored with limited access.</span></span> <span data-ttu-id="fcf08-136">另外，錯誤報表也可以傳送到您自己的 Corporate Error Reporting 伺服器。</span><span class="sxs-lookup"><span data-stu-id="fcf08-136">Alternatively, error reports can be sent to your own Corporate Error Reporting server.</span></span>  
+  
+ <span data-ttu-id="fcf08-137">錯誤報表包含下列資訊：</span><span class="sxs-lookup"><span data-stu-id="fcf08-137">Error reports contain the following information:</span></span>  
+  
+-   <span data-ttu-id="fcf08-138">發生問題時的 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 狀況。</span><span class="sxs-lookup"><span data-stu-id="fcf08-138">The condition of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] when the problem occurred.</span></span>  
+  
+-   <span data-ttu-id="fcf08-139">作業系統版本和電腦硬體資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-139">The operating system version and computer hardware information.</span></span>  
+  
+-   <span data-ttu-id="fcf08-140">數位產品識別碼，它不是用於識別授權。</span><span class="sxs-lookup"><span data-stu-id="fcf08-140">Your Digital Product ID, which is not used to identify your license.</span></span>  
+  
+-   <span data-ttu-id="fcf08-141">電腦或 Proxy 伺服器的網路 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="fcf08-141">The network IP address of your computer or proxy server.</span></span>  
+  
+-   <span data-ttu-id="fcf08-142">導致錯誤之處理序的記憶體或檔案中的資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-142">Information from memory or file(s) of the process that caused the error.</span></span>  
+  
+ [!INCLUDE[msCoName](../../includes/msconame-md.md)] <span data-ttu-id="fcf08-143">不刻意收集檔案、名稱、地址、電子郵件地址或任何形式的個人資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-143">does not intentionally collect your files, name, address, e-mail address, or any other form of personal information.</span></span> <span data-ttu-id="fcf08-144">不過，錯誤報表可包含導致錯誤之處理序的記憶體或檔案中的個人資訊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-144">The error report can, however, contain personal information from the memory or files of the process that caused the error.</span></span> <span data-ttu-id="fcf08-145">雖然這項資訊可能用於判斷您的識別，但 [!INCLUDE[msCoName](../../includes/msconame-md.md)] 不會將這項資訊用於此用途。</span><span class="sxs-lookup"><span data-stu-id="fcf08-145">Although this information can potentially be used to determine your identity, [!INCLUDE[msCoName](../../includes/msconame-md.md)] does not use this information for that purpose.</span></span>  
+  
+ <span data-ttu-id="fcf08-146">如需 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 隱私權和資料收集原則的詳細資訊，請參閱 [Microsoft SQL Server 隱私權聲明](../../../2014/getting-started/microsoft-sql-server-privacy-statement.md)。</span><span class="sxs-lookup"><span data-stu-id="fcf08-146">For more information about the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] privacy and data collection policy, see [Microsoft SQL Server Privacy Statement](../../../2014/getting-started/microsoft-sql-server-privacy-statement.md).</span></span>  
+  
+ <span data-ttu-id="fcf08-147">如果您啟用錯誤報告卻發生嚴重錯誤，您可能會在 Windows 事件記錄檔中看到 [!INCLUDE[msCoName](../../includes/msconame-md.md)] 的回應，它會指向關於特定錯誤的 [!INCLUDE[msCoName](../../includes/msconame-md.md)] 知識庫文件。</span><span class="sxs-lookup"><span data-stu-id="fcf08-147">If you enable Error Reporting and a fatal error occurs, you might see a response from [!INCLUDE[msCoName](../../includes/msconame-md.md)] in the Windows Event log that points to a [!INCLUDE[msCoName](../../includes/msconame-md.md)] Knowledge Base article on a particular error.</span></span>  
+  
+ <span data-ttu-id="fcf08-148">在安裝程式完成之後，若要對 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 的所有執行個體及其元件停用錯誤或功能使用方式報表，請到 **[錯誤和使用方式報表設定]** 對話方塊，清除 **[功能使用方式]** 的核取方塊。</span><span class="sxs-lookup"><span data-stu-id="fcf08-148">To disable Error or Feature Usage reporting for all instances of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and its components after Setup completes, go to the **Error and Usage Report Settings** dialog and clear the check boxes for **Feature Usage**.</span></span> <span data-ttu-id="fcf08-149">如果已針對 (、、和共用元件的多個元件啟用**錯誤報表**， [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] [!INCLUDE[ssDEnoversion](../../includes/ssdenoversion-md.md)] [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] [!INCLUDE[ssRSnoversion](../../includes/ssrsnoversion-md.md)]) 您可以停用個別元件的每個實例和共用元件的錯誤報表（列為**其他**元件）。</span><span class="sxs-lookup"><span data-stu-id="fcf08-149">If **Error Reporting** is enabled for multiple components of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (the [!INCLUDE[ssDEnoversion](../../includes/ssdenoversion-md.md)], [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)], [!INCLUDE[ssRSnoversion](../../includes/ssrsnoversion-md.md)], and shared components) you can disable Error Reporting for each instance of an individual component as well as shared components, listed as **Others**.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="fcf08-150">另請參閱</span><span class="sxs-lookup"><span data-stu-id="fcf08-150">See Also</span></span>  
+ [<span data-ttu-id="fcf08-151">關於 SQL Server 授權條款</span><span class="sxs-lookup"><span data-stu-id="fcf08-151">About the SQL Server License Terms</span></span>](../../../2014/getting-started/about-the-sql-server-license-terms.md)  
+  
+  

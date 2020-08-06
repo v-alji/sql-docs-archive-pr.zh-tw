@@ -1,0 +1,50 @@
+---
+title: 伺服器屬性 (記憶體頁面) | Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: configuration
+ms.topic: conceptual
+f1_keywords:
+- sql12.swb.serverproperties.memory.f1
+ms.assetid: 46a77d4e-ab92-49d3-a14b-423462e50715
+author: MikeRayMSFT
+ms.author: mikeray
+ms.openlocfilehash: 2a000a4c670b36b08a34fd544cc5ff5e61c7bab2
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87596899"
+---
+# <a name="server-properties-memory-page"></a><span data-ttu-id="fad9b-102">伺服器屬性 (記憶體頁面)</span><span class="sxs-lookup"><span data-stu-id="fad9b-102">Server Properties (Memory Page)</span></span>
+  <span data-ttu-id="fad9b-103">使用此頁面來檢視或修改伺服器記憶體選項。</span><span class="sxs-lookup"><span data-stu-id="fad9b-103">Use this page to view or modify your server memory options.</span></span> <span data-ttu-id="fad9b-104">**[最小伺服器記憶體]** 設定為 0 且 **[最大伺服器記憶體]** 設為 2147483647 MB 時， [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 就可在任何特定時間利用最佳的記憶體數量，但受作業系統和其他應用程式目前所使用的記憶體數量所限制。</span><span class="sxs-lookup"><span data-stu-id="fad9b-104">When **Minimum server memory** is set to 0 and **Maximum server memory** is set to 2147483647 MB, [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] can take advantage of the optimum amount of memory at any given time, subject to how much memory the operating system and other applications are currently using.</span></span> <span data-ttu-id="fad9b-105">隨著電腦與 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 的負載有所變更，記憶體的配置也會變更。</span><span class="sxs-lookup"><span data-stu-id="fad9b-105">As the load on the computer and [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] changes, so does the memory allocated.</span></span> <span data-ttu-id="fad9b-106">您可以進一步將這個動態記憶體配置限制為下列所指定的最小值和最大值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-106">You can further limit this dynamic memory allocation to the minimum and maximum values specified below.</span></span>  
+  
+## <a name="options"></a><span data-ttu-id="fad9b-107">選項。</span><span class="sxs-lookup"><span data-stu-id="fad9b-107">Options</span></span>  
+ <span data-ttu-id="fad9b-108">**最小伺服器記憶體 (以 MB 為單位)**</span><span class="sxs-lookup"><span data-stu-id="fad9b-108">**Minimum server memory (in MB)**</span></span>  
+ <span data-ttu-id="fad9b-109">指定 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 至少應使用最小配置記憶體數量來啟動，且不會釋放低於此值的記憶體。</span><span class="sxs-lookup"><span data-stu-id="fad9b-109">Specifies that [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] should start with at least the minimum amount of allocated memory and not release memory below this value.</span></span> <span data-ttu-id="fad9b-110">根據 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]執行個體的大小和活動來設定此值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-110">Set this value based on the size and activity of your instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span> <span data-ttu-id="fad9b-111">請一律將這個選項設定為合理的值，以確保作業系統不會向 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 要求太多記憶體，而影響 Windows 效能。</span><span class="sxs-lookup"><span data-stu-id="fad9b-111">Always set the option to a reasonable value to ensure that the operating system does not request too much memory from [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and inhibit Windows performance.</span></span>  
+  
+ <span data-ttu-id="fad9b-112">**最大伺服器記憶體 (以 MB 為單位)**</span><span class="sxs-lookup"><span data-stu-id="fad9b-112">**Maximum server memory (in MB)**</span></span>  
+ <span data-ttu-id="fad9b-113">指定 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 啟動和執行時可以配置的最大記憶體數量。</span><span class="sxs-lookup"><span data-stu-id="fad9b-113">Specifies the maximum amount of memory [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] can allocate when it starts and while it runs.</span></span> <span data-ttu-id="fad9b-114">如果您知道會有多個應用程式與 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 同時執行，且您要確保有足夠的記憶體來執行這些應用程式，就可以將此組態選項設定為特定的值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-114">This configuration option can be set to a specific value if you know there are multiple applications running at the same time as [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and you want to guarantee that these applications have sufficient memory to run.</span></span> <span data-ttu-id="fad9b-115">如果這些其他應用程式 (例如 Web 或電子郵件伺服器) 只視需要要求記憶體，那麼就不要設定此選項，因為 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 會在它們需要記憶體時釋放出來。</span><span class="sxs-lookup"><span data-stu-id="fad9b-115">If these other applications, such as Web or e-mail servers, request memory only as needed, then do not set the option, because [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] will release memory to them as needed.</span></span> <span data-ttu-id="fad9b-116">不過，應用程式通常是在啟動時使用可以取得的任何記憶體，而且不會在需要時再要求更多記憶體。</span><span class="sxs-lookup"><span data-stu-id="fad9b-116">However, applications often use whatever memory is available when they start and do not request more if needed.</span></span> <span data-ttu-id="fad9b-117">如果以這種方式運作的應用程式與 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]同時在同一部電腦上執行的話，請設定此選項的值，以保證 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]不會配置應用程式所需的記憶體。</span><span class="sxs-lookup"><span data-stu-id="fad9b-117">If an application that behaves in this manner runs on the same computer at the same time as [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)], set the option to a value that guarantees that the memory required by the application is not allocated by [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)].</span></span> <span data-ttu-id="fad9b-118">您可以為 [**最大伺服器記憶體**] 指定的最小記憶體數量是32位系統的 64 mb () MB，而64位系統則是 128 MB。</span><span class="sxs-lookup"><span data-stu-id="fad9b-118">The minimum amounts of memory you can specify for **max server memory** are 64 megabytes (MB) for 32-bit systems and 128 MB for 64-bit systems.</span></span>  
+  
+ <span data-ttu-id="fad9b-119">**索引建立記憶體 (以 KB 為單位，0 = 動態記憶體)**</span><span class="sxs-lookup"><span data-stu-id="fad9b-119">**Index creation memory (in KB, 0 = dynamic memory)**</span></span>  
+ <span data-ttu-id="fad9b-120">指定索引建立排序期間要使用的記憶體數量 (以 KB 為單位)。</span><span class="sxs-lookup"><span data-stu-id="fad9b-120">Specifies the amount of memory (in KB) to use during index creation sorts.</span></span> <span data-ttu-id="fad9b-121">預設值零會啟用動態配置，不需要進一步調整就可適用於大部分情況；不過使用者也可以輸入介於 704 到 2147483647 之間的不同值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-121">The default value of zero enables dynamic allocation and should work in most cases without additional adjustment; however, the user can enter a different value from 704 to 2147483647.</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="fad9b-122">從 1 到 703 的值是不允許的。</span><span class="sxs-lookup"><span data-stu-id="fad9b-122">Values from 1 to 703 are not allowed.</span></span> <span data-ttu-id="fad9b-123">如果輸入此範圍的值，欄位會使用 704 覆寫輸入的值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-123">If a value in this range is entered, the field overrides the entered value with 704.</span></span>  
+  
+ <span data-ttu-id="fad9b-124">**每個查詢的最小記憶體 (以 KB 為單位)**</span><span class="sxs-lookup"><span data-stu-id="fad9b-124">**Minimum memory per query (in KB)**</span></span>  
+ <span data-ttu-id="fad9b-125">指定用來執行查詢的記憶體數量配置 (以 KB 為單位)。</span><span class="sxs-lookup"><span data-stu-id="fad9b-125">Specifies the amount of memory (in KB) to allocate for the execution of a query.</span></span> <span data-ttu-id="fad9b-126">使用者可以設定介於 512 到 2147483647 之間的值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-126">The user can set the value from 512 to 2147483647 KB.</span></span> <span data-ttu-id="fad9b-127">預設值為 1024 KB。</span><span class="sxs-lookup"><span data-stu-id="fad9b-127">The default value is 1024 KB.</span></span>  
+  
+ <span data-ttu-id="fad9b-128">**設定的值**</span><span class="sxs-lookup"><span data-stu-id="fad9b-128">**Configured Values**</span></span>  
+ <span data-ttu-id="fad9b-129">針對此窗格中的選項，顯示設定的值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-129">Displays the configured values for the options on this pane.</span></span> <span data-ttu-id="fad9b-130">如果您變更這些值，請按一下 **[執行中的值]** ，即可查看變更是否已生效。</span><span class="sxs-lookup"><span data-stu-id="fad9b-130">If you change these values, click **Running Values** to see whether the changes have taken effect.</span></span> <span data-ttu-id="fad9b-131">如果沒有的話，就必須先重新啟動 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 的執行個體。</span><span class="sxs-lookup"><span data-stu-id="fad9b-131">If they have not, the instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] must be restarted first.</span></span>  
+  
+ <span data-ttu-id="fad9b-132">**[執行中的值]**</span><span class="sxs-lookup"><span data-stu-id="fad9b-132">**Running Values**</span></span>  
+ <span data-ttu-id="fad9b-133">針對此窗格中的選項，顯示目前執行中的值。</span><span class="sxs-lookup"><span data-stu-id="fad9b-133">Shows the currently running values for the options on this pane.</span></span> <span data-ttu-id="fad9b-134">這些值是唯讀的。</span><span class="sxs-lookup"><span data-stu-id="fad9b-134">These values are read-only.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="fad9b-135">另請參閱</span><span class="sxs-lookup"><span data-stu-id="fad9b-135">See Also</span></span>  
+ <span data-ttu-id="fad9b-136">[伺服器組態選項 &#40;SQL Server&#41;](server-configuration-options-sql-server.md) </span><span class="sxs-lookup"><span data-stu-id="fad9b-136">[Server Configuration Options &#40;SQL Server&#41;](server-configuration-options-sql-server.md) </span></span>  
+ [<span data-ttu-id="fad9b-137">伺服器記憶體伺服器組態選項</span><span class="sxs-lookup"><span data-stu-id="fad9b-137">Server Memory Server Configuration Options</span></span>](server-memory-server-configuration-options.md)  
+  
+  

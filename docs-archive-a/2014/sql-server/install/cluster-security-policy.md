@@ -1,0 +1,27 @@
+---
+title: 叢集安全性原則 |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: database-engine
+ms.topic: conceptual
+f1_keywords:
+- cluster security policy
+ms.assetid: 38afa421-2599-404f-8ba6-172668c6325e
+author: mashamsft
+ms.author: mathoma
+ms.openlocfilehash: 7504d34f8b0bfc4d9fa5b14a7bd6d0d6594fbc19
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87595494"
+---
+# <a name="cluster-security-policy"></a><span data-ttu-id="bbcd3-102">叢集安全性原則</span><span class="sxs-lookup"><span data-stu-id="bbcd3-102">Cluster Security Policy</span></span>
+  <span data-ttu-id="bbcd3-103">使用 [叢集安全性原則] 頁面，即可針對容錯移轉叢集執行個體設定安全性原則。</span><span class="sxs-lookup"><span data-stu-id="bbcd3-103">Use the Cluster Security Policy page to configure the security policy for your failover cluster instance.</span></span>  
+  
+## <a name="options"></a><span data-ttu-id="bbcd3-104">選項</span><span class="sxs-lookup"><span data-stu-id="bbcd3-104">Options</span></span>  
+ <span data-ttu-id="bbcd3-105">針對叢集服務指定全域或本機網域群組。</span><span class="sxs-lookup"><span data-stu-id="bbcd3-105">Specify global or local domain groups for clustered services.</span></span> <span data-ttu-id="bbcd3-106">所有資源權限都是由包含 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 服務帳戶當做群組成員的網域層級群組所控制。</span><span class="sxs-lookup"><span data-stu-id="bbcd3-106">All resource permissions are controlled by domain-level groups that include [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] service accounts as group members.</span></span> <span data-ttu-id="bbcd3-107">如需 [!INCLUDE[nextref_longhorn](../../includes/nextref-longhorn-md.md)]之服務安全性識別碼 (SID) 功能的詳細資訊，請參閱 [設定 Windows 服務帳戶與權限](../../database-engine/configure-windows/configure-windows-service-accounts-and-permissions.md)。</span><span class="sxs-lookup"><span data-stu-id="bbcd3-107">For more information about service security IDs (SID) functionality on [!INCLUDE[nextref_longhorn](../../includes/nextref-longhorn-md.md)], see [Configure Windows Service Accounts and Permissions](../../database-engine/configure-windows/configure-windows-service-accounts-and-permissions.md).</span></span>  
+  
+  

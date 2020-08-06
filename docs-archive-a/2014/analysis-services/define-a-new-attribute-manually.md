@@ -1,0 +1,45 @@
+---
+title: 手動定義新屬性 |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+helpviewer_keywords:
+- attributes [Analysis Services], creating
+- manual attribute creation [SQL Server]
+ms.assetid: 554ea10e-b0b0-4987-add8-19113d824787
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 5a825439b50c45c2394e7dc524c351384cd8c4a4
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87594817"
+---
+# <a name="define-a-new-attribute-manually"></a><span data-ttu-id="276e7-102">手動定義新屬性</span><span class="sxs-lookup"><span data-stu-id="276e7-102">Define a New Attribute Manually</span></span>
+  <span data-ttu-id="276e7-103">此程式描述如何使用維度設計師中的 [**屬性**] 窗格，在維度中建立新屬性。</span><span class="sxs-lookup"><span data-stu-id="276e7-103">This procedure describes how to create a new attribute in a dimension by using the **Attributes** pane in the Dimension Designer.</span></span>  
+  
+### <a name="to-create-a-new-attribute-manually"></a><span data-ttu-id="276e7-104">若要手動建立新屬性</span><span class="sxs-lookup"><span data-stu-id="276e7-104">To create a new attribute manually</span></span>  
+  
+1.  <span data-ttu-id="276e7-105">在維度設計師中，開啟您要在其中建立屬性的維度。</span><span class="sxs-lookup"><span data-stu-id="276e7-105">In Dimension Designer, open the dimension in which you want to create the attribute.</span></span>  
+  
+2.  <span data-ttu-id="276e7-106">請確定 [**屬性**] 窗格是方格格式。</span><span class="sxs-lookup"><span data-stu-id="276e7-106">Make sure that the **Attributes** pane is in grid format.</span></span>  
+  
+     <span data-ttu-id="276e7-107">以滑鼠右鍵按一下 [**屬性**] 窗格，指向 [**顯示內容于**]，然後按一下 [**方格**]。</span><span class="sxs-lookup"><span data-stu-id="276e7-107">Right-click the **Attributes** pane, point to **Show Attributes in**, and then click **Grid**.</span></span>  
+  
+3.  <span data-ttu-id="276e7-108">流覽至方格的最後一個資料列，然後按一下 **\<new attribute>** 。</span><span class="sxs-lookup"><span data-stu-id="276e7-108">Scroll to the last row of the grid, and then click **\<new attribute>**.</span></span>  
+  
+4.  <span data-ttu-id="276e7-109">輸入此屬性 (Attribute) 的名稱，以設定 `Name` 屬性 (Property)，然後按 Enter 鍵。</span><span class="sxs-lookup"><span data-stu-id="276e7-109">Type a name for the attribute to set the `Name` property, and then press Enter.</span></span>  
+  
+     <span data-ttu-id="276e7-110">您可以接受屬性使用方式、類型、索引鍵資料行和名稱資料行的預設值，或者從下拉式清單中選取新值。</span><span class="sxs-lookup"><span data-stu-id="276e7-110">You can accept the default values for the attribute usage, type, key column, and name column, or you can select new values from the drop-down list.</span></span>  
+  
+5.  <span data-ttu-id="276e7-111">以滑鼠右鍵按一下屬性，然後按一下 [**屬性**] 以設定其其他屬性。</span><span class="sxs-lookup"><span data-stu-id="276e7-111">Right-click the attribute and then click **Properties** to configure its other properties.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="276e7-112">另請參閱</span><span class="sxs-lookup"><span data-stu-id="276e7-112">See Also</span></span>  
+ <span data-ttu-id="276e7-113">[多維度模型中的維度](multidimensional-models/dimensions-in-multidimensional-models.md) </span><span class="sxs-lookup"><span data-stu-id="276e7-113">[Dimensions in Multidimensional Models](multidimensional-models/dimensions-in-multidimensional-models.md) </span></span>  
+ [<span data-ttu-id="276e7-114">維度屬性 (attribute) 屬性 (property) 參考</span><span class="sxs-lookup"><span data-stu-id="276e7-114">Dimension Attribute Properties Reference</span></span>](multidimensional-models/dimension-attribute-properties-reference.md)  
+  
+  
