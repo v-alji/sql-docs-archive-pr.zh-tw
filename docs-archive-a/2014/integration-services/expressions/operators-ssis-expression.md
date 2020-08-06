@@ -1,0 +1,62 @@
+---
+title: 運算子 (SSIS 運算式) | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: integration-services
+ms.topic: conceptual
+helpviewer_keywords:
+- SSIS, operators
+- SQL Server Integration Services, operators
+- operators [Integration Services]
+- expressions [Integration Services], operators
+ms.assetid: 33df3a3d-1f5c-429b-a3b9-52b7d8689089
+author: chugugrace
+ms.author: chugu
+ms.openlocfilehash: 652f53ef639e63e4868dabeea3f49b9303336043
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87705325"
+---
+# <a name="operators-ssis-expression"></a><span data-ttu-id="88eed-102">運算子 (SSIS 運算式)</span><span class="sxs-lookup"><span data-stu-id="88eed-102">Operators (SSIS Expression)</span></span>
+  <span data-ttu-id="88eed-103">本節描述運算式語言提供的運算子，以及運算式評估工具使用的運算子優先順序和關聯性。</span><span class="sxs-lookup"><span data-stu-id="88eed-103">This section describes the operators the expression language provides and the operator precedence and associativity that the expression evaluator uses.</span></span>  
+  
+ <span data-ttu-id="88eed-104">下表列出本節中運算子的相關主題。</span><span class="sxs-lookup"><span data-stu-id="88eed-104">The following table lists topics about operators in this section.</span></span>  
+  
+|<span data-ttu-id="88eed-105">運算子</span><span class="sxs-lookup"><span data-stu-id="88eed-105">Operator</span></span>|<span data-ttu-id="88eed-106">描述</span><span class="sxs-lookup"><span data-stu-id="88eed-106">Description</span></span>|  
+|--------------|-----------------|  
+|[<span data-ttu-id="88eed-107">轉換 &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-107">Cast &#40;SSIS Expression&#41;</span></span>](cast-ssis-expression.md)|<span data-ttu-id="88eed-108">將運算式從一種資料類型轉換成不同資料類型。</span><span class="sxs-lookup"><span data-stu-id="88eed-108">Converts an expression from one data type to a different data type.</span></span>|  
+|[<span data-ttu-id="88eed-109">&#40;&#41; &#40;括孤&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-109">&#40;&#41; &#40;Parentheses&#41; &#40;SSIS Expression&#41;</span></span>](parentheses-ssis-expression.md)|<span data-ttu-id="88eed-110">識別運算式的評估順序。</span><span class="sxs-lookup"><span data-stu-id="88eed-110">Identifies the evaluation order of expressions.</span></span>|  
+|[<span data-ttu-id="88eed-111">+ &#40;加&#41; &#40;SSIS&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-111">+ &#40;Add&#41; &#40;SSIS&#41;</span></span>](add-ssis.md)|<span data-ttu-id="88eed-112">加入兩個數值運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-112">Adds two numeric expressions.</span></span>|  
+|[<span data-ttu-id="88eed-113">+ &#40;串連&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-113">+ &#40;Concatenate&#41; &#40;SSIS Expression&#41;</span></span>](concatenate-ssis-expression.md)|<span data-ttu-id="88eed-114">串連兩個運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-114">Concatenates two expressions.</span></span>|  
+|[<span data-ttu-id="88eed-115">- &#40;減&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-115">- &#40;Subtract&#41; &#40;SSIS Expression&#41;</span></span>](subtract-ssis-expression.md)|<span data-ttu-id="88eed-116">將第一個數值運算式減第二個數值運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-116">Subtracts the second numeric expression from the first one.</span></span>|  
+|[<span data-ttu-id="88eed-117">- &#40;負&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-117">- &#40;Negate&#41; &#40;SSIS Expression&#41;</span></span>](negate-ssis-expression.md)|<span data-ttu-id="88eed-118">執行數值運算式的否定運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-118">Negates a numeric expression.</span></span>|  
+|[<span data-ttu-id="88eed-119">&#42; &#40;乘&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-119">&#42; &#40;Multiply&#41; &#40;SSIS Expression&#41;</span></span>](multiply-ssis-expression.md)|<span data-ttu-id="88eed-120">將兩個數值運算式相乘。</span><span class="sxs-lookup"><span data-stu-id="88eed-120">Multiplies two numeric expressions.</span></span>|  
+|[<span data-ttu-id="88eed-121">除 &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-121">Divide &#40;SSIS Expression&#41;</span></span>](divide-ssis-expression.md)|<span data-ttu-id="88eed-122">將第一個數值運算式除以第二個數值運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-122">Divides the first numeric expression by the second one.</span></span>|  
+|[<span data-ttu-id="88eed-123">&#40;模數&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-123">&#40;Modulo&#41; &#40;SSIS Expression&#41;</span></span>](modulo-ssis-expression.md)|<span data-ttu-id="88eed-124">提供第一個數值運算式除以第二個數值運算式之後的整數餘數。</span><span class="sxs-lookup"><span data-stu-id="88eed-124">Provides the integer remainder after dividing the first numeric expression by the second one.</span></span>|  
+|[<span data-ttu-id="88eed-125">&#124;&#124; &#40;邏輯 OR&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-125">&#124;&#124; &#40;Logical OR&#41; &#40;SSIS Expression&#41;</span></span>](logical-or-ssis-expression.md)|<span data-ttu-id="88eed-126">執行邏輯 OR 運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-126">Performs a logical OR operation.</span></span>|  
+|[<span data-ttu-id="88eed-127">&& &#40;邏輯 AND&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-127">&& &#40;Logical AND&#41; &#40;SSIS Expression&#41;</span></span>](logical-and-ssis-expression.md)|<span data-ttu-id="88eed-128">執行邏輯 AND 運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-128">Performs a logical AND operation.</span></span>|  
+|[<span data-ttu-id="88eed-129">\! &#40;邏輯 NOT&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-129">\! &#40;Logical NOT&#41; &#40;SSIS Expression&#41;</span></span>](logical-not-ssis-expression.md)|<span data-ttu-id="88eed-130">執行布林運算元的否定運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-130">Negates a Boolean operand.</span></span>|  
+|[<span data-ttu-id="88eed-131">&#124; &#40;位元包含 OR&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-131">&#124; &#40;Bitwise Inclusive OR&#41; &#40;SSIS Expression&#41;</span></span>](bitwise-inclusive-or-ssis-expression.md)|<span data-ttu-id="88eed-132">執行兩個整數值的位元 OR 運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-132">Performs a bitwise OR operation of two integer values.</span></span>|  
+|[<span data-ttu-id="88eed-133">^ &#40;位元排除 OR&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-133">^ &#40;Bitwise Exclusive OR&#41; &#40;SSIS Expression&#41;</span></span>](bitwise-exclusive-or-ssis-expression.md)|<span data-ttu-id="88eed-134">執行兩個整數值的位元排除 OR 運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-134">Performs a bitwise exclusive OR operation of two integer values.</span></span>|  
+|[<span data-ttu-id="88eed-135">& &#40;位元 AND&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-135">& &#40;Bitwise AND&#41; &#40;SSIS Expression&#41;</span></span>](bitwise-and-ssis-expression.md)|<span data-ttu-id="88eed-136">執行兩個整數值的位元 AND 運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-136">Performs a bitwise AND operation of two integer values.</span></span>|  
+|[<span data-ttu-id="88eed-137">~ &#40;位元 Not&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-137">~ &#40;Bitwise Not&#41; &#40;SSIS Expression&#41;</span></span>](bitwise-not-ssis-expression.md)|<span data-ttu-id="88eed-138">執行整數的位元否定運算。</span><span class="sxs-lookup"><span data-stu-id="88eed-138">Performs a bitwise negation of an integer.</span></span>|  
+|[<span data-ttu-id="88eed-139">== &#40;等於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-139">== &#40;Equal&#41; &#40;SSIS Expression&#41;</span></span>](equal-ssis-expression.md)|<span data-ttu-id="88eed-140">執行比較來決定兩個運算式是否相等。</span><span class="sxs-lookup"><span data-stu-id="88eed-140">Performs a comparison to determine if two expressions are equal.</span></span>|  
+|[<span data-ttu-id="88eed-141">\!= &#40;不等於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-141">\!= &#40;Unequal&#41; &#40;SSIS Expression&#41;</span></span>](unequal-ssis-expression.md)|<span data-ttu-id="88eed-142">執行比較來決定兩個運算式是否不相等。</span><span class="sxs-lookup"><span data-stu-id="88eed-142">Performs a comparison to determine if two expressions are not equal.</span></span>|  
+|[<span data-ttu-id="88eed-143">&#62; &#40;大於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-143">&#62; &#40;Greater Than&#41; &#40;SSIS Expression&#41;</span></span>](greater-than-ssis-expression.md)|<span data-ttu-id="88eed-144">執行比較來決定第一個運算式是否大於第二個運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-144">Performs a comparison to determine if the first expression is greater than the second one.</span></span>|  
+|[<span data-ttu-id="88eed-145">&#60; &#40;小於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-145">&#60; &#40;Less Than&#41; &#40;SSIS Expression&#41;</span></span>](less-than-ssis-expression.md)|<span data-ttu-id="88eed-146">執行比較來決定第一個運算式是否小於第二個運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-146">Performs a comparison to determine if the first expression is less than the second one.</span></span>|  
+|[<span data-ttu-id="88eed-147">&#62;= &#40;大於或等於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-147">&#62;= &#40;Greater Than or Equal To&#41; &#40;SSIS Expression&#41;</span></span>](greater-than-or-equal-to-ssis-expression.md)|<span data-ttu-id="88eed-148">執行比較來決定第一個運算式是否大於或等於第二個運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-148">Performs a comparison to determine if the first expression is greater than or equal to the second one.</span></span>|  
+|[<span data-ttu-id="88eed-149">&#60;= &#40;小於或等於&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-149">&#60;= &#40;Less Than or Equal To&#41; &#40;SSIS Expression&#41;</span></span>](less-than-or-equal-to-ssis-expression.md)|<span data-ttu-id="88eed-150">執行比較來決定第一個運算式是否小於或等於第二個運算式。</span><span class="sxs-lookup"><span data-stu-id="88eed-150">Performs a comparison to determine if the first expression is less than or equal to the second one.</span></span>|  
+|[<span data-ttu-id="88eed-151">? : &#40;條件式&#41; &#40;SSIS 運算式&#41;</span><span class="sxs-lookup"><span data-stu-id="88eed-151">? : &#40;Conditional&#41; &#40;SSIS Expression&#41;</span></span>](conditional-ssis-expression.md)|<span data-ttu-id="88eed-152">依據布林運算式的評估傳回兩個運算式的其中一個。</span><span class="sxs-lookup"><span data-stu-id="88eed-152">Returns one of two expressions based on the evaluation of a Boolean expression.</span></span>|  
+  
+ <span data-ttu-id="88eed-153">如需每個運算子在優先順序階層中的位置之詳細資訊，請參閱＜ [Operator Precedence and Associativity](operator-precedence-and-associativity.md)＞。</span><span class="sxs-lookup"><span data-stu-id="88eed-153">For information about the placement of each operator in the precedence hierarchy, see [Operator Precedence and Associativity](operator-precedence-and-associativity.md).</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="88eed-154">另請參閱</span><span class="sxs-lookup"><span data-stu-id="88eed-154">See Also</span></span>  
+ <span data-ttu-id="88eed-155">[函數 &#40;SSIS 運算式&#41;](functions-ssis-expression.md) </span><span class="sxs-lookup"><span data-stu-id="88eed-155">[Functions &#40;SSIS Expression&#41;](functions-ssis-expression.md) </span></span>  
+ <span data-ttu-id="88eed-156">[進階 Integration Services 運算式範例](examples-of-advanced-integration-services-expressions.md) </span><span class="sxs-lookup"><span data-stu-id="88eed-156">[Examples of Advanced Integration Services Expressions](examples-of-advanced-integration-services-expressions.md) </span></span>  
+ [<span data-ttu-id="88eed-157">Integration Services &#40;SSIS&#41; 運算式</span><span class="sxs-lookup"><span data-stu-id="88eed-157">Integration Services &#40;SSIS&#41; Expressions</span></span>](integration-services-ssis-expressions.md)  
+  
+  

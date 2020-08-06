@@ -1,0 +1,67 @@
+---
+title: " (基本資料採礦教學課程中指定資料類型和內容類型) |Microsoft Docs"
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+ms.assetid: 72484d27-3ef1-4f16-813c-2f43231fc2da
+author: minewiskan
+ms.author: owend
+manager: kfile
+ms.openlocfilehash: 73ff61dbe439b9f2fb50f3a8004f4e7bcad8369a
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87704438"
+---
+# <a name="specifying-the-data-type-and-content-type-basic-data-mining-tutorial"></a><span data-ttu-id="00f18-102">指定資料類型和內容類型 (基本資料採礦教學課程)</span><span class="sxs-lookup"><span data-stu-id="00f18-102">Specifying the Data Type and Content Type (Basic Data Mining Tutorial)</span></span>
+  <span data-ttu-id="00f18-103">現在您已經選取用來建立結構及定型模型的資料行，請針對精靈所設定的預設資料類型和內容類型進行任何必要的變更。</span><span class="sxs-lookup"><span data-stu-id="00f18-103">Now that you have selected which columns to use for building your structure and training your models, make any necessary changes to the default data and content types that are set by the wizard.</span></span>  
+  
+#### <a name="review-and-modify-content-type-and-data-type-for-each-column"></a><span data-ttu-id="00f18-104">檢閱及修改每一個資料行的內容類型和資料類型</span><span class="sxs-lookup"><span data-stu-id="00f18-104">Review and modify content type and data type for each column</span></span>  
+  
+1.  <span data-ttu-id="00f18-105">在 [**指定欄位的內容和資料類型**] 頁面上 **，按一下 [** 偵測] 來執行演算法，以決定每個資料行的預設資料和內容類型。</span><span class="sxs-lookup"><span data-stu-id="00f18-105">On the **Specify Columns' Content and Data Type** page, click **Detect** to run an algorithm that determines the default data and content types for each column.</span></span>  
+  
+2.  <span data-ttu-id="00f18-106">檢查 [**內容類型**] 和 [**資料類型**] 欄中的專案，並在必要時加以變更，以確定設定與下表所列的相同。</span><span class="sxs-lookup"><span data-stu-id="00f18-106">Review the entries in the **Content Type** and **Data Type** columns and change them if necessary, to make sure that the settings are the same as those listed in the following table.</span></span>  
+  
+     <span data-ttu-id="00f18-107">此精靈通常會偵測這些數字並指派適當的數值資料類型，但是在許多情況下，您可能想要將數字當做文字處理。</span><span class="sxs-lookup"><span data-stu-id="00f18-107">Typically, the wizard will detect numbers and assign an appropriate numeric data type, but there are many scenarios where you might want to handle a number as text instead.</span></span> <span data-ttu-id="00f18-108">例如， **GeographyKey**應該當做文字來處理，因為它不適合在此識別碼上執行數學運算。</span><span class="sxs-lookup"><span data-stu-id="00f18-108">For example, the **GeographyKey** should be handled as text, because it would be inappropriate to perform mathematical operations on this identifier.</span></span>  
+  
+    |<span data-ttu-id="00f18-109">資料行</span><span class="sxs-lookup"><span data-stu-id="00f18-109">Column</span></span>|<span data-ttu-id="00f18-110">內容類型</span><span class="sxs-lookup"><span data-stu-id="00f18-110">Content Type</span></span>|<span data-ttu-id="00f18-111">資料類型</span><span class="sxs-lookup"><span data-stu-id="00f18-111">Data Type</span></span>|  
+    |------------|------------------|---------------|  
+    |<span data-ttu-id="00f18-112">**位址 Line1**</span><span class="sxs-lookup"><span data-stu-id="00f18-112">**Address Line1**</span></span>|<span data-ttu-id="00f18-113">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-113">**Discrete**</span></span>|<span data-ttu-id="00f18-114">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-114">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-115">**位址 Line2**</span><span class="sxs-lookup"><span data-stu-id="00f18-115">**Address Line2**</span></span>|<span data-ttu-id="00f18-116">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-116">**Discrete**</span></span>|<span data-ttu-id="00f18-117">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-117">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-118">**年齡**</span><span class="sxs-lookup"><span data-stu-id="00f18-118">**Age**</span></span>|<span data-ttu-id="00f18-119">**系列**</span><span class="sxs-lookup"><span data-stu-id="00f18-119">**Continuous**</span></span>|<span data-ttu-id="00f18-120">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-120">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-121">**Bike Buyer**</span><span class="sxs-lookup"><span data-stu-id="00f18-121">**Bike Buyer**</span></span>|<span data-ttu-id="00f18-122">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-122">**Discrete**</span></span>|<span data-ttu-id="00f18-123">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-123">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-124">**Commute Distance**</span><span class="sxs-lookup"><span data-stu-id="00f18-124">**Commute Distance**</span></span>|<span data-ttu-id="00f18-125">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-125">**Discrete**</span></span>|<span data-ttu-id="00f18-126">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-126">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-127">**CustomerKey**</span><span class="sxs-lookup"><span data-stu-id="00f18-127">**CustomerKey**</span></span>|<span data-ttu-id="00f18-128">**索引鍵**</span><span class="sxs-lookup"><span data-stu-id="00f18-128">**Key**</span></span>|<span data-ttu-id="00f18-129">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-129">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-130">**DateLastPurchase**</span><span class="sxs-lookup"><span data-stu-id="00f18-130">**DateLastPurchase**</span></span>|<span data-ttu-id="00f18-131">**系列**</span><span class="sxs-lookup"><span data-stu-id="00f18-131">**Continuous**</span></span>|<span data-ttu-id="00f18-132">**日期**</span><span class="sxs-lookup"><span data-stu-id="00f18-132">**Date**</span></span>|  
+    |<span data-ttu-id="00f18-133">**電子郵件地址**</span><span class="sxs-lookup"><span data-stu-id="00f18-133">**Email Address**</span></span>|<span data-ttu-id="00f18-134">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-134">**Discrete**</span></span>|<span data-ttu-id="00f18-135">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-135">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-136">**English Education**</span><span class="sxs-lookup"><span data-stu-id="00f18-136">**English Education**</span></span>|<span data-ttu-id="00f18-137">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-137">**Discrete**</span></span>|<span data-ttu-id="00f18-138">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-138">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-139">**English Occupation**</span><span class="sxs-lookup"><span data-stu-id="00f18-139">**English Occupation**</span></span>|<span data-ttu-id="00f18-140">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-140">**Discrete**</span></span>|<span data-ttu-id="00f18-141">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-141">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-142">**名字**</span><span class="sxs-lookup"><span data-stu-id="00f18-142">**FirstName**</span></span>|<span data-ttu-id="00f18-143">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-143">**Discrete**</span></span>|<span data-ttu-id="00f18-144">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-144">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-145">**性別**</span><span class="sxs-lookup"><span data-stu-id="00f18-145">**Gender**</span></span>|<span data-ttu-id="00f18-146">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-146">**Discrete**</span></span>|<span data-ttu-id="00f18-147">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-147">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-148">**Geography Key**</span><span class="sxs-lookup"><span data-stu-id="00f18-148">**Geography Key**</span></span>|<span data-ttu-id="00f18-149">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-149">**Discrete**</span></span>|<span data-ttu-id="00f18-150">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-150">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-151">**House Owner Flag**</span><span class="sxs-lookup"><span data-stu-id="00f18-151">**House Owner Flag**</span></span>|<span data-ttu-id="00f18-152">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-152">**Discrete**</span></span>|<span data-ttu-id="00f18-153">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-153">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-154">**姓氏**</span><span class="sxs-lookup"><span data-stu-id="00f18-154">**Last Name**</span></span>|<span data-ttu-id="00f18-155">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-155">**Discrete**</span></span>|<span data-ttu-id="00f18-156">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-156">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-157">**Marital Status**</span><span class="sxs-lookup"><span data-stu-id="00f18-157">**Marital Status**</span></span>|<span data-ttu-id="00f18-158">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-158">**Discrete**</span></span>|<span data-ttu-id="00f18-159">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-159">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-160">**Number Cars Owned**</span><span class="sxs-lookup"><span data-stu-id="00f18-160">**Number Cars Owned**</span></span>|<span data-ttu-id="00f18-161">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-161">**Discrete**</span></span>|<span data-ttu-id="00f18-162">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-162">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-163">**Number Children At Home**</span><span class="sxs-lookup"><span data-stu-id="00f18-163">**Number Children At Home**</span></span>|<span data-ttu-id="00f18-164">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-164">**Discrete**</span></span>|<span data-ttu-id="00f18-165">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-165">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-166">**區域**</span><span class="sxs-lookup"><span data-stu-id="00f18-166">**Region**</span></span>|<span data-ttu-id="00f18-167">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-167">**Discrete**</span></span>|<span data-ttu-id="00f18-168">**Text**</span><span class="sxs-lookup"><span data-stu-id="00f18-168">**Text**</span></span>|  
+    |<span data-ttu-id="00f18-169">**Total Children**</span><span class="sxs-lookup"><span data-stu-id="00f18-169">**Total Children**</span></span>|<span data-ttu-id="00f18-170">**Discrete**</span><span class="sxs-lookup"><span data-stu-id="00f18-170">**Discrete**</span></span>|<span data-ttu-id="00f18-171">**Long**</span><span class="sxs-lookup"><span data-stu-id="00f18-171">**Long**</span></span>|  
+    |<span data-ttu-id="00f18-172">**Yearly Income**</span><span class="sxs-lookup"><span data-stu-id="00f18-172">**Yearly Income**</span></span>|<span data-ttu-id="00f18-173">**系列**</span><span class="sxs-lookup"><span data-stu-id="00f18-173">**Continuous**</span></span>|<span data-ttu-id="00f18-174">**Double**</span><span class="sxs-lookup"><span data-stu-id="00f18-174">**Double**</span></span>|  
+  
+3.  <span data-ttu-id="00f18-175">按 [下一步] 。</span><span class="sxs-lookup"><span data-stu-id="00f18-175">Click **Next**.</span></span>  
+  
+## <a name="next-task-in-lesson"></a><span data-ttu-id="00f18-176">本課程的下一項工作</span><span class="sxs-lookup"><span data-stu-id="00f18-176">Next Task in Lesson</span></span>  
+ [<span data-ttu-id="00f18-177">為結構指定測試資料集 &#40;基本資料採礦教學課程&#41;</span><span class="sxs-lookup"><span data-stu-id="00f18-177">Specifying a Testing Data Set for the Structure &#40;Basic Data Mining Tutorial&#41;</span></span>](../../2014/tutorials/specifying-a-testing-data-set-for-the-structure-basic-data-mining-tutorial.md)  
+  
+## <a name="previous-task-in-lesson"></a><span data-ttu-id="00f18-178">本課程的前一項工作</span><span class="sxs-lookup"><span data-stu-id="00f18-178">Previous Task in Lesson</span></span>  
+ [<span data-ttu-id="00f18-179">建立目標郵寄採礦模型結構 &#40;基本資料採礦教學課程&#41;</span><span class="sxs-lookup"><span data-stu-id="00f18-179">Creating a Targeted Mailing Mining Model Structure &#40;Basic Data Mining Tutorial&#41;</span></span>](../../2014/tutorials/creating-a-targeted-mailing-mining-model-structure-basic-data-mining-tutorial.md)  
+  
+## <a name="see-also"></a><span data-ttu-id="00f18-180">另請參閱</span><span class="sxs-lookup"><span data-stu-id="00f18-180">See Also</span></span>  
+ <span data-ttu-id="00f18-181">[&#40;資料採礦&#41;的內容類型](../../2014/analysis-services/data-mining/content-types-data-mining.md) </span><span class="sxs-lookup"><span data-stu-id="00f18-181">[Content Types &#40;Data Mining&#41;](../../2014/analysis-services/data-mining/content-types-data-mining.md) </span></span>  
+ [<span data-ttu-id="00f18-182">資料類型 &#40;資料採礦&#41;</span><span class="sxs-lookup"><span data-stu-id="00f18-182">Data Types &#40;Data Mining&#41;</span></span>](../../2014/analysis-services/data-mining/data-types-data-mining.md)  
+  
+  

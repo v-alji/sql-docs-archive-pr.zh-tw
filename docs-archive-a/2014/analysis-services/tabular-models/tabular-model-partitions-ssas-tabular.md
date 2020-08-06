@@ -1,0 +1,82 @@
+---
+title: 表格式模型資料分割 (SSAS 表格式) |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.asvs.ssms.partitions.partitionmgr.imbi.f1
+ms.assetid: 041c269f-a229-4a41-8794-6ba4b014ef83
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 58712523c3a47bffa7db9d5b32b62f8bef15166c
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87706777"
+---
+# <a name="tabular-model-partitions-ssas-tabular"></a><span data-ttu-id="bf76a-102">表格式模型資料分割 (SSAS 表格式)</span><span class="sxs-lookup"><span data-stu-id="bf76a-102">Tabular Model Partitions (SSAS Tabular)</span></span>
+  <span data-ttu-id="bf76a-103">分割區會將一個資料表分割成多個邏輯部分。</span><span class="sxs-lookup"><span data-stu-id="bf76a-103">Partitions divide a table into logical parts.</span></span> <span data-ttu-id="bf76a-104">接著，每個分割區可以不受其他分割區的影響，單獨處理 (重新整理)。</span><span class="sxs-lookup"><span data-stu-id="bf76a-104">Each partition can then be processed (Refreshed) independent of other partitions.</span></span> <span data-ttu-id="bf76a-105">模型撰寫期間，在已部署的模型中有重複定義的模型資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-105">Partitions defined for a model during model authoring are duplicated in a deployed model.</span></span> <span data-ttu-id="bf76a-106">在部署之後，即可使用 **的** [資料分割] [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] 對話方塊或指令碼，管理這些資料分割及建立新的資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-106">Once deployed, you can manage those partitions and create new partitions by using the **Partitions** dialog box in [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] or by using a script.</span></span> <span data-ttu-id="bf76a-107">本主題提供的資訊說明部署的表格式模型資料庫中的資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-107">Information provided in this topic describes partitions in a deployed tabular model database.</span></span> <span data-ttu-id="bf76a-108">如需在模型撰寫期間建立和管理資料分割的詳細資訊，請參閱 [Partitions &#40;SSAS Tabular&#41;](partitions-ssas-tabular.md) (資料分割 (SSAS 表格式))。</span><span class="sxs-lookup"><span data-stu-id="bf76a-108">For more information about creating and managing partitions during model authoring, see [Partitions &#40;SSAS Tabular&#41;](partitions-ssas-tabular.md).</span></span>  
+  
+ <span data-ttu-id="bf76a-109">本主題的章節：</span><span class="sxs-lookup"><span data-stu-id="bf76a-109">Sections in this topic:</span></span>  
+  
+-   [<span data-ttu-id="bf76a-110">優點</span><span class="sxs-lookup"><span data-stu-id="bf76a-110">Benefits</span></span>](#bkmk_benefits)  
+  
+-   [<span data-ttu-id="bf76a-111">權限</span><span class="sxs-lookup"><span data-stu-id="bf76a-111">Permissions</span></span>](#bkmk_permissions)  
+  
+-   [<span data-ttu-id="bf76a-112">處理資料分割</span><span class="sxs-lookup"><span data-stu-id="bf76a-112">Process Partitions</span></span>](#bkmk_process_partitions)  
+  
+-   [<span data-ttu-id="bf76a-113">相關工作</span><span class="sxs-lookup"><span data-stu-id="bf76a-113">Related Tasks</span></span>](#bkmk_related_tasks)  
+  
+##  <a name="benefits"></a><a name="bkmk_benefits"></a> <span data-ttu-id="bf76a-114">優點</span><span class="sxs-lookup"><span data-stu-id="bf76a-114">Benefits</span></span>  
+ <span data-ttu-id="bf76a-115">有效的模型設計能善加利用分割區，以避免不必要的處理及 Analysis Services 伺服器上之後續處理器的負載，同時，還可確保資料的處理和重新整理頻率能反映資料來源的最新資料。</span><span class="sxs-lookup"><span data-stu-id="bf76a-115">Effective model design utilizes partitions to eliminate unnecessary processing and subsequent processor load on Analysis Services servers, while at the same time, making certain that data is processed and refreshed often enough to reflect the most recent data from data sources.</span></span>  
+  
+ <span data-ttu-id="bf76a-116">例如，表格式模型可能會有「銷售」資料表，其中包括目前 2011 會計年度的銷售資料與之前會計年度的每份銷售資料。</span><span class="sxs-lookup"><span data-stu-id="bf76a-116">For example, a tabular model can have a Sales table which includes sales data for the current 2011 fiscal year and each of the previous fiscal years.</span></span> <span data-ttu-id="bf76a-117">模型的 Sales 資料表具有下列三個數據分割：</span><span class="sxs-lookup"><span data-stu-id="bf76a-117">The model's Sales table has the following three partitions:</span></span>  
+  
+|<span data-ttu-id="bf76a-118">資料分割</span><span class="sxs-lookup"><span data-stu-id="bf76a-118">Partition</span></span>|<span data-ttu-id="bf76a-119">來源資料</span><span class="sxs-lookup"><span data-stu-id="bf76a-119">Data from</span></span>|  
+|---------------|---------------|  
+|<span data-ttu-id="bf76a-120">Sales2011</span><span class="sxs-lookup"><span data-stu-id="bf76a-120">Sales2011</span></span>|<span data-ttu-id="bf76a-121">目前會計年度</span><span class="sxs-lookup"><span data-stu-id="bf76a-121">Current fiscal year</span></span>|  
+|<span data-ttu-id="bf76a-122">Sales2010-2001</span><span class="sxs-lookup"><span data-stu-id="bf76a-122">Sales2010-2001</span></span>|<span data-ttu-id="bf76a-123">會計年度 2001 年、2002 年、2003 年、2004 年、2005 年、2006 年。</span><span class="sxs-lookup"><span data-stu-id="bf76a-123">Fiscal years 2001, 2002, 2003, 2004, 2005, 2006.</span></span> <span data-ttu-id="bf76a-124">2007, 2008, 2009, 2010</span><span class="sxs-lookup"><span data-stu-id="bf76a-124">2007, 2008, 2009, 2010</span></span>|  
+|<span data-ttu-id="bf76a-125">SalesOld</span><span class="sxs-lookup"><span data-stu-id="bf76a-125">SalesOld</span></span>|<span data-ttu-id="bf76a-126">在過去十年之前的所有會計年度。</span><span class="sxs-lookup"><span data-stu-id="bf76a-126">All fiscal years prior to the last ten years.</span></span>|  
+  
+ <span data-ttu-id="bf76a-127">只要有新的銷售資料新增至目前 2011 會計年度，則必須每天處理該資料，才能精確反映目前會計年度銷售資料分析，因此，Sales2011 資料分割會每晚處理。</span><span class="sxs-lookup"><span data-stu-id="bf76a-127">As new sales data is added for the current 2011 fiscal year; that data must be processed daily to accurately be reflected in current fiscal year sales data analysis, thus the Sales2011 partition is processed nightly.</span></span>  
+  
+ <span data-ttu-id="bf76a-128">而 Sales2010-2001 資料分割不需要每晚處理；不過，因為之前十個會計年度的銷售資料仍可能會因為產品退貨或其他調整而偶爾變更，所以也必須按時處理，因此 Sales2010-2001 資料分割中的資料會每月處理。</span><span class="sxs-lookup"><span data-stu-id="bf76a-128">There is no need to process data in the Sales2010-2001 partition nightly; however, because sales data for the previous ten fiscal years can still occasionally change because of product returns and other adjustments, it must still be processed regularly, thus data in the Sales2010-2001 partition is processed monthly.</span></span> <span data-ttu-id="bf76a-129">在 SalesOld 資料分割中的資料永遠不會變更，因此只會每年處理一次。</span><span class="sxs-lookup"><span data-stu-id="bf76a-129">Data in the SalesOld partition never changes therefore only processed annually.</span></span>  
+  
+ <span data-ttu-id="bf76a-130">輸入2012會計年度時，會將新的 Sales2012 資料分割加入至模式的 Sales 資料表。</span><span class="sxs-lookup"><span data-stu-id="bf76a-130">When entering the 2012 fiscal year, a new Sales2012 partition is added to the mode's Sales table.</span></span> <span data-ttu-id="bf76a-131">之後，您即可將 Sales2011 資料分割和 Sales2010-2001 資料分割合併，並重新命名為 Sales2011-2002。</span><span class="sxs-lookup"><span data-stu-id="bf76a-131">The Sales2011 partition can then be merged with the Sales2010-2001 partition and renamed to Sales2011-2002.</span></span> <span data-ttu-id="bf76a-132">2001 會計年度的資料即會從新的 Sales2011-2002 資料分割中刪除，並移至 SalesOld 資料分割中。</span><span class="sxs-lookup"><span data-stu-id="bf76a-132">Data from the 2001 fiscal year is eliminated from the new Sales2011-2002 partition and moved into the SalesOld partition.</span></span> <span data-ttu-id="bf76a-133">如此一來，所有資料分割都已經過處理以反映變更。</span><span class="sxs-lookup"><span data-stu-id="bf76a-133">All partitions are then processed to reflect changes.</span></span>  
+  
+ <span data-ttu-id="bf76a-134">您針對組織的表格式模型執行資料分割策略的方式，主要取決於您特定的模型資料處理需求和可用的資源。</span><span class="sxs-lookup"><span data-stu-id="bf76a-134">How you implement a partition strategy for your organization's tabular models will largely be dependent on your particular model data processing needs and available resources.</span></span>  
+  
+##  <a name="permissions"></a><a name="bkmk_permissions"></a> <span data-ttu-id="bf76a-135">權限</span><span class="sxs-lookup"><span data-stu-id="bf76a-135">Permissions</span></span>  
+ <span data-ttu-id="bf76a-136">若要在 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)]中建立、管理及處理資料分割，您必須具備在安全性角色中定義的適當 Analysis Services 權限。</span><span class="sxs-lookup"><span data-stu-id="bf76a-136">In order to create, manage, and process partitions in [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)], you must have the appropriate Analysis Services permissions defined in a security role.</span></span> <span data-ttu-id="bf76a-137">每個安全性角色都具有下列其中一個權限：</span><span class="sxs-lookup"><span data-stu-id="bf76a-137">Each security role has one of the following permissions:</span></span>  
+  
+|<span data-ttu-id="bf76a-138">權限</span><span class="sxs-lookup"><span data-stu-id="bf76a-138">Permission</span></span>|<span data-ttu-id="bf76a-139">[動作]</span><span class="sxs-lookup"><span data-stu-id="bf76a-139">Actions</span></span>|  
+|----------------|-------------|  
+|<span data-ttu-id="bf76a-140">系統管理員</span><span class="sxs-lookup"><span data-stu-id="bf76a-140">Administrator</span></span>|<span data-ttu-id="bf76a-141">讀取、處理、建立、複製、合併、刪除</span><span class="sxs-lookup"><span data-stu-id="bf76a-141">Read, process, create, copy, merge, delete</span></span>|  
+|<span data-ttu-id="bf76a-142">Process</span><span class="sxs-lookup"><span data-stu-id="bf76a-142">Process</span></span>|<span data-ttu-id="bf76a-143">讀取、處理</span><span class="sxs-lookup"><span data-stu-id="bf76a-143">Read, process</span></span>|  
+|<span data-ttu-id="bf76a-144">唯讀</span><span class="sxs-lookup"><span data-stu-id="bf76a-144">Read Only</span></span>|<span data-ttu-id="bf76a-145">讀取</span><span class="sxs-lookup"><span data-stu-id="bf76a-145">Read</span></span>|  
+  
+ <span data-ttu-id="bf76a-146">若要深入了解使用 [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)] 在模型撰寫期間建立角色，請參閱 [Roles &#40;SSAS Tabular&#41;](roles-ssas-tabular.md) (角色 (SSAS 表格式))。</span><span class="sxs-lookup"><span data-stu-id="bf76a-146">To learn more about creating roles during model authoring by using [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)], see [Roles &#40;SSAS Tabular&#41;](roles-ssas-tabular.md).</span></span> <span data-ttu-id="bf76a-147">若要深入了解使用 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] 管理已部署表格式模型角色的角色成員，請參閱 [Tabular Model Roles &#40;SSAS Tabular&#41;](tabular-model-roles-ssas-tabular.md) (表格式模型角色 (SSAS 表格式))。</span><span class="sxs-lookup"><span data-stu-id="bf76a-147">To learn more about managing role members for deployed tabular model roles by using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)], see [Tabular Model Roles &#40;SSAS Tabular&#41;](tabular-model-roles-ssas-tabular.md).</span></span>  
+  
+##  <a name="process-partitions"></a><a name="bkmk_process_partitions"></a><span data-ttu-id="bf76a-148">處理資料分割</span><span class="sxs-lookup"><span data-stu-id="bf76a-148">Process Partitions</span></span>  
+ <span data-ttu-id="bf76a-149">您可使用 **的** [資料分割] [!INCLUDE[ssManStudio](../../includes/ssmanstudio-md.md)] 對話方塊或指令碼，讓資料分割可以不受其他資料分割的影響，單獨處理 (重新整理)。</span><span class="sxs-lookup"><span data-stu-id="bf76a-149">Partitions can be processed (refreshed) independent of other partitions by using the **Partitions** dialog box in [!INCLUDE[ssManStudio](../../includes/ssmanstudio-md.md)] or by using a script.</span></span> <span data-ttu-id="bf76a-150">處理的選項如下：</span><span class="sxs-lookup"><span data-stu-id="bf76a-150">Processing has the following options:</span></span>  
+  
+|<span data-ttu-id="bf76a-151">[模式]</span><span class="sxs-lookup"><span data-stu-id="bf76a-151">Mode</span></span>|<span data-ttu-id="bf76a-152">描述</span><span class="sxs-lookup"><span data-stu-id="bf76a-152">Description</span></span>|  
+|----------|-----------------|  
+|<span data-ttu-id="bf76a-153">處理預設</span><span class="sxs-lookup"><span data-stu-id="bf76a-153">Process Default</span></span>|<span data-ttu-id="bf76a-154">偵測資料分割物件的處理狀態，並且執行必要的處理，以便將尚未處理或部分處理的資料分割物件傳遞為完整處理的狀態。</span><span class="sxs-lookup"><span data-stu-id="bf76a-154">Detects the process state of a partition object, and performs processing necessary to deliver unprocessed or partially processed partition objects to a fully processed state.</span></span> <span data-ttu-id="bf76a-155">載入空白資料表和資料分割的資料；建立或重新建立階層、導出資料行及關聯性。</span><span class="sxs-lookup"><span data-stu-id="bf76a-155">Data for empty tables and partitions is loaded; hierarchies, calculated columns, and relationships are built or rebuilt.</span></span>|  
+|<span data-ttu-id="bf76a-156">完整處理</span><span class="sxs-lookup"><span data-stu-id="bf76a-156">Process Full</span></span>|<span data-ttu-id="bf76a-157">處理資料分割物件及其包含的所有物件。</span><span class="sxs-lookup"><span data-stu-id="bf76a-157">Processes a partition object and all the objects that it contains.</span></span> <span data-ttu-id="bf76a-158">對已處理過的物件執行完整處理時， [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] 會先卸除該物件中的所有資料，然後再處理該物件。</span><span class="sxs-lookup"><span data-stu-id="bf76a-158">When Process Full is run for an object that has already been processed, [!INCLUDE[ssASnoversion](../../includes/ssasnoversion-md.md)] drops all data in the object, and then processes the object.</span></span> <span data-ttu-id="bf76a-159">當物件已進行過任何結構性變更時，就需要這種處理。</span><span class="sxs-lookup"><span data-stu-id="bf76a-159">This kind of processing is required when a structural change has been made to an object.</span></span>|  
+|<span data-ttu-id="bf76a-160">處理資料</span><span class="sxs-lookup"><span data-stu-id="bf76a-160">Process Data</span></span>|<span data-ttu-id="bf76a-161">將資料載入資料分割或資料表，而不重新建立階層或關聯性，或重新計算導出資料行和量值。</span><span class="sxs-lookup"><span data-stu-id="bf76a-161">Load data into a partition or a table without rebuilding hierarchies or relationships or recalculating calculated columns and measures.</span></span>|  
+|<span data-ttu-id="bf76a-162">處理清除</span><span class="sxs-lookup"><span data-stu-id="bf76a-162">Process Clear</span></span>|<span data-ttu-id="bf76a-163">移除資料分割中的所有資料。</span><span class="sxs-lookup"><span data-stu-id="bf76a-163">Removes all data from a partition.</span></span>|  
+|<span data-ttu-id="bf76a-164">處理加入</span><span class="sxs-lookup"><span data-stu-id="bf76a-164">Process Add</span></span>|<span data-ttu-id="bf76a-165">以新資料累加地更新資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-165">Incrementally update partition with new data.</span></span>|  
+  
+##  <a name="related-tasks"></a><a name="bkmk_related_tasks"></a> <span data-ttu-id="bf76a-166">相關工作</span><span class="sxs-lookup"><span data-stu-id="bf76a-166">Related Tasks</span></span>  
+  
+|<span data-ttu-id="bf76a-167">Task</span><span class="sxs-lookup"><span data-stu-id="bf76a-167">Task</span></span>|<span data-ttu-id="bf76a-168">描述</span><span class="sxs-lookup"><span data-stu-id="bf76a-168">Description</span></span>|  
+|----------|-----------------|  
+|[<span data-ttu-id="bf76a-169">建立及管理表格式模型資料分割 &#40;SSAS 表格式&#41;</span><span class="sxs-lookup"><span data-stu-id="bf76a-169">Create and Manage Tabular Model Partitions &#40;SSAS Tabular&#41;</span></span>](create-and-manage-tabular-model-partitions-ssas-tabular.md)|<span data-ttu-id="bf76a-170">描述如何使用 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)]，在部署的表格式模型中建立及管理資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-170">Describes how to create and manage partitions in a deployed tabular model by using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)].</span></span>|  
+|[<span data-ttu-id="bf76a-171">處理表格式模型資料分割 &#40;SSAS 表格式&#41;</span><span class="sxs-lookup"><span data-stu-id="bf76a-171">Process Tabular Model Partitions &#40;SSAS Tabular&#41;</span></span>](process-tabular-model-partitions-ssas-tabular.md)|<span data-ttu-id="bf76a-172">描述如何使用 [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)]，在部署的表格式模型中處理資料分割。</span><span class="sxs-lookup"><span data-stu-id="bf76a-172">Describes how to process partitions in a deployed tabular model by using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)].</span></span>|  
+  
+  

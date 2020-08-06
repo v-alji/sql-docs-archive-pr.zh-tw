@@ -1,0 +1,44 @@
+---
+title: View 頁面、Reports (報表管理員) |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: reporting-services-native
+ms.topic: conceptual
+ms.assetid: 4874ba29-429b-4dd4-a8cb-d4f087237dc2
+author: maggiesMSFT
+ms.author: maggies
+manager: kfile
+ms.openlocfilehash: 4eb5733bf6ddfc8d7ba5a1d3d6f5ebe18ce85c66
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87706097"
+---
+# <a name="view-page-reports-report-manager"></a><span data-ttu-id="ad6d2-102">檢視頁面，報表 (報表管理員)</span><span class="sxs-lookup"><span data-stu-id="ad6d2-102">View Page, Reports (Report Manager)</span></span>
+  <span data-ttu-id="ad6d2-103">使用報表的 [檢視] 頁面來檢視報表。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-103">Use the View page for reports to view a report.</span></span> <span data-ttu-id="ad6d2-104">當您在「報表管理員」中第一次開啟報表時，它的格式為 HTML。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-104">When you first open a report in Report Manager, it is formatted in HTML.</span></span> <span data-ttu-id="ad6d2-105">HTML 報表包含報表工具列，會顯示在報表的最上方，讓您能用來導覽報表頁面、在報表內進行搜尋，或是將報表匯出成不同的格式。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-105">HTML reports include a report toolbar that appears at the top of the report so that you can navigate through report pages, search within a report, or export the report to a different format.</span></span> <span data-ttu-id="ad6d2-106">下列圖表顯示報表工具列。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-106">The following diagram shows the report toolbar.</span></span>  
+  
+ <span data-ttu-id="ad6d2-107">![報表工具列](media/htmlviewer-toolbar.gif "報表工具列")</span><span class="sxs-lookup"><span data-stu-id="ad6d2-107">![Report toolbar](media/htmlviewer-toolbar.gif "Report toolbar")</span></span>  
+<span data-ttu-id="ad6d2-108">報表工具列</span><span class="sxs-lookup"><span data-stu-id="ad6d2-108">Report toolbar</span></span>  
+  
+ <span data-ttu-id="ad6d2-109">在 [!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)]中，您可以將報表設定為視需要執行，或是從報表執行快照集執行。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-109">In [!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)], reports can be configured to run on demand or from a report execution snapshot.</span></span> <span data-ttu-id="ad6d2-110">如果報表為視需要執行，則每次您開啟報表時都會進行所有的資料處理和報表處理。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-110">If a report is run on demand, all data processing and report processing occur each time you open the report.</span></span> <span data-ttu-id="ad6d2-111">如果您檢視的報表是設定為以報表執行快照集的方式執行，則是在建立快照集時進行資料處理。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-111">If you view a report that is configured to run as a report execution snapshot, data processing occurred when the snapshot was created.</span></span>  
+  
+## <a name="exporting-reports"></a><span data-ttu-id="ad6d2-112">匯出報表</span><span class="sxs-lookup"><span data-stu-id="ad6d2-112">Exporting Reports</span></span>  
+ <span data-ttu-id="ad6d2-113">並不是在所有的匯出格式中都可以使用所有的報表功能。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-113">Not all report features are available in all of the export formats.</span></span> <span data-ttu-id="ad6d2-114">如果將 HTML 報表匯出成其他格式，則報表的顯示方式應該會有些差異。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-114">If you export an HTML report to another format, you can expect to see some differences in how the report appears.</span></span> <span data-ttu-id="ad6d2-115">此外，如果報表包含互動功能 (例如超連結、書籤或文件引導模式)，則在新的格式中可能無法使用這些功能，或者使用方式可能不同。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-115">Also, if the report includes interactive features (such as hyperlinks, bookmarks, or document maps) those features might not be available or work the same way in the new format.</span></span>  
+  
+## <a name="generating-data-feeds-from-report-data"></a><span data-ttu-id="ad6d2-116">從報表資料產生資料摘要</span><span class="sxs-lookup"><span data-stu-id="ad6d2-116">Generating Data Feeds from Report Data</span></span>  
+ <span data-ttu-id="ad6d2-117">您可以從報表產生資料摘要。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-117">You can generate data feeds from reports.</span></span> <span data-ttu-id="ad6d2-118">[!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)] Atom 轉譯延伸模組會產生兩份符合 Atom 規範的文件：列出報表所提供之資料摘要的 Atom 服務文件，以及列出包含報表資料之資料摘要的 Atom 服務文件。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-118">The [!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)] Atom rendering extension generates two Atom-compliant documents: an Atom service document that lists the data feeds the report provides and the data feeds that contains the report data.</span></span> <span data-ttu-id="ad6d2-119">[!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)] 會使用符合 Atom 1.0 規範的標準化格式來產生這些資料摘要，而且您可以使用取用符合 Atom 規範之資料摘要的應用程式來讀取與交換這些資料摘要。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-119">The data feeds are generated by [!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md.md)] in a standardized Atom 1.0 compliant format that it readable and exchangeable with applications that consume Atom compliant data feeds.</span></span> <span data-ttu-id="ad6d2-120">例如， [!INCLUDE[ssGemini](../includes/ssgemini-md.md)] 用戶端可以取用從報表產生的資料摘要。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-120">For example the [!INCLUDE[ssGemini](../includes/ssgemini-md.md)] client can consume data feeds that are generated from reports.</span></span>  
+  
+## <a name="running-parameterized-reports"></a><span data-ttu-id="ad6d2-121">執行參數化的報表</span><span class="sxs-lookup"><span data-stu-id="ad6d2-121">Running Parameterized Reports</span></span>  
+ <span data-ttu-id="ad6d2-122">包含輸入欄位和 **[檢視報表]** 按鈕的報表，即為參數化報表。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-122">A report that contains input fields and a **View Report** button is a parameterized report.</span></span> <span data-ttu-id="ad6d2-123">若要檢視參數化報表，您可能需要提供用來執行報表的值。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-123">To view a parameterized report, you may need to provide values that are used to run the report.</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="ad6d2-124">[!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)]的所有版本都不能使用報表執行快照集和某些匯出格式。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-124">Report execution snapshots and some export formats are not available in all editions of [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)].</span></span> <span data-ttu-id="ad6d2-125">如需詳細資訊，請參閱＜ [Features Supported by the Editions of SQL Server 2014](../../2014/getting-started/features-supported-by-the-editions-of-sql-server-2014.md)＞。</span><span class="sxs-lookup"><span data-stu-id="ad6d2-125">For more information, see [Features Supported by the Editions of SQL Server 2014](../../2014/getting-started/features-supported-by-the-editions-of-sql-server-2014.md).</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="ad6d2-126">另請參閱</span><span class="sxs-lookup"><span data-stu-id="ad6d2-126">See Also</span></span>  
+ <span data-ttu-id="ad6d2-127">[報表管理員 &#40;SSRS 原生模式&#41;](../../2014/reporting-services/report-manager-ssrs-native-mode.md) </span><span class="sxs-lookup"><span data-stu-id="ad6d2-127">[Report Manager  &#40;SSRS Native Mode&#41;](../../2014/reporting-services/report-manager-ssrs-native-mode.md) </span></span>  
+ [<span data-ttu-id="ad6d2-128">報表管理員 F1 說明</span><span class="sxs-lookup"><span data-stu-id="ad6d2-128">Report Manager F1 Help</span></span>](../../2014/reporting-services/report-manager-f1-help.md)  
+  
+  
