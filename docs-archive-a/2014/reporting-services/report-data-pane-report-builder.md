@@ -1,0 +1,41 @@
+---
+title: '[報表資料] 窗格 (報表產生器) |Microsoft Docs'
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: reporting-services-native
+ms.topic: conceptual
+f1_keywords:
+- "10435"
+helpviewer_keywords:
+- Report Data pane
+ms.assetid: 1492aa39-aeb1-4509-ab97-b9edd0901b7e
+author: maggiesMSFT
+ms.author: maggies
+manager: kfile
+ms.openlocfilehash: c87ee4411f5c1ec4c07e0fc9f0357f6fb33e3c9f
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87585089"
+---
+# <a name="report-data-pane-report-builder"></a><span data-ttu-id="f461d-102">報表資料窗格 (報表產生器)</span><span class="sxs-lookup"><span data-stu-id="f461d-102">Report Data Pane (Report Builder)</span></span>
+  <span data-ttu-id="f461d-103">[報表資料]\*\*\*\* 窗格可用於檢視報表中目前定義的參數、資料來源、資料集、欄位集合和影像。</span><span class="sxs-lookup"><span data-stu-id="f461d-103">Use the **Report Data** pane to view the currently defined parameters, data sources, datasets, field collections, and images in your report.</span></span> <span data-ttu-id="f461d-104">[圖表資料] 會以階層檢視來顯示表示報表中資料的項目。</span><span class="sxs-lookup"><span data-stu-id="f461d-104">The Report Dane displays a hierarchical view of the items that represent data in your report.</span></span> <span data-ttu-id="f461d-105">最上層節點代表內建欄位、參數、影像和資料來源參考。</span><span class="sxs-lookup"><span data-stu-id="f461d-105">The top level nodes represent built-in fields, parameters, images, and data source references.</span></span> <span data-ttu-id="f461d-106">請展開每個節點以檢視資料項目。</span><span class="sxs-lookup"><span data-stu-id="f461d-106">Expand each node to view the data items.</span></span> <span data-ttu-id="f461d-107">例如，當您展開資料來源節點時，為該資料來源所定義的資料集就會顯示。</span><span class="sxs-lookup"><span data-stu-id="f461d-107">For example, when you expand a data source node, the datasets defined for that data source appear.</span></span> <span data-ttu-id="f461d-108">在展開資料集時，其欄位集合就會顯示。</span><span class="sxs-lookup"><span data-stu-id="f461d-108">When you expand a dataset, its field collection appears.</span></span> <span data-ttu-id="f461d-109">您可以將項目拖曳至報表設計介面或 [群組] 窗格，以便連結資料與報表頁面上的選取報表項目。</span><span class="sxs-lookup"><span data-stu-id="f461d-109">Drag items to the report design surface or to the Grouping pane to link data with selected report items on the report page.</span></span> <span data-ttu-id="f461d-110">如需詳細資訊，請參閱[報表設計檢視 &#40;報表產生器&#41;](report-builder/report-design-view-report-builder.md)。</span><span class="sxs-lookup"><span data-stu-id="f461d-110">For more information, see [Report Design View &#40;Report Builder&#41;](report-builder/report-design-view-report-builder.md).</span></span>
+
+## <a name="options"></a><span data-ttu-id="f461d-111">選項</span><span class="sxs-lookup"><span data-stu-id="f461d-111">Options</span></span>
+ <span data-ttu-id="f461d-112">**內建欄位**表示報表中常用的欄位，例如報表名稱或頁碼。</span><span class="sxs-lookup"><span data-stu-id="f461d-112">**Built-in Fields** Represents commonly used fields in a report, such as the report name or page number.</span></span> <span data-ttu-id="f461d-113">如需詳細資訊，請參閱[運算式中的內建集合 &#40;報表產生器及 SSRS&#41;](report-design/built-in-collections-in-expressions-report-builder.md)。</span><span class="sxs-lookup"><span data-stu-id="f461d-113">For more information, see [Built-in Collections in Expressions &#40;Report Builder and SSRS&#41;](report-design/built-in-collections-in-expressions-report-builder.md).</span></span>
+
+ <span data-ttu-id="f461d-114">**參數**代表報表參數的集合，每一個都可以是單一值或多重值。</span><span class="sxs-lookup"><span data-stu-id="f461d-114">**Parameters** Represents the collection of report parameters, each of which can be single-valued or multivalued.</span></span> <span data-ttu-id="f461d-115">如需詳細資訊，請參閱 MSDN 上的 [報表參數 &#40;報表產生器和報表設計師&#41;](report-design/report-parameters-report-builder-and-report-designer.md)類型之報表資料來源為基礎的資料集。</span><span class="sxs-lookup"><span data-stu-id="f461d-115">For more information, see [Report Parameters &#40;Report Builder and Report Designer&#41;](report-design/report-parameters-report-builder-and-report-designer.md).</span></span>
+
+ <span data-ttu-id="f461d-116">**影像**表示報表中所使用的影像集。</span><span class="sxs-lookup"><span data-stu-id="f461d-116">**Images** Represents the set of images used in the report.</span></span> <span data-ttu-id="f461d-117">如需詳細資訊，請參閱[影像 &#40;報表產生器及 SSRS&#41;](report-design/images-report-builder-and-ssrs.md)。</span><span class="sxs-lookup"><span data-stu-id="f461d-117">For more information, see [Images &#40;Report Builder and SSRS&#41;](report-design/images-report-builder-and-ssrs.md).</span></span>
+
+ <span data-ttu-id="f461d-118">**資料來源**表示內嵌資料來源或共用資料來源的參考。</span><span class="sxs-lookup"><span data-stu-id="f461d-118">**Data sources** Represents an embedded data source or a reference to a shared data source.</span></span> <span data-ttu-id="f461d-119">資料來源代表報表資料的來源。</span><span class="sxs-lookup"><span data-stu-id="f461d-119">A data source represents a source of data for the report.</span></span> <span data-ttu-id="f461d-120">資料來源就是使用它之資料集集合的父節點。</span><span class="sxs-lookup"><span data-stu-id="f461d-120">A data source is the parent node for the collection of datasets that use it.</span></span> <span data-ttu-id="f461d-121">如需詳細資訊，請參閱[將資料加入報表 &#40;報表產生器和 SSRS&#41;](report-data/report-datasets-ssrs.md)和[報表產生器中的資料連線、資料來源及連接字串](../../2014/reporting-services/data-connections-data-sources-and-connection-strings-in-report-builder.md)。</span><span class="sxs-lookup"><span data-stu-id="f461d-121">For more information, see [Add Data to a Report &#40;Report Builder and SSRS&#41;](report-data/report-datasets-ssrs.md) and [Data Connections, Data Sources, and Connection Strings in Report Builder](../../2014/reporting-services/data-connections-data-sources-and-connection-strings-in-report-builder.md).</span></span>
+
+ <span data-ttu-id="f461d-122">**資料集**表示藉由執行一個命令從資料來源抓取的資料，例如，從資料庫中抓取 [!INCLUDE[tsql](../includes/tsql-md.md)] 資料的查詢 [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="f461d-122">**Datasets** Represents the data that is retrieved from a data source by running one command, for example, a [!INCLUDE[tsql](../includes/tsql-md.md)] query that retrieves data from a [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] database.</span></span> <span data-ttu-id="f461d-123">資料集是由查詢所指定之欄位集合的父節點，也包括導出欄位。</span><span class="sxs-lookup"><span data-stu-id="f461d-123">A dataset is the parent node for the collection of fields that is specified by the query, and also includes calculated fields.</span></span> <span data-ttu-id="f461d-124">報表產生器支援查詢設計工具，可協助您指定查詢。</span><span class="sxs-lookup"><span data-stu-id="f461d-124">Report Builder supports query designers that help you specify a query.</span></span> <span data-ttu-id="f461d-125">如需詳細資訊，請參閱[將資料加入報表 &#40;報表產生器和 SSRS&#41;](report-data/report-datasets-ssrs.md)。</span><span class="sxs-lookup"><span data-stu-id="f461d-125">For more information, see [Add Data to a Report &#40;Report Builder and SSRS&#41;](report-data/report-datasets-ssrs.md).</span></span>
+
+## <a name="see-also"></a><span data-ttu-id="f461d-126">另請參閱</span><span class="sxs-lookup"><span data-stu-id="f461d-126">See Also</span></span>
+ <span data-ttu-id="f461d-127">[資料集欄位集合 &#40;報表產生器和 ssrs 報表產生器&#41;](report-data/dataset-fields-collection-report-builder-and-ssrs.md) [[對話方塊]、[窗格] 和 [嚮導] 的](../../2014/reporting-services/report-builder-help-for-dialog-boxes-panes-and-wizards.md)[[群組] 窗格](report-design/grouping-pane-report-builder.md)&#40;報表產生器&#41;[尋找、查看和管理報表 &#40;報表產生器和 SSRS &#41;](report-builder/finding-viewing-and-managing-reports-report-builder-and-ssrs.md)</span><span class="sxs-lookup"><span data-stu-id="f461d-127">[Dataset Fields Collection &#40;Report Builder and SSRS&#41;](report-data/dataset-fields-collection-report-builder-and-ssrs.md) [Report Builder Help for Dialog Boxes, Panes, and Wizards](../../2014/reporting-services/report-builder-help-for-dialog-boxes-panes-and-wizards.md) [Grouping Pane &#40;Report Builder&#41;](report-design/grouping-pane-report-builder.md) [Finding, Viewing, and Managing Reports &#40;Report Builder and SSRS &#41;](report-builder/finding-viewing-and-managing-reports-report-builder-and-ssrs.md)</span></span>
+
+

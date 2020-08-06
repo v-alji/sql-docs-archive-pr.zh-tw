@@ -1,0 +1,57 @@
+---
+title: 檢視表 | Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: table-view-index
+ms.topic: conceptual
+helpviewer_keywords:
+- views [SQL Server], about views
+ms.assetid: ada83c28-e8b7-45d9-b53c-b3d67c8820c8
+author: stevestein
+ms.author: sstein
+ms.openlocfilehash: c7332506666b11e96255c2b903d70b232ae4efa6
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87584337"
+---
+# <a name="views"></a><span data-ttu-id="7e935-102">檢視</span><span class="sxs-lookup"><span data-stu-id="7e935-102">Views</span></span>
+  <span data-ttu-id="7e935-103">檢視表是一種虛擬資料表，是由查詢定義其內容。</span><span class="sxs-lookup"><span data-stu-id="7e935-103">A view is a virtual table whose contents are defined by a query.</span></span> <span data-ttu-id="7e935-104">與資料表類似，檢視表是由一組具名資料行和資料列所組成。</span><span class="sxs-lookup"><span data-stu-id="7e935-104">Like a table, a view consists of a set of named columns and rows of data.</span></span> <span data-ttu-id="7e935-105">除了索引檢視以外，檢視在資料庫中並沒有儲存的資料值集。</span><span class="sxs-lookup"><span data-stu-id="7e935-105">Unless indexed, a view does not exist as a stored set of data values in a database.</span></span> <span data-ttu-id="7e935-106">資料的資料列與資料行是從定義檢視的查詢所參考的資料表而來，而且在參考檢視時不會動態產生。</span><span class="sxs-lookup"><span data-stu-id="7e935-106">The rows and columns of data come from tables referenced in the query defining the view and are produced dynamically when the view is referenced.</span></span>  
+  
+ <span data-ttu-id="7e935-107">檢視是做為檢視中所參考的基礎資料表上的篩選。</span><span class="sxs-lookup"><span data-stu-id="7e935-107">A view acts as a filter on the underlying tables referenced in the view.</span></span> <span data-ttu-id="7e935-108">定義檢視的查詢可以從一或多個資料表而來，或從目前或其他資料庫中的其他檢視而來。</span><span class="sxs-lookup"><span data-stu-id="7e935-108">The query that defines the view can be from one or more tables or from other views in the current or other databases.</span></span> <span data-ttu-id="7e935-109">分散式查詢也可用以定義使用多個異質性來源之資料的檢視。</span><span class="sxs-lookup"><span data-stu-id="7e935-109">Distributed queries can also be used to define views that use data from multiple heterogeneous sources.</span></span> <span data-ttu-id="7e935-110">例如，如果您想結合不同伺服器的相似結構資料，每一個伺服器儲存著組織中不同區域的資料，這將非常有用。</span><span class="sxs-lookup"><span data-stu-id="7e935-110">This is useful, for example, if you want to combine similarly structured data from different servers, each of which stores data for a different region of your organization.</span></span>  
+  
+ <span data-ttu-id="7e935-111">檢視表的功能一般是用來對焦 (Focus)、簡化和自訂每位使用者查看資料庫的角度。</span><span class="sxs-lookup"><span data-stu-id="7e935-111">Views are generally used to focus, simplify, and customize the perception each user has of the database.</span></span> <span data-ttu-id="7e935-112">檢視也可以做為安全機制，讓使用者只可透過檢視來存取資料，而無法直接存取檢視的基底資料表。</span><span class="sxs-lookup"><span data-stu-id="7e935-112">Views can be used as security mechanisms by letting users access data through the view, without granting the users permissions to directly access the underlying base tables of the view.</span></span> <span data-ttu-id="7e935-113">檢視可以用來提供回溯相容介面，以模擬已存在但其結構描述已變更的資料表。</span><span class="sxs-lookup"><span data-stu-id="7e935-113">Views can be used to provide a backward compatible interface to emulate a table that used to exist but whose schema has changed.</span></span> <span data-ttu-id="7e935-114">當您將資料複製到 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 及從中複製資料時，也可以使用檢視表，來提高效能及分割資料。</span><span class="sxs-lookup"><span data-stu-id="7e935-114">Views can also be used when you copy data to and from [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to improve performance and to partition data.</span></span>  
+  
+## <a name="types-of-views"></a><span data-ttu-id="7e935-115">檢視表的類型</span><span class="sxs-lookup"><span data-stu-id="7e935-115">Types of Views</span></span>  
+ <span data-ttu-id="7e935-116">除了基本使用者定義檢視表的標準角色之外， [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 還提供資料庫中具有特殊用途的下列檢視表類型。</span><span class="sxs-lookup"><span data-stu-id="7e935-116">Besides the standard role of basic user-defined views, [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] provides the following types of views that serve special purposes in a database.</span></span>  
+  
+ <span data-ttu-id="7e935-117">索引檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-117">Indexed Views</span></span>  
+ <span data-ttu-id="7e935-118">索引檢視表是已具體化的檢視。</span><span class="sxs-lookup"><span data-stu-id="7e935-118">An indexed view is a view that has been materialized.</span></span> <span data-ttu-id="7e935-119">這表示已計算檢視表定義，而且產生的資料會像資料表一樣儲存。</span><span class="sxs-lookup"><span data-stu-id="7e935-119">This means the view definition has been computed and the resulting data stored just like a table.</span></span> <span data-ttu-id="7e935-120">若要索引檢視表，就必須在該檢視表上建立唯一叢集索引。</span><span class="sxs-lookup"><span data-stu-id="7e935-120">You index a view by creating a unique clustered index on it.</span></span> <span data-ttu-id="7e935-121">索引檢視表可以大幅改善某些查詢類型的效能。</span><span class="sxs-lookup"><span data-stu-id="7e935-121">Indexed views can dramatically improve the performance of some types of queries.</span></span> <span data-ttu-id="7e935-122">索引檢視最適用於彙總許多資料列的查詢。</span><span class="sxs-lookup"><span data-stu-id="7e935-122">Indexed views work best for queries that aggregate many rows.</span></span> <span data-ttu-id="7e935-123">它們不適用於經常更新的基礎資料集。</span><span class="sxs-lookup"><span data-stu-id="7e935-123">They are not well-suited for underlying data sets that are frequently updated.</span></span>  
+  
+ <span data-ttu-id="7e935-124">分割區檢視</span><span class="sxs-lookup"><span data-stu-id="7e935-124">Partitioned Views</span></span>  
+ <span data-ttu-id="7e935-125">資料分割檢視會水平聯結一個或多個伺服器上一組成員資料表的分割資料。</span><span class="sxs-lookup"><span data-stu-id="7e935-125">A partitioned view joins horizontally partitioned data from a set of member tables across one or more servers.</span></span> <span data-ttu-id="7e935-126">這可讓顯示的資料好像源自於一個資料表。</span><span class="sxs-lookup"><span data-stu-id="7e935-126">This makes the data appear as if from one table.</span></span> <span data-ttu-id="7e935-127">在 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 相同執行個體上聯結成員資料表的檢視是本機資料分割檢視。</span><span class="sxs-lookup"><span data-stu-id="7e935-127">A view that joins member tables on the same instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] is a local partitioned view.</span></span>  
+  
+ <span data-ttu-id="7e935-128">系統檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-128">System Views</span></span>  
+ <span data-ttu-id="7e935-129">系統檢視表會公開目錄中繼資料。</span><span class="sxs-lookup"><span data-stu-id="7e935-129">System views expose catalog metadata.</span></span> <span data-ttu-id="7e935-130">您可以使用系統檢視表來傳回 [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] 執行個體或此執行個體中所定義物件的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="7e935-130">You can use system views to return information about the instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] or the objects defined in the instance.</span></span> <span data-ttu-id="7e935-131">例如，您可以查詢 sys.databases 目錄檢視，以傳回執行個體中可用的使用者定義資料庫的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="7e935-131">For example, you can query the sys.databases catalog view to return information about the user-defined databases available in the instance.</span></span> <span data-ttu-id="7e935-132">如需詳細資訊，請參閱[系統檢視 &#40;Transact-SQL&#41;](/sql/t-sql/language-reference)。</span><span class="sxs-lookup"><span data-stu-id="7e935-132">For more information, see [System Views &#40;Transact-SQL&#41;](/sql/t-sql/language-reference)</span></span>  
+  
+## <a name="common-view-tasks"></a><span data-ttu-id="7e935-133">一般檢視工作</span><span class="sxs-lookup"><span data-stu-id="7e935-133">Common View Tasks</span></span>  
+ <span data-ttu-id="7e935-134">下表提供與建立或修改檢視相關聯之一般工作的連結。</span><span class="sxs-lookup"><span data-stu-id="7e935-134">The following table provides links to common tasks associated with creating or modifying a view.</span></span>  
+  
+|<span data-ttu-id="7e935-135">檢視工作</span><span class="sxs-lookup"><span data-stu-id="7e935-135">View Tasks</span></span>|<span data-ttu-id="7e935-136">主題</span><span class="sxs-lookup"><span data-stu-id="7e935-136">Topic</span></span>|  
+|----------------|-----------|  
+|<span data-ttu-id="7e935-137">描述如何建立檢視表。</span><span class="sxs-lookup"><span data-stu-id="7e935-137">Describes how to create a view.</span></span>|[<span data-ttu-id="7e935-138">建立檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-138">Create Views</span></span>](../views/views.md)|  
+|<span data-ttu-id="7e935-139">描述如何建立索引檢視表。</span><span class="sxs-lookup"><span data-stu-id="7e935-139">Describes how to create an indexed view.</span></span>|[<span data-ttu-id="7e935-140">建立索引檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-140">Create Indexed Views</span></span>](../views/create-indexed-views.md)|  
+|<span data-ttu-id="7e935-141">描述如何修改檢視表定義。</span><span class="sxs-lookup"><span data-stu-id="7e935-141">Describes how to modify the view definition.</span></span>|[<span data-ttu-id="7e935-142">修改檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-142">Modify Views</span></span>](../views/modify-views.md)|  
+|<span data-ttu-id="7e935-143">描述如何透過檢視表修改資料。</span><span class="sxs-lookup"><span data-stu-id="7e935-143">Describes how to modify data through a view.</span></span>|[<span data-ttu-id="7e935-144">透過檢視表修改資料</span><span class="sxs-lookup"><span data-stu-id="7e935-144">Modify Data Through a View</span></span>](../views/modify-data-through-a-view.md)|  
+|<span data-ttu-id="7e935-145">描述如何刪除檢視表。</span><span class="sxs-lookup"><span data-stu-id="7e935-145">Describes how to delete a view.</span></span>|[<span data-ttu-id="7e935-146">刪除檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-146">Delete Views</span></span>](../views/delete-views.md)|  
+|<span data-ttu-id="7e935-147">描述如何傳回檢視表 (例如檢視表定義) 的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="7e935-147">Describes how to return information about a view such as the view definition.</span></span>|[<span data-ttu-id="7e935-148">取得檢視表的資訊</span><span class="sxs-lookup"><span data-stu-id="7e935-148">Get Information About a View</span></span>](../views/get-information-about-a-view.md)|  
+|<span data-ttu-id="7e935-149">描述如何重新命名檢視表。</span><span class="sxs-lookup"><span data-stu-id="7e935-149">Describes how to rename a view.</span></span>|[<span data-ttu-id="7e935-150">重新命名檢視表</span><span class="sxs-lookup"><span data-stu-id="7e935-150">Rename Views</span></span>](../views/rename-views.md)|  
+  
+## <a name="see-also"></a><span data-ttu-id="7e935-151">另請參閱</span><span class="sxs-lookup"><span data-stu-id="7e935-151">See Also</span></span>  
+ <span data-ttu-id="7e935-152">[建立 XML 資料行的檢視表](../xml/create-views-over-xml-columns.md) </span><span class="sxs-lookup"><span data-stu-id="7e935-152">[Create Views over XML Columns](../xml/create-views-over-xml-columns.md) </span></span>  
+ [<span data-ttu-id="7e935-153">CREATE VIEW &#40;Transact-SQL&#41;</span><span class="sxs-lookup"><span data-stu-id="7e935-153">CREATE VIEW &#40;Transact-SQL&#41;</span></span>](/sql/t-sql/statements/create-view-transact-sql)  
+  
+  

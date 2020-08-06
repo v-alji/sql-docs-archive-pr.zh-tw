@@ -1,0 +1,118 @@
+---
+title: Analysis Services MDX 查詢設計工具 (SSAS) |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.asvs.bidtoolset.asmdxquerydes.f1
+ms.assetid: a2fb0b79-802a-4dac-bd9a-32dfe2e8c4d4
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 98c08da8e7caaba268346075a3bb3e9e8e5dc3c1
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87593201"
+---
+# <a name="analysis-services-mdx-query-designer-ssas"></a><span data-ttu-id="17187-102">Analysis Services MDX 查詢設計工具 (SSAS)</span><span class="sxs-lookup"><span data-stu-id="17187-102">Analysis Services MDX Query Designer (SSAS)</span></span>
+  <span data-ttu-id="17187-103">Analysis Services 多維度運算式 (MDX) 查詢設計工具提供圖形化使用者介面，可協助您建立資料來源的 MDX 查詢 [!INCLUDE[msCoName](../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="17187-103">The Analysis Services Multidimensional Expression (MDX) query designer provides a graphical user interfaces to help you create MDX queries for a [!INCLUDE[msCoName](../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] data source.</span></span> <span data-ttu-id="17187-104">MDX 圖形化查詢設計工具有兩種模式：設計模式和查詢模式。</span><span class="sxs-lookup"><span data-stu-id="17187-104">The MDX graphical query designer has two modes: design mode and query mode.</span></span> <span data-ttu-id="17187-105">每一種模式都會提供 [中繼資料] 窗格，您可以在這個窗格中，從選取的 Cube 中拖曳成員，以建立 MDX 查詢，擷取您要使用的資料。</span><span class="sxs-lookup"><span data-stu-id="17187-105">Each mode provides a metadata pane from which you can drag members from the selected cubes to build an MDX query that retrieves the data you want to use.</span></span>  
+  
+> [!IMPORTANT]  
+>  <span data-ttu-id="17187-106">當使用者建立與執行查詢時，可以存取資料來源。</span><span class="sxs-lookup"><span data-stu-id="17187-106">Users access data sources when they create and run queries.</span></span> <span data-ttu-id="17187-107">您應該授與資料來源的最小權限，例如唯讀權限。</span><span class="sxs-lookup"><span data-stu-id="17187-107">You should grant minimal permissions on the data sources, such as read-only permissions.</span></span>  
+>   
+>  <span data-ttu-id="17187-108">執行查詢時，目前使用者的認證 (而非在 [模擬資訊] 頁面中指定的認證) 會用來連接資料來源。</span><span class="sxs-lookup"><span data-stu-id="17187-108">The credentials of the current user, not the credentials specified in the Impersonation Information page, are used to connect to the data source when a query is executed.</span></span>  
+  
+ <span data-ttu-id="17187-109">下列幾節會針對圖形化查詢設計工具的各種模式，描述其中的工具列按鈕和查詢設計工具窗格。</span><span class="sxs-lookup"><span data-stu-id="17187-109">The following sections describe the toolbar buttons and query designer panes for each mode of the graphical query designer.</span></span>  
+  
+## <a name="graphical-mdx-query-designer-in-design-mode"></a><span data-ttu-id="17187-110">設計模式中的圖形化 MDX 查詢設計工具</span><span class="sxs-lookup"><span data-stu-id="17187-110">Graphical MDX Query Designer in Design Mode</span></span>  
+ <span data-ttu-id="17187-111">當您編輯 MDX 查詢時，圖形化 MDX 查詢設計工具會在 [設計] 模式下開啟。</span><span class="sxs-lookup"><span data-stu-id="17187-111">When you edit an MDX query, the graphical MDX query designer opens in Design mode.</span></span>  
+  
+ <span data-ttu-id="17187-112">下圖會標示出設計模式的窗格。</span><span class="sxs-lookup"><span data-stu-id="17187-112">The following figure labels the panes for Design mode.</span></span>  
+  
+ <span data-ttu-id="17187-113">![Analysis Services MDX 查詢設計工具，設計檢視](media/rsqd-dsawas-mdx-designmode.gif "Analysis Services MDX 查詢設計工具，設計檢視")</span><span class="sxs-lookup"><span data-stu-id="17187-113">![Analysis Services MDX query designer, design view](media/rsqd-dsawas-mdx-designmode.gif "Analysis Services MDX query designer, design view")</span></span>  
+  
+ <span data-ttu-id="17187-114">下表列出此模式下的窗格：</span><span class="sxs-lookup"><span data-stu-id="17187-114">The following table lists the panes in this mode:</span></span>  
+  
+|<span data-ttu-id="17187-115">窗格</span><span class="sxs-lookup"><span data-stu-id="17187-115">Pane</span></span>|<span data-ttu-id="17187-116">函式</span><span class="sxs-lookup"><span data-stu-id="17187-116">Function</span></span>|  
+|----------|--------------|  
+|<span data-ttu-id="17187-117">[Select Cube (選取 Cube)] 按鈕 (**...**)</span><span class="sxs-lookup"><span data-stu-id="17187-117">Select Cube button (**...**)</span></span>|<span data-ttu-id="17187-118">顯示目前選取的 Cube。</span><span class="sxs-lookup"><span data-stu-id="17187-118">Displays the currently selected cube.</span></span>|  
+|<span data-ttu-id="17187-119">[中繼資料] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-119">Metadata pane</span></span>|<span data-ttu-id="17187-120">顯示在選取的 Cube 上定義之量值、關鍵效能指標 (KPI) 和維度的階層式清單。</span><span class="sxs-lookup"><span data-stu-id="17187-120">Displays a hierarchical list of measures, Key Performance Indicators (KPIs), and dimensions defined on the selected cube.</span></span>|  
+|<span data-ttu-id="17187-121">[導出成員] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-121">Calculated Members pane</span></span>|<span data-ttu-id="17187-122">顯示目前已定義，可在查詢中使用的導出成員。</span><span class="sxs-lookup"><span data-stu-id="17187-122">Displays the currently defined calculated members available for use in the query.</span></span>|  
+|<span data-ttu-id="17187-123">[篩選] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-123">Filter pane</span></span>|<span data-ttu-id="17187-124">用來選擇維度和相關階層，以便篩選來源端的資料和限制傳回的資料。</span><span class="sxs-lookup"><span data-stu-id="17187-124">Use to choose dimensions and related hierarchies to filter data at the source and limit data returned.</span></span>|  
+|<span data-ttu-id="17187-125">[資料] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-125">Data pane</span></span>|<span data-ttu-id="17187-126">在您從 [中繼資料] 窗格和 [導出成員] 窗格中拖曳項目時，顯示結果集的資料行標題。</span><span class="sxs-lookup"><span data-stu-id="17187-126">Displays the column headings for the result set as you drag items from the Metadata pane and the Calculated Members pane.</span></span> <span data-ttu-id="17187-127">如果已選取 **[自動執行]** 按鈕，便會自動更新結果集。</span><span class="sxs-lookup"><span data-stu-id="17187-127">Automatically updates the result set if the **AutoExecute** button is selected.</span></span>|  
+  
+ <span data-ttu-id="17187-128">您可以將 [中繼資料] 窗格中的維度、量值和 KPI 以及 [導出成員] 窗格中的導出成員，拖曳至 [資料] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-128">You can drag dimensions, measures, and KPIs from the Metadata pane, and calculated members from the Calculated Member pane, onto the Data pane.</span></span> <span data-ttu-id="17187-129">在 [篩選] 窗格中，則可以選取維度和相關階層，以及設定篩選運算式來限制查詢可使用的資料。</span><span class="sxs-lookup"><span data-stu-id="17187-129">In the Filter pane, you can select dimensions and related hierarchies, and set filter expressions to limit the data available to query.</span></span> <span data-ttu-id="17187-130">如果已選取工具列上的 [自動執行]\*\*\*\* (![自動執行查詢](media/rsqdicon-autoexecute.gif "自動執行查詢")) 切換按鈕，則每次您將中繼資料物件放到 [資料] 窗格中時，查詢設計工具便會執行查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-130">If the **AutoExecute** (![AutoExecute the query](media/rsqdicon-autoexecute.gif "AutoExecute the query")) toggle button on the toolbar is selected, the query designer runs the query every time that you drop a metadata object onto the Data pane.</span></span> <span data-ttu-id="17187-131">您可以使用工具列上的 [執行]\*\*\*\* (![執行查詢](media/rsqdicon-run.gif "執行查詢")) 按鈕，以手動方式執行查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-131">You can manually run the query using the **Run** (![Run the query](media/rsqdicon-run.gif "Run the query")) button on the toolbar.</span></span>  
+  
+ <span data-ttu-id="17187-132">當您在此模式下建立 MDX 查詢時，查詢中會自動包含下列其他屬性：</span><span class="sxs-lookup"><span data-stu-id="17187-132">When you create an MDX query in this mode, the following additional properties are automatically included in the query:</span></span>  
+  
+ <span data-ttu-id="17187-133">**成員屬性** ：MEMBER_CAPTION、MEMBER_UNIQUE_NAME</span><span class="sxs-lookup"><span data-stu-id="17187-133">**Member Properties** MEMBER_CAPTION, MEMBER_UNIQUE_NAME</span></span>  
+  
+ <span data-ttu-id="17187-134">**資料格屬性** ：VALUE、BACK_COLOR、FORE_COLOR、FORMATTED_VALUE、FORMAT_STRING、FONT_NAME、FONT_SIZE、FONT_FLAGS</span><span class="sxs-lookup"><span data-stu-id="17187-134">**Cell Properties** VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</span></span>  
+  
+ <span data-ttu-id="17187-135">若要指定您自己的其他屬性，您必須在 [查詢] 模式下手動編輯 MDX 查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-135">To specify your own additional properties, you must manually edit the MDX query in Query mode.</span></span>  
+  
+ <span data-ttu-id="17187-136">不支援從檔案匯入 .mdx 查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-136">Importing an .mdx query from a file is not supported.</span></span>  
+  
+> [!NOTE]  
+>  <span data-ttu-id="17187-137">如需 MDX 的詳細資訊以及 MDX 查詢設計工具的一般資訊，請參閱《 [SQL Server 線上叢書》](https://go.microsoft.com/fwlink/?linkid=98335)中的＜MDX 查詢編輯器 (Analysis Services - 多維度資料)＞。</span><span class="sxs-lookup"><span data-stu-id="17187-137">For more information about MDX and general information about the MDX query designer, see "MDX Query Editor (Analysis Services - Multidimensional Data)" in [SQL Server Books Online](https://go.microsoft.com/fwlink/?linkid=98335).</span></span>  
+  
+### <a name="graphical-mdx-query-designer-toolbar-in-design-mode"></a><span data-ttu-id="17187-138">設計模式中的圖形化 MDX 查詢設計工具工具列</span><span class="sxs-lookup"><span data-stu-id="17187-138">Graphical MDX Query Designer Toolbar in Design Mode</span></span>  
+ <span data-ttu-id="17187-139">查詢設計工具工具列會提供按鈕，協助您使用圖形化介面設計 MDX 查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-139">The query designer toolbar provides buttons to help you design MDX queries using the graphical interface.</span></span> <span data-ttu-id="17187-140">下表列出這些按鈕及其功能。</span><span class="sxs-lookup"><span data-stu-id="17187-140">The following table lists the buttons and their functions.</span></span>  
+  
+|<span data-ttu-id="17187-141">按鈕</span><span class="sxs-lookup"><span data-stu-id="17187-141">Button</span></span>|<span data-ttu-id="17187-142">描述</span><span class="sxs-lookup"><span data-stu-id="17187-142">Description</span></span>|  
+|------------|-----------------|  
+|<span data-ttu-id="17187-143">**當成文字編輯**</span><span class="sxs-lookup"><span data-stu-id="17187-143">**Edit As Text**</span></span>|<span data-ttu-id="17187-144">這種資料來源類型不啟用</span><span class="sxs-lookup"><span data-stu-id="17187-144">Not enabled for this data source type.</span></span>|  
+|<span data-ttu-id="17187-145">**匯入**</span><span class="sxs-lookup"><span data-stu-id="17187-145">**Import**</span></span>|<span data-ttu-id="17187-146">從檔案系統上的報表定義 (.rdl) 檔案匯入現有的查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-146">Import an existing query from a report definition (.rdl) file on the file system.</span></span>|  
+|<span data-ttu-id="17187-147">![變更為 MDX 查詢檢視](media/rsqdicon-commandtypemdx.gif "變更為 MDX 查詢檢視")</span><span class="sxs-lookup"><span data-stu-id="17187-147">![Change to MDX query view](media/rsqdicon-commandtypemdx.gif "Change to MDX query view")</span></span>|<span data-ttu-id="17187-148">切換到命令類型 MDX。</span><span class="sxs-lookup"><span data-stu-id="17187-148">Switch to Command Type MDX.</span></span>|  
+|<span data-ttu-id="17187-149">![重新整理結果資料](media/rsqdicon-refresh.gif "重新整理結果資料")</span><span class="sxs-lookup"><span data-stu-id="17187-149">![Refresh result data](media/rsqdicon-refresh.gif "Refresh result data")</span></span>|<span data-ttu-id="17187-150">重新整理資料來源中的中繼資料。</span><span class="sxs-lookup"><span data-stu-id="17187-150">Refresh metadata from the data source.</span></span>|  
+|<span data-ttu-id="17187-151">![新增導出成員](media/rsqdicon-addcalculatedmember.gif "加入導出成員")</span><span class="sxs-lookup"><span data-stu-id="17187-151">![Add calculated member](media/rsqdicon-addcalculatedmember.gif "Add calculated member")</span></span>|<span data-ttu-id="17187-152">顯示 **[導出成員產生器]** 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="17187-152">Display the **Calculated Member Builder** dialog box.</span></span>|  
+|<span data-ttu-id="17187-153">![切換以顯示空資料格](media/rsqdicon-showemptycells.gif "切換以顯示空資料格")</span><span class="sxs-lookup"><span data-stu-id="17187-153">![Toggle for show empty cells](media/rsqdicon-showemptycells.gif "Toggle for show empty cells")</span></span>|<span data-ttu-id="17187-154">在顯示或隱藏 [資料] 窗格中的空白資料格之間切換</span><span class="sxs-lookup"><span data-stu-id="17187-154">Toggle between showing and not showing empty cells in the Data pane.</span></span> <span data-ttu-id="17187-155">(這相當於使用 MDX 中的 NON EMPTY 子句)。</span><span class="sxs-lookup"><span data-stu-id="17187-155">(This is the equivalent to using the NON EMPTY clause in MDX).</span></span>|  
+|<span data-ttu-id="17187-156">![自動執行查詢](media/rsqdicon-autoexecute.gif "自動執行查詢")</span><span class="sxs-lookup"><span data-stu-id="17187-156">![AutoExecute the query](media/rsqdicon-autoexecute.gif "AutoExecute the query")</span></span>|<span data-ttu-id="17187-157">每次進行變更時，自動執行查詢並顯示結果。</span><span class="sxs-lookup"><span data-stu-id="17187-157">Automatically run the query and show the result every time a change is made.</span></span> <span data-ttu-id="17187-158">結果會顯示在 [資料] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-158">Results are shown in the Data pane.</span></span>|  
+|<span data-ttu-id="17187-159">![顯示彙總按鈕](media/rsqdicon-showaggregations.gif "顯示彙總按鈕")</span><span class="sxs-lookup"><span data-stu-id="17187-159">![Show Aggregations button](media/rsqdicon-showaggregations.gif "Show Aggregations button")</span></span>|<span data-ttu-id="17187-160">將彙總顯示在 [資料] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-160">Show aggregations in the Data pane.</span></span>|  
+|<span data-ttu-id="17187-161">![刪除](media/rsqdicon-delete.gif "刪除")</span><span class="sxs-lookup"><span data-stu-id="17187-161">![Delete](media/rsqdicon-delete.gif "Delete")</span></span>|<span data-ttu-id="17187-162">從查詢中刪除 [資料] 窗格中選取的資料行。</span><span class="sxs-lookup"><span data-stu-id="17187-162">Delete the selected column in the Data pane from the query.</span></span>|  
+|<span data-ttu-id="17187-163">![[查詢參數] 對話方塊圖示](media/iconqueryparameter.gif "[查詢參數] 對話方塊圖示")</span><span class="sxs-lookup"><span data-stu-id="17187-163">![Icon for the Query Parameters dialog box](media/iconqueryparameter.gif "Icon for the Query Parameters dialog box")</span></span>|<span data-ttu-id="17187-164">顯示 **[查詢參數]** 對話方塊。</span><span class="sxs-lookup"><span data-stu-id="17187-164">Display the **Query Parameters** dialog box.</span></span> <span data-ttu-id="17187-165">當您指定查詢參數的值時，將會自動建立同名的參數。</span><span class="sxs-lookup"><span data-stu-id="17187-165">When you specify values for a query parameter, a parameter with the same name is automatically created.</span></span>|  
+|<span data-ttu-id="17187-166">![準備查詢按鈕](media/rsqdicon-preparequery.gif "準備查詢按鈕")</span><span class="sxs-lookup"><span data-stu-id="17187-166">![Prepare Query button](media/rsqdicon-preparequery.gif "Prepare Query button")</span></span>|<span data-ttu-id="17187-167">準備查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-167">Prepare the query.</span></span>|  
+|<span data-ttu-id="17187-168">![執行查詢](media/rsqdicon-run.gif "執行查詢")</span><span class="sxs-lookup"><span data-stu-id="17187-168">![Run the query](media/rsqdicon-run.gif "Run the query")</span></span>|<span data-ttu-id="17187-169">執行查詢並將結果顯示在 [資料] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-169">Run the query and display the results in the Data pane.</span></span>|  
+|<span data-ttu-id="17187-170">![取消查詢](media/rsqdicon-cancel.gif "取消查詢")</span><span class="sxs-lookup"><span data-stu-id="17187-170">![Cancel the query](media/rsqdicon-cancel.gif "Cancel the query")</span></span>|<span data-ttu-id="17187-171">取消查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-171">Cancel the query.</span></span>|  
+|<span data-ttu-id="17187-172">![切換到設計模式](media/rsqdicon-designmode.gif "切換到設計模式")</span><span class="sxs-lookup"><span data-stu-id="17187-172">![Switch to Design mode](media/rsqdicon-designmode.gif "Switch to Design mode")</span></span>|<span data-ttu-id="17187-173">在「設計」模式與「查詢」模式之間切換。</span><span class="sxs-lookup"><span data-stu-id="17187-173">Toggle between Design mode and Query mode.</span></span>|  
+  
+## <a name="graphical-mdx-query-designer-in-query-mode"></a><span data-ttu-id="17187-174">查詢模式中的圖形化 MDX 查詢設計工具</span><span class="sxs-lookup"><span data-stu-id="17187-174">Graphical MDX Query Designer in Query Mode</span></span>  
+ <span data-ttu-id="17187-175">若要將圖形化查詢設計工具變更為 **[查詢]** 模式，請按一下工具列上的 **[設計模式]** 按鈕。</span><span class="sxs-lookup"><span data-stu-id="17187-175">To change the graphical query designer to **Query** mode, click the **Design Mode** button on the toolbar.</span></span>  
+  
+ <span data-ttu-id="17187-176">下圖會標示出「查詢」模式中的窗格。</span><span class="sxs-lookup"><span data-stu-id="17187-176">The following figure labels the panes for Query mode.</span></span>  
+  
+ <span data-ttu-id="17187-177">![Analysis Services MDX 查詢設計工具，查詢檢視](media/rsqd-dsawas-mdx-querymode.gif "Analysis Services MDX 查詢設計工具，查詢檢視")</span><span class="sxs-lookup"><span data-stu-id="17187-177">![Analysis Services MDX query designer, query view](media/rsqd-dsawas-mdx-querymode.gif "Analysis Services MDX query designer, query view")</span></span>  
+  
+ <span data-ttu-id="17187-178">下表列出此模式下的窗格：</span><span class="sxs-lookup"><span data-stu-id="17187-178">The following table lists the panes in this mode:</span></span>  
+  
+|<span data-ttu-id="17187-179">窗格</span><span class="sxs-lookup"><span data-stu-id="17187-179">Pane</span></span>|<span data-ttu-id="17187-180">函式</span><span class="sxs-lookup"><span data-stu-id="17187-180">Function</span></span>|  
+|----------|--------------|  
+|<span data-ttu-id="17187-181">[Select Cube (選取 Cube)] 按鈕 (**...**)</span><span class="sxs-lookup"><span data-stu-id="17187-181">Select Cube button (**...**)</span></span>|<span data-ttu-id="17187-182">顯示目前選取的 Cube。</span><span class="sxs-lookup"><span data-stu-id="17187-182">Displays the currently selected cube.</span></span>|  
+|<span data-ttu-id="17187-183">[中繼資料/函數/範本] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-183">Metadata/Functions/Templates pane</span></span>|<span data-ttu-id="17187-184">顯示在選取的 Cube 上定義之量值、KPI 和維度的階層式清單。</span><span class="sxs-lookup"><span data-stu-id="17187-184">Displays a hierarchical list of measures, KPIs, and dimensions defined on the selected cube.</span></span>|  
+|<span data-ttu-id="17187-185">[查詢] 窗格</span><span class="sxs-lookup"><span data-stu-id="17187-185">Query pane</span></span>|<span data-ttu-id="17187-186">顯示查詢文字。</span><span class="sxs-lookup"><span data-stu-id="17187-186">Displays the query text.</span></span>|  
+|<span data-ttu-id="17187-187">結果窗格</span><span class="sxs-lookup"><span data-stu-id="17187-187">Result pane</span></span>|<span data-ttu-id="17187-188">顯示執行查詢的結果。</span><span class="sxs-lookup"><span data-stu-id="17187-188">Displays the results of running the query.</span></span>|  
+  
+ <span data-ttu-id="17187-189">[中繼資料] 窗格會顯示 **[中繼資料]**、 **[函數]** 和 **[範本]** 的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="17187-189">The Metadata pane displays tabs for **Metadata**, **Functions**, and **Templates**.</span></span> <span data-ttu-id="17187-190">從 **[中繼資料]** 索引標籤中，可以將維度、階層、KPI 和量值拖曳至 [MDX 查詢] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-190">From the **Metadata** tab, you can drag dimensions, hierarchies, KPIs, and measures onto the MDX Query pane.</span></span> <span data-ttu-id="17187-191">從 **[函數]** 索引標籤中，可以將函數拖曳至 [MDX 查詢] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-191">From the **Functions** tab, you can drag functions onto the MDX Query pane.</span></span> <span data-ttu-id="17187-192">從 **[範本]** 索引標籤中，可以將 MDX 範本加入至 [MDX 查詢] 窗格中。</span><span class="sxs-lookup"><span data-stu-id="17187-192">From the **Templates** tab, you can add MDX templates to the MDX Query pane.</span></span> <span data-ttu-id="17187-193">當您執行查詢時，[結果] 窗格會顯示 MDX 查詢的結果。</span><span class="sxs-lookup"><span data-stu-id="17187-193">When you execute the query, the Result pane displays the results for the MDX query.</span></span>  
+  
+ <span data-ttu-id="17187-194">您可以擴充在 [設計] 模式下產生的預設 MDX 查詢，以包含其他成員屬性和資料格屬性。</span><span class="sxs-lookup"><span data-stu-id="17187-194">You can extend the default MDX query generated in Design mode to include additional member properties and cell properties.</span></span> <span data-ttu-id="17187-195">當您執行查詢時，這些值不會出現在結果集中。</span><span class="sxs-lookup"><span data-stu-id="17187-195">When you run the query, these values do not appear in the result set.</span></span> <span data-ttu-id="17187-196">但是，這些值會隨資料集欄位集合傳回，而且您可以使用這些值。</span><span class="sxs-lookup"><span data-stu-id="17187-196">However, they are passed back with the dataset field collection and you can use these values.</span></span>  
+  
+### <a name="graphical-query-designer-toolbar-in-query-mode"></a><span data-ttu-id="17187-197">查詢模式中的圖形化查詢設計工具工具列</span><span class="sxs-lookup"><span data-stu-id="17187-197">Graphical Query Designer Toolbar in Query Mode</span></span>  
+ <span data-ttu-id="17187-198">查詢設計工具工具列會提供按鈕，協助您使用圖形化介面設計 MDX 查詢。</span><span class="sxs-lookup"><span data-stu-id="17187-198">The query designer toolbar provides buttons to help you design MDX queries using the graphical interface.</span></span>  
+  
+ <span data-ttu-id="17187-199">「設計」模式與「查詢」模式的工具列按鈕完全相同，唯一不同的是在「查詢」模式中未啟用下列按鈕：</span><span class="sxs-lookup"><span data-stu-id="17187-199">The toolbar buttons are identical between Design mode and Query mode, but the following buttons are not enabled for Query mode:</span></span>  
+  
+-   <span data-ttu-id="17187-200">**當成文字編輯**</span><span class="sxs-lookup"><span data-stu-id="17187-200">**Edit As Text**</span></span>  
+  
+-   <span data-ttu-id="17187-201">**新增導出成員** (![新增導出成員](media/rsqdicon-addcalculatedmember.gif "加入導出成員"))</span><span class="sxs-lookup"><span data-stu-id="17187-201">**Add Calculated Member** (![Add calculated member](media/rsqdicon-addcalculatedmember.gif "Add calculated member"))</span></span>  
+  
+-   <span data-ttu-id="17187-202">**顯示空資料格** (![切換以顯示空資料格](media/rsqdicon-showemptycells.gif "切換以顯示空資料格"))</span><span class="sxs-lookup"><span data-stu-id="17187-202">**Show Empty Cells** (![Toggle for show empty cells](media/rsqdicon-showemptycells.gif "Toggle for show empty cells"))</span></span>  
+  
+-   <span data-ttu-id="17187-203">**自動執行** (![自動執行查詢](media/rsqdicon-autoexecute.gif "自動執行查詢"))</span><span class="sxs-lookup"><span data-stu-id="17187-203">**AutoExecute** (![AutoExecute the query](media/rsqdicon-autoexecute.gif "AutoExecute the query"))</span></span>  
+  
+-   <span data-ttu-id="17187-204">**顯示彙總** (![顯示彙總按鈕](media/rsqdicon-showaggregations.gif "顯示彙總按鈕"))</span><span class="sxs-lookup"><span data-stu-id="17187-204">**Show Aggregations** (![Show Aggregations button](media/rsqdicon-showaggregations.gif "Show Aggregations button"))</span></span>  
+  
+  

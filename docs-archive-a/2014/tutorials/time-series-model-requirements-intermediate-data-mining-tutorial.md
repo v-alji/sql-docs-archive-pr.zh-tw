@@ -1,0 +1,73 @@
+---
+title: 瞭解時間序列模型的需求 (中繼資料採礦教學課程) |Microsoft Docs
+ms.custom: ''
+ms.date: 03/06/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+ms.assetid: 1ce2b3e3-108a-4f7e-985f-a20b816d0da7
+author: minewiskan
+ms.author: owend
+manager: kfile
+ms.openlocfilehash: cf92effaabb38a93a294bdf194025a524ad601f3
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87584873"
+---
+# <a name="understanding-the-requirements-for-a-time-series-model-intermediate-data-mining-tutorial"></a><span data-ttu-id="1b399-102">了解時間序列模型的需求 (中繼資料採礦教學課程)</span><span class="sxs-lookup"><span data-stu-id="1b399-102">Understanding the Requirements for a Time Series Model (Intermediate Data Mining Tutorial)</span></span>
+  <span data-ttu-id="1b399-103">當您準備要用於預測模型的資料時，必須確認該資料包含可用於識別時間序列步驟的資料行。</span><span class="sxs-lookup"><span data-stu-id="1b399-103">When you are preparing data for use in a forecasting model, you must ensure that your data contains a column that can be used to identify the steps in the time series.</span></span> <span data-ttu-id="1b399-104">該資料行將指定為 `Key Time` 資料行。</span><span class="sxs-lookup"><span data-stu-id="1b399-104">That column will be designated as the `Key Time` column.</span></span> <span data-ttu-id="1b399-105">此資料行是索引鍵，因此必須包含唯一的數值。</span><span class="sxs-lookup"><span data-stu-id="1b399-105">Because it is a key, the column must contain unique numeric values.</span></span>  
+  
+ <span data-ttu-id="1b399-106">選擇 `Key Time` 資料行的正確單位是分析中重要的一環。</span><span class="sxs-lookup"><span data-stu-id="1b399-106">Choosing the right unit for the `Key Time` column is an important part of analysis.</span></span> <span data-ttu-id="1b399-107">例如，假設銷售資料每分鐘重新整理一次。</span><span class="sxs-lookup"><span data-stu-id="1b399-107">For example, suppose your sales data is refreshed on a minute by minute basis.</span></span> <span data-ttu-id="1b399-108">您不一定要將分鐘當做時間序列單位使用；您可能會發現，依日、週或甚至月來積存銷售資料可能更有意義。</span><span class="sxs-lookup"><span data-stu-id="1b399-108">You would not necessarily use minutes as the unit for the time series; you might find it more meaningful to roll up sales data by the day, week, or even month.</span></span> <span data-ttu-id="1b399-109">如果您不確定要使用哪個時間單位，可以為每個彙總建立一個新的資料來源檢視，並建立相關的模型，看看是否在每個彙總層級出現不同的趨勢。</span><span class="sxs-lookup"><span data-stu-id="1b399-109">If you are unsure which unit of time to use, you can create a new data source view for each aggregation, and build related models, to see if different trends emerge at each level of aggregation.</span></span>  
+  
+ <span data-ttu-id="1b399-110">在本教學課程中，每天於交易式銷售資料庫中收集銷售資料，但對於資料採礦，則使用檢視，依月預先彙總資料。</span><span class="sxs-lookup"><span data-stu-id="1b399-110">For this tutorial, sales data is collected on a daily basis in the transactional sales database, but for data mining, the data has been pre-aggregated by the month, using a view.</span></span>  
+  
+ <span data-ttu-id="1b399-111">此外，對於分析，資料的間距愈少愈好。</span><span class="sxs-lookup"><span data-stu-id="1b399-111">Additionally, it is desirable for analysis that the data have as few gaps as possible.</span></span> <span data-ttu-id="1b399-112">如果您計劃分析多個資料數列，所有數列的開始和結束時間最好應該在同一天。</span><span class="sxs-lookup"><span data-stu-id="1b399-112">If you plan to analyze multiple series of data, all series should preferably start and end on the same date.</span></span> <span data-ttu-id="1b399-113">如果資料有間距，但間距不在數列開頭或結尾處，您可以使用 MISSING_VALUE_SUBSTITUTION 參數來填滿數列。</span><span class="sxs-lookup"><span data-stu-id="1b399-113">If the data has gaps, but the gaps are not at the beginning or end of a series, you can use the MISSING_VALUE_SUBSTITUTION parameter to fill in the series.</span></span> [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] <span data-ttu-id="1b399-114">也提供數個選項，讓您以值 (例如平均值或常數) 取代遺漏資料。</span><span class="sxs-lookup"><span data-stu-id="1b399-114">also provides several options for replacing missing data with values, such as using means or constants.</span></span>  
+  
+> [!WARNING]  
+>  <span data-ttu-id="1b399-115">我們不再提供舊版資料來源檢視設計工具隨附的樞紐分析圖和樞紐分析表工具。</span><span class="sxs-lookup"><span data-stu-id="1b399-115">The PivotChart and PivotTable tools that were included in earlier versions of the data source view designer are no longer provided.</span></span> <span data-ttu-id="1b399-116">建議您使用 [!INCLUDE[ssISnoversion](../includes/ssisnoversion-md.md)] 隨附的資料分析工具等工具，事先識別時間序列資料的間距。</span><span class="sxs-lookup"><span data-stu-id="1b399-116">We recommend that you identify gaps in time series data beforehand, by using tools such as the Data Profiler included in [!INCLUDE[ssISnoversion](../includes/ssisnoversion-md.md)].</span></span>  
+  
+### <a name="to-identify-the-time-key-for-the-forecasting-model"></a><span data-ttu-id="1b399-117">識別預測模型的時間索引鍵</span><span class="sxs-lookup"><span data-stu-id="1b399-117">To identify the time key for the forecasting model</span></span>  
+  
+1.  <span data-ttu-id="1b399-118">在窗格中， **salesbyregion.dsv [Design]**，以滑鼠右鍵按一下資料表 vTimeSeries，然後選取 [**流覽資料**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-118">In the pane, **SalesByRegion.dsv [Design]**, right-click the table vTimeSeries, and then select **Explore Data**.</span></span>  
+  
+     <span data-ttu-id="1b399-119">新索引標籤隨即開啟，標題為 [**流覽 VTimeSeries 資料表**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-119">A new tab opens, titled **Explore vTimeSeries Table**.</span></span>  
+  
+2.  <span data-ttu-id="1b399-120">在 [**資料表**] 索引標籤上，檢查 [TimeIndex] 和 [報告日期] 資料行中所使用的資料。</span><span class="sxs-lookup"><span data-stu-id="1b399-120">On the **Table** tab, review the data that is used in the TimeIndex and Reporting Date columns.</span></span>  
+  
+     <span data-ttu-id="1b399-121">這兩個資料行都是具有唯一值的序列，都可以做為時間序列索引鍵；不過，資料行的資料類型不同。</span><span class="sxs-lookup"><span data-stu-id="1b399-121">Both are sequences with unique values and can both be used as the time series key; however, the data types of the columns are different.</span></span> <span data-ttu-id="1b399-122">Microsoft 時間序列演算法不要求使用 `datetime` 資料類型，只要求使用的值必須相異且經過排序。</span><span class="sxs-lookup"><span data-stu-id="1b399-122">The Microsoft Time Series algorithm does not require a `datetime` data type, only that the values be distinct and ordered.</span></span> <span data-ttu-id="1b399-123">因此，您可以使用任何一個資料行做為預測模型的時間索引鍵。</span><span class="sxs-lookup"><span data-stu-id="1b399-123">Therefore, either column can be used as the time key for the forecasting model.</span></span>  
+  
+3.  <span data-ttu-id="1b399-124">在 [資料來源] 視圖設計介面中，選取 [報表日期] 資料行，然後選取 [**屬性**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-124">In the data source view design surface, select the column, Reporting Date and select **Properties**.</span></span> <span data-ttu-id="1b399-125">接下來，按一下 [TimeIndex] 資料行，然後選取 [**屬性**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-125">Next, click the column TimeIndex and select **Properties**.</span></span>  
+  
+     <span data-ttu-id="1b399-126">欄位 TimeIndex 的資料類型為 System.object，而欄位報告日期的資料類型為 system.string。</span><span class="sxs-lookup"><span data-stu-id="1b399-126">The field TimeIndex has the data type System.Int32, whereas the field Reporting Date has the data type System.DateTime.</span></span> <span data-ttu-id="1b399-127">許多資料倉儲都會將日期/時間值轉換為整數，並將整數資料行做為索引鍵，以改進索引效能。</span><span class="sxs-lookup"><span data-stu-id="1b399-127">Many data warehouses convert date/time values to integers and use the integer column as the key, to improve indexing performance.</span></span> <span data-ttu-id="1b399-128">不過，如果您使用此資料行，Microsoft 時間序列演算法會使用未來值 (例如 201014、201014 等) 做預測。</span><span class="sxs-lookup"><span data-stu-id="1b399-128">However, if you use this column, the Microsoft Time Series algorithm will make predictions using future values such as 201014, 201014, and so forth.</span></span> <span data-ttu-id="1b399-129">因為您想要使用行事曆日期來表示銷售資料預測，所以您將使用 [報表日期] 資料行做為唯一的數列識別碼。</span><span class="sxs-lookup"><span data-stu-id="1b399-129">Because you want to represent your sales data forecast by using calendar dates, you will use the Reporting Date column as the unique series identifier.</span></span>  
+  
+### <a name="to-set-the-key-in-the-data-source-view"></a><span data-ttu-id="1b399-130">若要設定資料來源檢視中的索引鍵</span><span class="sxs-lookup"><span data-stu-id="1b399-130">To set the key in the data source view</span></span>  
+  
+1.  <span data-ttu-id="1b399-131">在 [ **salesbyregion.dsv**] 窗格中，選取 [vTimeSeries] 資料表。</span><span class="sxs-lookup"><span data-stu-id="1b399-131">In the pane **SalesByRegion.dsv**, select the vTimeSeries table.</span></span>  
+  
+2.  <span data-ttu-id="1b399-132">以滑鼠右鍵按一下資料行 [報表日期]，然後選取 [**設定邏輯主鍵**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-132">Right-click the column, Reporting Date, and select **Set Logical Primary Key**.</span></span>  
+  
+## <a name="handling-missing-data-optional"></a><span data-ttu-id="1b399-133">處理遺漏資料 (選擇性)</span><span class="sxs-lookup"><span data-stu-id="1b399-133">Handling Missing Data (Optional)</span></span>  
+ <span data-ttu-id="1b399-134">如果有任何序列遺漏資料，當您嘗試處理模型時，可能會收到錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="1b399-134">If any series has missing data, you might get an error when you try to process the model.</span></span> <span data-ttu-id="1b399-135">解決遺漏資料的方法有好幾種：</span><span class="sxs-lookup"><span data-stu-id="1b399-135">You have several ways to work around missing data:</span></span>  
+  
+-   <span data-ttu-id="1b399-136">您可以讓 Analysis Services 計算平均值或使用上一個值，藉此填滿遺漏值。</span><span class="sxs-lookup"><span data-stu-id="1b399-136">You can have Analysis Services fill in missing values, either by calculating a mean, or by using a previous value.</span></span> <span data-ttu-id="1b399-137">方法是，在採礦模型上設定 MISSING_VALUE_SUBSTITUTION 參數。</span><span class="sxs-lookup"><span data-stu-id="1b399-137">You do this by setting the MISSING_VALUE_SUBSTITUTION parameter on the mining model.</span></span> <span data-ttu-id="1b399-138">如需此參數的詳細資訊，請參閱[Microsoft 時間序列演算法技術參考](../../2014/analysis-services/data-mining/microsoft-time-series-algorithm-technical-reference.md)。</span><span class="sxs-lookup"><span data-stu-id="1b399-138">For more information about this parameter, see [Microsoft Time Series Algorithm Technical Reference](../../2014/analysis-services/data-mining/microsoft-time-series-algorithm-technical-reference.md).</span></span> <span data-ttu-id="1b399-139">如需如何變更現有的採礦模型參數的詳細資訊，請參閱[View Or Change 演算法 parameters](../../2014/analysis-services/data-mining/view-or-change-algorithm-parameters.md)。</span><span class="sxs-lookup"><span data-stu-id="1b399-139">For information about how to change parameters on an existing mining model, see [View or Change Algorithm Parameters](../../2014/analysis-services/data-mining/view-or-change-algorithm-parameters.md).</span></span>  
+  
+-   <span data-ttu-id="1b399-140">您可以改變資料來源或是篩選基礎檢視，以便刪除不完全的數列或取代值。</span><span class="sxs-lookup"><span data-stu-id="1b399-140">You can alter the data source or filter the underlying view to eliminate ragged series or to replace values.</span></span> <span data-ttu-id="1b399-141">您可以在關聯式資料來源中進行此動作，或是建立自訂具名查詢或具名計算以修改資料來源檢視。</span><span class="sxs-lookup"><span data-stu-id="1b399-141">You can do this in the relational data source, or you can modify the data source view by creating custom named queries or named calculations.</span></span> <span data-ttu-id="1b399-142">如需詳細資訊，請參閱 [多維度模型中的資料來源檢視](https://docs.microsoft.com/analysis-services/multidimensional-models/data-source-views-in-multidimensional-models)。</span><span class="sxs-lookup"><span data-stu-id="1b399-142">For more information, see [Data Source Views in Multidimensional Models](https://docs.microsoft.com/analysis-services/multidimensional-models/data-source-views-in-multidimensional-models).</span></span> <span data-ttu-id="1b399-143">此課程稍後的一項工作提供了如何建立具名查詢與自訂計算的範例。</span><span class="sxs-lookup"><span data-stu-id="1b399-143">A later task in this lesson provides an example of how to build both a named query and a custom calculation.</span></span>  
+  
+ <span data-ttu-id="1b399-144">在這個案例中，有一個數列開頭處缺少某些資料：亦即，直到 2007 年 7 月才有 T1000 產品線的資料。</span><span class="sxs-lookup"><span data-stu-id="1b399-144">For this scenario, some data is missing at the beginning of one series: that is, there is no data for the T1000 product line until July 2007.</span></span> <span data-ttu-id="1b399-145">除此之外，所有數列都是在同一天結束，沒有遺漏值。</span><span class="sxs-lookup"><span data-stu-id="1b399-145">Otherwise, all series end on the same date, and there are no missing values.</span></span>  
+  
+ <span data-ttu-id="1b399-146">Microsoft 時間序列演算法的需求是您包含在單一模型中的任何數列都應該具有相同的**結束**點。</span><span class="sxs-lookup"><span data-stu-id="1b399-146">The requirement of the Microsoft Time Series algorithm is that any series that you include in a single model should have the same **ending** point.</span></span> <span data-ttu-id="1b399-147">由於 T1000 自行車模型從 2007 年引進，這個序列的資料比其他自行車模型開始時間晚，但是結束日期相同，因此這個序列的資料可以使用。</span><span class="sxs-lookup"><span data-stu-id="1b399-147">Because the T1000 bicycle model was introduced in 2007, the data for this series starts later than for other bicycle models, but the series ends on the same date; therefore the data is usable.</span></span>  
+  
+#### <a name="to-close-the-data-source-view-designer"></a><span data-ttu-id="1b399-148">關閉資料來源檢視設計師</span><span class="sxs-lookup"><span data-stu-id="1b399-148">To close the data source view designer</span></span>  
+  
+-   <span data-ttu-id="1b399-149">以滑鼠右鍵按一下 [**流覽 VTimeSeries 資料表**] 索引標籤，然後選取 [**關閉**]。</span><span class="sxs-lookup"><span data-stu-id="1b399-149">Right-click the tab, **Explore vTimeSeries Table**, and select **Close**.</span></span>  
+  
+## <a name="next-task-in-lesson"></a><span data-ttu-id="1b399-150">本課程的下一項工作</span><span class="sxs-lookup"><span data-stu-id="1b399-150">Next Task in Lesson</span></span>  
+ [<span data-ttu-id="1b399-151">建立預測結構和模型 &#40;中繼資料採礦教學課程&#41;</span><span class="sxs-lookup"><span data-stu-id="1b399-151">Creating a Forecasting Structure and Model &#40;Intermediate Data Mining Tutorial&#41;</span></span>](../../2014/tutorials/creating-a-forecasting-structure-and-model-intermediate-data-mining-tutorial.md)  
+  
+## <a name="see-also"></a><span data-ttu-id="1b399-152">另請參閱</span><span class="sxs-lookup"><span data-stu-id="1b399-152">See Also</span></span>  
+ [<span data-ttu-id="1b399-153">Microsoft 時間序列演算法</span><span class="sxs-lookup"><span data-stu-id="1b399-153">Microsoft Time Series Algorithm</span></span>](../../2014/analysis-services/data-mining/microsoft-time-series-algorithm.md)  
+  
+  
