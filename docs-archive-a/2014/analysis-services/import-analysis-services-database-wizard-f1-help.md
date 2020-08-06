@@ -1,0 +1,30 @@
+---
+title: 匯入 Analysis Services 資料庫嚮導 F1 說明 |Microsoft Docs
+ms.custom: ''
+ms.date: 06/13/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+f1_keywords:
+- sql12.asvs.importdbwizard.f1
+helpviewer_keywords:
+- Import Analysis Services Database Wizard
+ms.assetid: 42f67aa9-4898-4f13-afd5-cf3711d5e5e0
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: 47ca0757d840439668a1a4f9d0462725108950c7
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87606483"
+---
+# <a name="import-analysis-services-database-wizard-f1-help"></a><span data-ttu-id="bfea0-102">匯入 Analysis Services 資料庫精靈 F1 說明</span><span class="sxs-lookup"><span data-stu-id="bfea0-102">Import Analysis Services Database Wizard F1 Help</span></span>
+  <span data-ttu-id="bfea0-103">使用中的 [匯入 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 9.0 資料庫] Wizard [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] ， [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 從現有的資料庫產生專案 [!INCLUDE[msCoName](../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="bfea0-103">Use the Import [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 9.0 Database Wizard in [!INCLUDE[ssBIDevStudioFull](../includes/ssbidevstudiofull-md.md)] to generate an [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] project from an existing [!INCLUDE[msCoName](../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] database.</span></span>  
+  
+ <span data-ttu-id="bfea0-104">匯入 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 9.0 資料庫精靈會引導您完成下列步驟：</span><span class="sxs-lookup"><span data-stu-id="bfea0-104">The Import [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 9.0 Database Wizard guides you through the following steps:</span></span>  
+  
+-   <span data-ttu-id="bfea0-105">選取 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 執行個體和資料庫，並從中產生 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 專案。</span><span class="sxs-lookup"><span data-stu-id="bfea0-105">Selecting the [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] instance and database from which to generate the [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] project.</span></span>  
+  
+  
