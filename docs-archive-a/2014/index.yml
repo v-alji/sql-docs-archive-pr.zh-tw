@@ -1,0 +1,128 @@
+### YamlMime:Landing
+title: SQL Server 2014 文件
+summary: Microsoft SQL Server 2014 內部部署為關聯式資料庫 。
+metadata:
+  title: SQL Server 2014 主題
+  description: 選擇您感興趣 SQL Server 2014 內部部署關係資料庫或相關產品和服務的區域。
+  ms.prod: sql
+  ms.topic: landing-page
+  author: MightyPen
+  ms.author: genemi
+  ms.date: 07/19/2020
+  ms.openlocfilehash: b730593f26876a9138bc23b4e1679e950f90476c
+  ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+  ms.translationtype: MT
+  ms.contentlocale: zh-TW
+  ms.lasthandoff: 08/04/2020
+  ms.locfileid: "87592189"
+landingContent:
+- title: 特殊文章
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: SQL Server 2014 中的新功能
+      url: sql-server/what-s-new-in-sql-server-2016.md?view=sql-server-2014
+    - text: 舊版 2012-2005
+      url: /sql/toc/previous-versions-sql-server?view=sql-server-ver15
+    - text: SQL Server 最新版本
+      url: /sql/sql-server/index?view=sql-server-ver15
+    - text: SQL 最新版本中的整合資料
+      url: https://www.microsoft.com/sql-server/
+- title: 後端開發
+  linkLists:
+  - linkListType: get-started
+    links:
+    - text: 引擎概觀
+      url: database-engine/sql-server-database-engine-overview.md?view=sql-server-2014
+  - linkListType: reference
+    links:
+    - text: SQL 2014 離線叢書中的 T-SQL
+      url: sql-server/sql-server-offline-documentation.md?view=sql-server-2014
+    - text: 建立資料庫和其他 T-sql
+      url: /sql/t-sql/statements/create-database-transact-sql?view=sql-server-2016
+    - text: CREATE TABLE 和其他 T-sql
+      url: /sql/t-sql/statements/create-table-transact-sql?view=sql-server-2016
+    - text: SELECT - JOIN - GROUP BY
+      url: /sql/t-sql/queries/select-transact-sql?view=sql-server-2016
+- title: 進階後端開發
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: FOR XML
+      url: relational-databases/xml/xml-data-sql-server.md?view=sql-server-2014
+  - linkListType: architecture
+    links:
+    - text: .NET CLR 整合
+      url: relational-databases/clr-integration/common-language-runtime-integration-overview.md?view=sql-server-2014
+    - text: 資料分割資料表與索引
+      url: relational-databases/partitions/partitioned-tables-and-indexes.md?view=sql-server-2014
+    - text: 記憶體中的 OLTP
+      url: relational-databases/in-memory-oltp/in-memory-oltp-in-memory-optimization.md?view=sql-server-2014
+    - text: 原生編譯的預存程序
+      url: relational-databases/in-memory-oltp/native-compilation-of-tables-and-stored-procedures.md?view=sql-server-2014
+    - text: 資料行存放區索引
+      url: relational-databases/indexes/columnstore-indexes-described.md?view=sql-server-2014
+- title: 系統管理
+  linkLists:
+  - linkListType: download
+    links:
+    - text: 安裝 SQL Server
+      url: database-engine/install-windows/install-sql-server.md?view=sql-server-2014
+  - linkListType: overview
+    links:
+    - text: 復原和持續性
+      url: relational-databases/backup-restore/complete-database-restores-simple-recovery-model.md?view=sql-server-2014
+    - text: 安全性
+      url: relational-databases/security/security-center-for-sql-server-database-engine-and-azure-sql-database.md?view=sql-server-2014
+    - text: 組態管理員
+      url: tools/configuration-manager/sql-server-configuration-manager-help.md?view=sql-server-2014
+    - text: sp_configure server-wide settings
+      url: relational-databases/databases/database-properties-options-page.md?view=sql-server-2014
+    - text: 資料庫啟動選項
+      url: database-engine/configure-windows/database-engine-service-startup-options.md?view=sql-server-2014
+  - linkListType: architecture
+    links:
+    - text: 複寫
+      url: relational-databases/replication/sql-server-replication.md?view=sql-server-2014
+    - text: 監視與調整效能
+      url: relational-databases/performance/monitor-and-tune-for-performance.md?view=sql-server-2014
+    - text: Database Tuning Advisor (DTA)
+      url: relational-databases/performance/database-engine-tuning-advisor.md?view=sql-server-2014
+    - text: SQL Server Profiler
+      url: tools/sql-server-profiler/sql-server-profiler.md?view=sql-server-2014
+- title: 資料系統管理
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: 大量資料匯入及匯出
+      url: relational-databases/import-export/bulk-import-and-export-of-data-sql-server.md?view=sql-server-2014
+    - text: 大量複製程式 (BCP .exe)
+      url: tools/bcp-utility.md?view=sql-server-2014
+    - text: 資料壓縮
+      url: relational-databases/data-compression/data-compression.md?view=sql-server-2014
+  - linkListType: architecture
+    links:
+    - text: Data Quality Service (DQS)
+      url: data-quality-services/data-quality-services.md?view=sql-server-2014
+    - text: Master Data Services (MDS)
+      url: master-data-services/master-data-services.md?view=sql-server-2014
+- title: 前端開發
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: 連接至 SQL Server
+      url: relational-databases/lesson-1-connecting-to-the-database-engine.md?view=sql-server-2014
+  - linkListType: overview
+    links:
+    - text: SQL Server 管理物件 (SMO)
+      url: relational-databases/server-management-objects-smo/sql-server-management-objects-smo-programming-guide.md?view=sql-server-2014
+- title: 用戶端服務
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Analysis Services (SSAS)
+      url: analysis-services/analysis-services.md?view=sql-server-2014
+    - text: Integration Services (SSIS)
+      url: integration-services/sql-server-integration-services.md?view=sql-server-2014
+    - text: Reporting Services (SSRS)
+      url: reporting-services/create-deploy-and-manage-mobile-and-paginated-reports.md?view=sql-server-2014
