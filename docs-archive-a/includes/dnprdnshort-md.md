@@ -1,0 +1,9 @@
+---
+ms.openlocfilehash: efaa9588b1f9061019ab4f7d993b26245df35716
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87593308"
+---
+ <span data-ttu-id="2b3a1-101">.NET Framework</span><span class="sxs-lookup"><span data-stu-id="2b3a1-101">.NET Framework</span></span> 
