@@ -1,0 +1,161 @@
+---
+title: 適用于 Excel (SQL Server 資料採礦增益集的資料採礦用戶端) |Microsoft Docs
+ms.custom: ''
+ms.date: 12/29/2017
+ms.prod: sql-server-2014
+ms.reviewer: ''
+ms.technology: analysis-services
+ms.topic: conceptual
+helpviewer_keywords:
+- Data Mining Client
+- wizards
+- getting started
+ms.assetid: e075e2de-11cc-4f71-9603-0b161bca8a24
+author: minewiskan
+ms.author: owend
+ms.openlocfilehash: d82d7dc4192fedef5e37ac054531b33fc2d1823d
+ms.sourcegitcommit: ad4d92dce894592a259721a1571b1d8736abacdb
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87598081"
+---
+# <a name="data-mining-client-for-excel-sql-server-data-mining-add-ins"></a><span data-ttu-id="cbfca-102">適用於 Excel 的資料採礦用戶端 (SQL Server 資料採礦增益集)</span><span class="sxs-lookup"><span data-stu-id="cbfca-102">Data Mining Client for Excel (SQL Server Data Mining Add-ins)</span></span>
+  <span data-ttu-id="cbfca-103">適用於 Excel 的資料採礦用戶端是可讓您執行一般資料採礦工作 (從資料清理到模型建立與預測查詢) 的一組工具。</span><span class="sxs-lookup"><span data-stu-id="cbfca-103">The Data Mining Client for Excel is a set of tools that let you perform common data mining tasks, from data cleansing to model building and prediction queries.</span></span> <span data-ttu-id="cbfca-104">您可以使用 Excel 資料表或範圍中的資料，或是存取外部資料來源。</span><span class="sxs-lookup"><span data-stu-id="cbfca-104">You can use data in Excel tables or ranges, or access external data sources.</span></span>  
+  
+ <span data-ttu-id="cbfca-105">![DM](media/dm-tabletools.gif "DM")</span><span class="sxs-lookup"><span data-stu-id="cbfca-105">![DM](media/dm-tabletools.gif "DM")</span></span>  
+  
+-   [<span data-ttu-id="cbfca-106">使用資料</span><span class="sxs-lookup"><span data-stu-id="cbfca-106">Work With Data</span></span>](#bkmk_Data)  
+  
+     <span data-ttu-id="cbfca-107">將資料載入 Excel 中、清理資料、檢查極端值，以及建立統計摘要。</span><span class="sxs-lookup"><span data-stu-id="cbfca-107">Load your data into Excel, cleanse the data, check for outliers, and create statistical summaries.</span></span> <span data-ttu-id="cbfca-108">您也可以使用外部資料執行不同類型的取樣、分析資料和測試模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-108">You can also perform different kinds of sampling, profile the data, and test models using external data.</span></span> <span data-ttu-id="cbfca-109">資料採礦用戶端是準備資料進行分析的最簡單方式，不需使用複雜字集或 ETL 程序。</span><span class="sxs-lookup"><span data-stu-id="cbfca-109">The Data Mining Client is the easiest way to prepare data for analysis without complex scripts or ETL processes.</span></span>  
+  
+-   [<span data-ttu-id="cbfca-110">建立模型和分析</span><span class="sxs-lookup"><span data-stu-id="cbfca-110">Build Models and Analyze</span></span>](#bkmk_Model)  
+  
+     <span data-ttu-id="cbfca-111">這些工具提供廣為人知且經過實證測試的資料採礦演算法的精靈介面，這些演算法包括叢集 (K-means 和 EM)、關聯分析、時間序列分析和決策樹。</span><span class="sxs-lookup"><span data-stu-id="cbfca-111">These tools provide wizard interfaces to well-known, empirically tested data mining algorithms, including clustering (K-means and EM), association analysis, time series analysis, and decision trees.</span></span> <span data-ttu-id="cbfca-112">每個精靈的進階模型選項可讓您選擇不同的演算法 (例如，貝氏機率分類或類神經網路) 及自訂行為 (例如，群集種子或初始取樣大小)。</span><span class="sxs-lookup"><span data-stu-id="cbfca-112">Advanced modeling options for each wizard let you choose different algorithms, such as the Naïve Bayes or neural networks, and customize behavior such as the cluster seed or initial sampling size.</span></span>  
+  
+     <span data-ttu-id="cbfca-113">所有資料採礦演算法都裝載在 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 的執行個體中，提供您更強大的功能來建立複雜模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-113">All data mining algorithms are hosted in an instance of [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)], giving you more power to build complex models.</span></span>  
+  
+-   [<span data-ttu-id="cbfca-114">測試、查詢和驗證模型</span><span class="sxs-lookup"><span data-stu-id="cbfca-114">Test, Query, and Validate Models</span></span>](#bkmk_Validate)  
+  
+     <span data-ttu-id="cbfca-115">資料採礦用戶端提供用來測試模型的業界標準工具，包括增益圖和交叉驗證。</span><span class="sxs-lookup"><span data-stu-id="cbfca-115">The Data Mining Client provides industry-standard tools for testing models, including lift charts and cross-validation.</span></span> <span data-ttu-id="cbfca-116">提供的精靈可讓您輕鬆測試資料集的有效性及其精確度。</span><span class="sxs-lookup"><span data-stu-id="cbfca-116">The wizards provided make it easy to test the validity of the data set and its accuracy.</span></span> <span data-ttu-id="cbfca-117">查詢精靈會建立查詢來使用模型進行預測和計分。</span><span class="sxs-lookup"><span data-stu-id="cbfca-117">The query wizard builds queries to use the models for prediction and scoring.</span></span>  
+  
+-   [<span data-ttu-id="cbfca-118">視圖模型</span><span class="sxs-lookup"><span data-stu-id="cbfca-118">View Models</span></span>](#bkmk_ViewModels)  
+  
+     <span data-ttu-id="cbfca-119">大部分工具所產生的圖表都可以直接儲存至 Excel。</span><span class="sxs-lookup"><span data-stu-id="cbfca-119">Charts generated by most tools can be saved directly to Excel.</span></span> <span data-ttu-id="cbfca-120">使用[Excel 中的流覽模型 &#40;SQL Server 資料採礦增益集&#41;](browsing-models-in-excel-sql-server-data-mining-add-ins.md)工具來探索模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-120">Use the [Browsing Models in Excel &#40;SQL Server Data Mining Add-ins&#41;](browsing-models-in-excel-sql-server-data-mining-add-ins.md) tool to explore the models.</span></span>  
+  
+-   [<span data-ttu-id="cbfca-121">管理、文件與部署</span><span class="sxs-lookup"><span data-stu-id="cbfca-121">Manage, Document, and Deploy</span></span>](#bkmk_UsageMgmt)  
+  
+     <span data-ttu-id="cbfca-122">適用於 Excel 的資料採礦用戶端會維護與伺服器之間的使用中連接，好讓您可以將資料採礦模型儲存到伺服器，以供進一步測試使用，或是部署至實際執行伺服器以獲得較大的延展性。</span><span class="sxs-lookup"><span data-stu-id="cbfca-122">The Data Mining Client for Excel maintains an active connection to the server, so you can save your data mining model to the server, to use in further testing, or to deploy to a production server for greater scalability.</span></span>  
+  
+##  <a name="work-with-data"></a><a name="bkmk_Data"></a><span data-ttu-id="cbfca-123">使用資料</span><span class="sxs-lookup"><span data-stu-id="cbfca-123">Work With Data</span></span>  
+ <span data-ttu-id="cbfca-124">[**資料準備**] 群組包含下列的嚮導，可協助您在準備資料採礦工作時，檢查和清除資料。</span><span class="sxs-lookup"><span data-stu-id="cbfca-124">The **Data Preparation** group contains the following wizards that help you review and clean data in preparation for data mining tasks.</span></span> <span data-ttu-id="cbfca-125">此外，大部分的精靈還可以讓您將資料分成定型集和測試集。</span><span class="sxs-lookup"><span data-stu-id="cbfca-125">Most wizards also let you separate data into training and testing sets.</span></span>  
+  
+ [<span data-ttu-id="cbfca-126">流覽資料 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-126">Explore Data &#40;SQL Server Data Mining Add-ins&#41;</span></span>](explore-data-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-127">針對建立和儲存模型，增益集支援以下這些資料連接：</span><span class="sxs-lookup"><span data-stu-id="cbfca-127">For building and storing models, the add-ins support these data connections:</span></span>  
+  
+-   <span data-ttu-id="cbfca-128"> 伺服器的連接，用於儲存及處理模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-128">Connection to an [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] server, for storing and processing the models.</span></span>  
+  
+-   <span data-ttu-id="cbfca-129">選用的外部資料來源連接。</span><span class="sxs-lookup"><span data-stu-id="cbfca-129">Optional connections to external data sources.</span></span> <span data-ttu-id="cbfca-130">您可以使用可定義為 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 資料來源的任何類型資料來建立模型，或者是直接使用已存在 Excel 中的資料。</span><span class="sxs-lookup"><span data-stu-id="cbfca-130">You can build your model using any type of data that can be defined as an [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] data source, or just use the data already in Excel.</span></span>  
+  
+ [<span data-ttu-id="cbfca-131">流覽資料 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-131">Explore Data &#40;SQL Server Data Mining Add-ins&#41;</span></span>](explore-data-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-132">[**流覽資料**] wizard 可協助您瞭解資料表中的資料類型和數量，方法是以圖表方式繪製所選資料行的分佈和值，一次一個。</span><span class="sxs-lookup"><span data-stu-id="cbfca-132">The **Explore Data** wizard helps you understand the type and amount of data in your data table by graphing the distribution and values for the selected columns, one at a time.</span></span>  
+  
+ [<span data-ttu-id="cbfca-133">SQL Server 資料採礦增益集的範例資料 &#40;&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-133">Sample Data &#40;SQL Server Data Mining Add-ins&#41;</span></span>](sample-data-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-134">為定型和測試模型而建立正確類型的資料是資料採礦的一個重要部分，但是如果沒有正確的工具，也是會乏味無趣。</span><span class="sxs-lookup"><span data-stu-id="cbfca-134">Creating the right kind of data for training and testing your models is an important part of data mining, but one that can be tedious without the right tools.</span></span> <span data-ttu-id="cbfca-135">**範例資料**嚮導可讓您輕鬆地將用於模型的資料分割成兩個群組，一個用於建立模型，另一個用於測試它。</span><span class="sxs-lookup"><span data-stu-id="cbfca-135">The **Sample Data** wizard makes it easy to divide the data used for a model into two groups, one for building the model and one for testing it.</span></span> <span data-ttu-id="cbfca-136">您可以使用隨機取樣或超取樣。</span><span class="sxs-lookup"><span data-stu-id="cbfca-136">You can use random sampling or oversampling.</span></span>  
+  
+ [<span data-ttu-id="cbfca-137">預測計算器 &#40;適用于 Excel 的資料表分析工具&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-137">Prediction Calculator &#40;Table Analysis Tools for Excel&#41;</span></span>](prediction-calculator-table-analysis-tools-for-excel.md)  
+ <span data-ttu-id="cbfca-138">[**移除**極端值] wizard 提供數個工具，可供您識別並適當地處理極端值。</span><span class="sxs-lookup"><span data-stu-id="cbfca-138">The **Remove Outliers** wizard gives you several tools to identify and appropriately handle outliers.</span></span> <span data-ttu-id="cbfca-139">它會顯示值的散發以及極端值和其他資料的關聯性，並讓您決定是要移除或變更極端值。</span><span class="sxs-lookup"><span data-stu-id="cbfca-139">It shows you the distribution of values and the relationship of the outliers to other data, and lets you decided whether to remove or change outliers.</span></span>  
+  
+ [<span data-ttu-id="cbfca-140">預測計算器 &#40;適用于 Excel 的資料表分析工具&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-140">Prediction Calculator &#40;Table Analysis Tools for Excel&#41;</span></span>](prediction-calculator-table-analysis-tools-for-excel.md)  
+ <span data-ttu-id="cbfca-141">重新**標記**的嚮導可協助您建立資料的新標籤，讓您更容易瞭解分析的結果。</span><span class="sxs-lookup"><span data-stu-id="cbfca-141">The **Relabel** wizard helps you create new labels for data to make it easier to understand the results of analysis.</span></span> <span data-ttu-id="cbfca-142">例如，您可以使用更具描述性的名稱來重新命名某個資料範圍，或者可以從清單中選擇代表性的值。</span><span class="sxs-lookup"><span data-stu-id="cbfca-142">For example, you can rename a range of data with a more descriptive name, or you can choose a representative value from the list.</span></span>  
+  
+##  <a name="build-models-and-analyze"></a><a name="bkmk_Model"></a><span data-ttu-id="cbfca-143">建立模型和分析</span><span class="sxs-lookup"><span data-stu-id="cbfca-143">Build Models and Analyze</span></span>  
+ <span data-ttu-id="cbfca-144">工具列之 [**資料模型**化] 區段上的選項可讓您從資料衍生模式;根據屬性來群組資料列，或流覽關聯。</span><span class="sxs-lookup"><span data-stu-id="cbfca-144">The options on the **Data Modeling** section of the toolbar let you derive patterns from data; group rows of data based on attributes, or explore associations.</span></span> <span data-ttu-id="cbfca-145">此工具功能區中的精靈是根據 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 中提供之功能強大的資料採礦演算法。</span><span class="sxs-lookup"><span data-stu-id="cbfca-145">The wizards in this tool ribbon are based on the powerful data mining algorithms available in [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)].</span></span> <span data-ttu-id="cbfca-146">這些精靈可讓您自訂此演算法的行為及使用各種資料來源，與適用於 Excel 的資料表分析工具中的類似工具不同。</span><span class="sxs-lookup"><span data-stu-id="cbfca-146">Unlike the similar tools in the Table Analysis Tools for Excel, these wizards let you customize the behavior of the algorithm and use a variety of data sources.</span></span>  
+  
+ [<span data-ttu-id="cbfca-147">適用于 Excel 的資料採礦增益集&#41;的分類嚮導 &#40;</span><span class="sxs-lookup"><span data-stu-id="cbfca-147">Classify Wizard &#40;Data Mining Add-ins for Excel&#41;</span></span>](classify-wizard-data-mining-add-ins-for-excel.md)  
+ <span data-ttu-id="cbfca-148">[**分類**] wizard 可協助您根據 excel 資料表、excel 範圍或外部資料源中的現有資料，建立分類模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-148">The **Classify** wizard helps you build a classification model based on existing data in an Excel table, an Excel range, or an external data source.</span></span> <span data-ttu-id="cbfca-149">分類模型會擷取可指示資料相似性的模式，並協助您根據值的分組來做出預測。</span><span class="sxs-lookup"><span data-stu-id="cbfca-149">A classification model extracts patterns in your data that indicate similarities and helps you make predictions based on groupings of values.</span></span> <span data-ttu-id="cbfca-150">例如，分類模型可能會用來根據收入或花費模式預測風險。</span><span class="sxs-lookup"><span data-stu-id="cbfca-150">For example, a classification model might be used to predict risk based on income or spending patterns.</span></span>  
+  
+ <span data-ttu-id="cbfca-151">[**分類**] wizard 支援使用這些 Microsoft 資料採礦演算法：決策樹演算法、羅吉斯回歸、貝氏機率分類、類神經網路。</span><span class="sxs-lookup"><span data-stu-id="cbfca-151">The **Classify**  wizard supports use of these Microsoft data mining algorithms: Decision Trees algorithm, Logistic Regression, Naïve Bayes, neural Networks.</span></span>  
+  
+ [<span data-ttu-id="cbfca-152">評估 Wizard &#40;適用于 Excel 的資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-152">Estimate Wizard &#40;Data Mining Add-ins for Excel&#41;</span></span>](estimate-wizard-data-mining-add-ins-for-excel.md)  
+ <span data-ttu-id="cbfca-153">**估計**的 wizard 可協助您建立估計模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-153">The **Estimate** wizard helps you create an estimation model.</span></span> <span data-ttu-id="cbfca-154">估計模型會從資料擷取模式，並使用該模式來預測數值結果，例如貨幣、銷售量、日期或時間。</span><span class="sxs-lookup"><span data-stu-id="cbfca-154">An estimation model extracts patterns from data and uses the patterns to predict a numeric outcome, such as a currency, sales amount, date, or time.</span></span>  
+  
+ <span data-ttu-id="cbfca-155">**估計**wizard 會使用這些 Microsoft 資料採礦演算法：決策樹、線性回歸、羅吉斯回歸和類神經網路。</span><span class="sxs-lookup"><span data-stu-id="cbfca-155">The **Estimate** wizard uses these Microsoft data mining algorithms: Decision Trees, Linear Regression, Logistic Regression, and Neural Networks.</span></span>  
+  
+ [<span data-ttu-id="cbfca-156">&#40;適用于 Excel 的資料表分析工具分析關鍵影響因數&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-156">Analyze Key Influencers &#40;Table Analysis Tools for Excel&#41;</span></span>](analyze-key-influencers-table-analysis-tools-for-excel.md)  
+ <span data-ttu-id="cbfca-157">叢集精靈可協助您建立叢集模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-157">The Cluster wizard helps you build a clustering model.</span></span> <span data-ttu-id="cbfca-158">群集模型會偵測共用類似特性的資料列群組。</span><span class="sxs-lookup"><span data-stu-id="cbfca-158">A clustering model detects groups of rows that share similar characteristics.</span></span> <span data-ttu-id="cbfca-159">這個精靈對於瀏覽所有資料類型中的模式很有協助。</span><span class="sxs-lookup"><span data-stu-id="cbfca-159">This wizard is useful for exploring patterns in all kinds of data.</span></span>  
+  
+ <span data-ttu-id="cbfca-160">叢集**嚮導會使用 Microsoft 群集演算法**，其中包含 K 表示和 EM。</span><span class="sxs-lookup"><span data-stu-id="cbfca-160">The **Cluster** wizard uses the Microsoft Clustering algorithm, which includes both K-means and EM.</span></span>  
+  
+ [<span data-ttu-id="cbfca-161">&#40;適用于 Excel&#41;的資料採礦用戶端相關聯的 Wizard</span><span class="sxs-lookup"><span data-stu-id="cbfca-161">Associate Wizard &#40;Data Mining Client for Excel&#41;</span></span>](associate-wizard-data-mining-client-for-excel.md)  
+ <span data-ttu-id="cbfca-162">[**關聯**] wizard 可協助您使用 Microsoft 關聯規則演算法建立資料採礦模型，這會偵測經常發生的共同專案或事件。</span><span class="sxs-lookup"><span data-stu-id="cbfca-162">The **Associate** wizard helps you create a data mining model using the Microsoft Association Rules algorithm, which detects frequently co-occurring items or events.</span></span> <span data-ttu-id="cbfca-163">這類關聯模型對於提出建議特別有用。</span><span class="sxs-lookup"><span data-stu-id="cbfca-163">Such association models are particularly useful for making recommendations.</span></span>  
+  
+ <span data-ttu-id="cbfca-164">[**關聯**] 嚮導會使用 Microsoft 關聯規則演算法。</span><span class="sxs-lookup"><span data-stu-id="cbfca-164">The **Associate** wizard uses the Microsoft Association Rules algorithm.</span></span>  
+  
+ [<span data-ttu-id="cbfca-165">&#40;適用于 Excel 的資料採礦增益集&#41;的預測 Wizard</span><span class="sxs-lookup"><span data-stu-id="cbfca-165">Forecast Wizard &#40;Data Mining Add-ins for Excel&#41;</span></span>](forecast-wizard-data-mining-add-ins-for-excel.md)  
+ <span data-ttu-id="cbfca-166">[**預測**] wizard 可協助您預測時間序列中的值。</span><span class="sxs-lookup"><span data-stu-id="cbfca-166">The **Forecast** wizard helps you predict values in a time series.</span></span> <span data-ttu-id="cbfca-167">通常您在預測中所使用的資料會包含某種時間序列，可能是日期戳記或某種序列識別碼，而您則用它來衍生模式以供預測未來值使用。</span><span class="sxs-lookup"><span data-stu-id="cbfca-167">Typically data that you use in a forecasting contains some kind of time series, either a date stamp or some sequence ID, and you use it to derive patterns for use in predicting future values.</span></span>  
+  
+ <span data-ttu-id="cbfca-168">[**預測**] wizard 會使用 Microsoft 時間序列演算法。</span><span class="sxs-lookup"><span data-stu-id="cbfca-168">The **Forecast** wizard uses the Microsoft Time Series algorithm.</span></span>  
+  
+ [<span data-ttu-id="cbfca-169">適用于 Excel&#41;的先進模型化 &#40;資料採礦增益集</span><span class="sxs-lookup"><span data-stu-id="cbfca-169">Advanced Modeling &#40;Data Mining Add-ins for Excel&#41;</span></span>](advanced-modeling-data-mining-add-ins-for-excel.md)  
+ <span data-ttu-id="cbfca-170">已經很熟悉資料採礦了嗎？</span><span class="sxs-lookup"><span data-stu-id="cbfca-170">Already familiar with data mining?</span></span> <span data-ttu-id="cbfca-171">您可以使用 [ **Advanced** data 模型化] 選項來建立自訂資料結構，並使用其他工具和嚮導中未包含的自訂來建立模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-171">You can use the **Advanced** data modeling options to create custom data structures and build models using customizations not included in the other tools and wizards.</span></span>  
+  
+##  <a name="test-query-and-validate-models"></a><a name="bkmk_Validate"></a><span data-ttu-id="cbfca-172">測試、查詢和驗證模型</span><span class="sxs-lookup"><span data-stu-id="cbfca-172">Test, Query, and Validate Models</span></span>  
+ <span data-ttu-id="cbfca-173">使用 [**精確度和驗證**] 工具列上的 [嚮導]，即可使用業界標準的測試來驗證模型的正確性，以及評估建立模型之資料集的可用性。</span><span class="sxs-lookup"><span data-stu-id="cbfca-173">Use the wizards on the **Accuracy and Validation** toolbar to use industry-standard tests for validating the accuracy of your models, and for assessing the viability of the data set for creating models.</span></span>  
+  
+ [<span data-ttu-id="cbfca-174">&#40;適用于 Excel 的資料表分析工具分析關鍵影響因數&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-174">Analyze Key Influencers &#40;Table Analysis Tools for Excel&#41;</span></span>](analyze-key-influencers-table-analysis-tools-for-excel.md)  
+ <span data-ttu-id="cbfca-175">藉由產生增益圖或散佈圖圖表來評估資料採礦模型的效能。</span><span class="sxs-lookup"><span data-stu-id="cbfca-175">Evaluates the performance of a data mining model by generating a lift chart or scatter plot chart.</span></span>  
+  
+ [<span data-ttu-id="cbfca-176">SQL Server 資料採礦增益集的分類矩陣 &#40;&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-176">Classification Matrix &#40;SQL Server Data Mining Add-ins&#41;</span></span>](classification-matrix-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-177">藉由建立圖表來摘要列出分類模型所做的正確和不正確的預測，協助您評估此模型的效能。</span><span class="sxs-lookup"><span data-stu-id="cbfca-177">Helps you assess the performance of a classification model by creating a chart that summarizes accurate and inaccurate predictions made by the model.</span></span>  
+  
+ [<span data-ttu-id="cbfca-178">收益圖 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-178">Profit Chart &#40;SQL Server Data Mining Add-ins&#41;</span></span>](profit-chart-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-179">藉由繪製預測的精確度連同根據此預測所採取之動作的成本與優點，協助您了解資料採礦模型的影響。</span><span class="sxs-lookup"><span data-stu-id="cbfca-179">Helps you understand the impact of a data mining model by charting the accuracy of predictions together with the costs and benefits of taking action based on the prediction.</span></span>  
+  
+ [<span data-ttu-id="cbfca-180">SQL Server 資料採礦增益集的交叉驗證 &#40;&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-180">Cross-Validation &#40;SQL Server Data Mining Add-ins&#41;</span></span>](cross-validation-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-181">建立一份報表來摘要列出橫跨許多資料集子集之模型的精確度，好讓您可以判斷此模型的穩定度為何。</span><span class="sxs-lookup"><span data-stu-id="cbfca-181">Creates a report that summarizes the accuracy of the model across many subsets of the data set, so that you can determine how stable the model is.</span></span>  
+  
+ <span data-ttu-id="cbfca-182">您可以使用 Excel 資料表中的資料做為針對伺服器上儲存之採礦模型所發出的預測查詢輸入。</span><span class="sxs-lookup"><span data-stu-id="cbfca-182">You can also use data in an Excel table as input to a prediction query against a mining model stored on the server.</span></span>  
+  
+ [<span data-ttu-id="cbfca-183">查詢 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-183">Query &#40;SQL Server Data Mining Add-ins&#41;</span></span>](query-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-184">**查詢**嚮導可協助您針對現有的資料採礦模型建立預測。</span><span class="sxs-lookup"><span data-stu-id="cbfca-184">The **Query** wizard helps you create predictions against an existing data mining model.</span></span>  
+  
+ [<span data-ttu-id="cbfca-185">進階資料採礦查詢編輯器</span><span class="sxs-lookup"><span data-stu-id="cbfca-185">Advanced Data Mining Query Editor</span></span>](advanced-data-mining-query-editor.md)  
+ <span data-ttu-id="cbfca-186">對於進階使用者，此工具提供了 DMX 的拖放介面。</span><span class="sxs-lookup"><span data-stu-id="cbfca-186">For advanced users, this tool provides a drag-and-drop interface to DMX.</span></span> <span data-ttu-id="cbfca-187">您可以輕鬆地建立預測查詢或新的模型，而不用擔心語法。</span><span class="sxs-lookup"><span data-stu-id="cbfca-187">You can easily create prediction queries or new models without worrying about syntax.</span></span>  
+  
+##  <a name="view-models"></a><a name="bkmk_ViewModels"></a><span data-ttu-id="cbfca-188">視圖模型</span><span class="sxs-lookup"><span data-stu-id="cbfca-188">View Models</span></span>  
+ <span data-ttu-id="cbfca-189">您建立的模型會自動開啟進行瀏覽。</span><span class="sxs-lookup"><span data-stu-id="cbfca-189">Models you create are automatically opened for browsing.</span></span> <span data-ttu-id="cbfca-190">不過，您也可以在伺服器上瀏覽模型並產生新的視覺效果。</span><span class="sxs-lookup"><span data-stu-id="cbfca-190">However, you can also browse models on the server and generate new visualizations.</span></span> <span data-ttu-id="cbfca-191">使用[Visio 圖形](viewing-data-mining-models-in-visio-data-mining-add-ins.md)將模型圖表匯出到可自訂的畫布。</span><span class="sxs-lookup"><span data-stu-id="cbfca-191">Use the [Visio shapes](viewing-data-mining-models-in-visio-data-mining-add-ins.md) to export model diagrams to a customizable canvas.</span></span>  
+  
+ [<span data-ttu-id="cbfca-192">在 Excel 中流覽模型 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-192">Browsing Models in Excel &#40;SQL Server Data Mining Add-ins&#41;</span></span>](browsing-models-in-excel-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-193">使用針對每一種模型類型所自訂的互動式圖形，檢視您所建立的模型。</span><span class="sxs-lookup"><span data-stu-id="cbfca-193">View the models you have created, using interactive graphs customized to each type of model.</span></span>  
+  
+ [<span data-ttu-id="cbfca-194">記載 &#40;適用于 Excel 的資料採礦增益集&#41;的採礦模型</span><span class="sxs-lookup"><span data-stu-id="cbfca-194">Documenting Mining Models &#40;Data Mining Add-ins for Excel&#41;</span></span>](documenting-mining-models-data-mining-add-ins-for-excel.md)  
+ <span data-ttu-id="cbfca-195">此精靈會建立報表，以提供資料集的統計摘要和有關模型的中繼資料，藉此協助調查與解譯。</span><span class="sxs-lookup"><span data-stu-id="cbfca-195">This wizard creates reports that provide a statistical summary of the data set and metadata about the model, to aid in investigation and interpretation.</span></span>  
+  
+##  <a name="manage-document-and-deploy"></a><a name="bkmk_UsageMgmt"></a><span data-ttu-id="cbfca-196">管理、記載及部署</span><span class="sxs-lookup"><span data-stu-id="cbfca-196">Manage, Document, and Deploy</span></span>  
+ <span data-ttu-id="cbfca-197">這些工具可協助您連接到資料採礦伺服器、管理和匯出模型，以及監視資料採礦活動。</span><span class="sxs-lookup"><span data-stu-id="cbfca-197">These tools help you get connected to a data mining server, as well as manage and export models, and monitor data mining activity.</span></span>  
+  
+ [<span data-ttu-id="cbfca-198">管理 &#40;SQL Server 資料採礦增益集的模型&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-198">Manage Models &#40;SQL Server Data Mining Add-ins&#41;</span></span>](manage-models-sql-server-data-mining-add-ins.md)  
+ <span data-ttu-id="cbfca-199">如果您具有必要的權限，您可以刪除、修改、重新命名或處理現有的採礦模型和結構，而不需離開 Excel。</span><span class="sxs-lookup"><span data-stu-id="cbfca-199">If you have the necessary permissions, you can delete modify, rename, or process existing mining models and structures without leaving Excel.</span></span>  
+  
+ [<span data-ttu-id="cbfca-200">適用于 Excel&#41;的追蹤 &#40;資料採礦用戶端</span><span class="sxs-lookup"><span data-stu-id="cbfca-200">Trace &#40;Data Mining Client for Excel&#41;</span></span>](trace-data-mining-client-for-excel.md)  
+ <span data-ttu-id="cbfca-201">按一下 [**追蹤**] 以查看 Excel 用戶端與伺服器之間互動的持續性捕捉 [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="cbfca-201">Click **Trace** to view an ongoing capture of the interaction between the Excel client and the [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)] server.</span></span> <span data-ttu-id="cbfca-202">所有活動都會儲存為 DMX 或 XMLA 陳述式，好讓您可以針對資料採礦工作階段進行疑難排解，或是儲存資訊供日後使用。</span><span class="sxs-lookup"><span data-stu-id="cbfca-202">All activity is stored as DMX or XMLA statements, so that you can troubleshoot your data mining session or save the information for later use.</span></span>  
+  
+ [<span data-ttu-id="cbfca-203">連接到資料採礦伺服器</span><span class="sxs-lookup"><span data-stu-id="cbfca-203">Connect to a Data Mining Server</span></span>](connect-to-a-data-mining-server.md)  
+ <span data-ttu-id="cbfca-204">若要將 Excel 當做資料採礦的用戶端使用，您必須建立與 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 執行個體的連接，</span><span class="sxs-lookup"><span data-stu-id="cbfca-204">To use Excel as a client for data mining, you must establish a connection to an instance of [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)].</span></span> <span data-ttu-id="cbfca-205">此連接讓您能夠存取 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 引擎。</span><span class="sxs-lookup"><span data-stu-id="cbfca-205">The connection provides you with access to the [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] engine.</span></span> <span data-ttu-id="cbfca-206">如果您有權限，此連接也可讓您儲存已發現的任何模式，並修改現有的資料採礦物件。</span><span class="sxs-lookup"><span data-stu-id="cbfca-206">If you have permissions, the connection also lets you store any patterns you have discovered, and modify existing data mining objects.</span></span>  
+  
+ <span data-ttu-id="cbfca-207">[**連接**] 工具列會提供用來管理實例之連接的嚮導 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 。</span><span class="sxs-lookup"><span data-stu-id="cbfca-207">The **Connections** toolbar provides wizards for managing connections to an instance of [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)].</span></span> <span data-ttu-id="cbfca-208">若要使用資料採礦工具和演算法，您必須定義與 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] 執行個體的連接。</span><span class="sxs-lookup"><span data-stu-id="cbfca-208">You must define a connection to an instance of [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] to use the data mining tools and algorithms.</span></span> <span data-ttu-id="cbfca-209">您可以在安裝增益集時建立連接，或稍後新增連接。</span><span class="sxs-lookup"><span data-stu-id="cbfca-209">You can create the connection when you install the add-in, or you can add a connection later.</span></span>  
+  
+ <span data-ttu-id="cbfca-210">**快速入門**</span><span class="sxs-lookup"><span data-stu-id="cbfca-210">**Getting Started**</span></span>  
+ <span data-ttu-id="cbfca-211">按一下 [**消費者入門**] 按鈕，啟動設定向導，引導您建立與實例的連接 [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)] ，並取得執行資料採礦所需的許可權。</span><span class="sxs-lookup"><span data-stu-id="cbfca-211">Click the **Getting Started** button to start a configuration wizard that walks you through the process of creating a connection to an instance of [!INCLUDE[ssASnoversion](../includes/ssasnoversion-md.md)], and obtaining the permissions needed to do data mining.</span></span>  
+  
+ <span data-ttu-id="cbfca-212">**說明**</span><span class="sxs-lookup"><span data-stu-id="cbfca-212">**Help**</span></span>  
+ <span data-ttu-id="cbfca-213">[說明] 下拉式功能表提供線上說明、網站和設定**嚮導的連結**，可協助您完成設定並開始進行資料採礦。</span><span class="sxs-lookup"><span data-stu-id="cbfca-213">The **Help** dropdown menu provides links to online help, Web sites, and a configuration wizard to help you complete setup and start data mining.</span></span>  
+  
+ <span data-ttu-id="cbfca-214">說明頁面也會連結到線上資源，包括增益集的說明以及其他影片、示範和範例。</span><span class="sxs-lookup"><span data-stu-id="cbfca-214">The Help page also links to resources on line, including the Help for the add-in, and additional videos, demos, and samples.</span></span>  
+  
+## <a name="see-also"></a><span data-ttu-id="cbfca-215">另請參閱</span><span class="sxs-lookup"><span data-stu-id="cbfca-215">See Also</span></span>  
+ <span data-ttu-id="cbfca-216">[適用于 Excel 的資料表分析工具](table-analysis-tools-for-excel.md) </span><span class="sxs-lookup"><span data-stu-id="cbfca-216">[Table Analysis Tools for Excel](table-analysis-tools-for-excel.md) </span></span>  
+ [<span data-ttu-id="cbfca-217">針對 Visio 資料採礦圖表進行疑難排解 &#40;SQL Server 資料採礦增益集&#41;</span><span class="sxs-lookup"><span data-stu-id="cbfca-217">Troubleshooting Visio Data Mining Diagrams &#40;SQL Server Data Mining Add-ins&#41;</span></span>](troubleshooting-visio-data-mining-diagrams-sql-server-data-mining-add-ins.md)  
+  
+  
